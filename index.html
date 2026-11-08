@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>釜山·冬日遊</title>
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="釜山·冬日遊 ✈️ 6天5夜家族旅行">
+    <meta property="og:description" content="2027 釜山 Family Trip。Bu想San班，就去釜山！">
+    <meta property="og:url" content="https://huanavov.github.io/Hua/">
+    <meta property="og:type" content="website">
     <!-- Apple Touch Icon -->
     <link id="appleTouchIcon" rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23F6F2EA'/><circle cx='22' cy='26' r='7' fill='%23F2CBCB' opacity='0.75'/><path d='M 62 24 Q 67 20 72 24 Q 77 20 82 24' stroke='%238C8278' stroke-width='2' stroke-linecap='round' fill='none'/><path d='M0 64 Q 25 60 50 64 T 100 64 L 100 100 L 0 100 Z' fill='%236B9AC4' opacity='0.35'/><path d='M0 70 Q 25 66 50 70 T 100 70 L 100 100 L 0 100 Z' fill='%233B719F'/><path d='M0 78 Q 25 74 50 78 T 100 78 L 100 100 L 0 100 Z' fill='%2328537A'/><line x1='21' y1='58' x2='21' y2='80' stroke='%237D736A' stroke-width='2.6'/><line x1='51' y1='58' x2='51' y2='80' stroke='%237D736A' stroke-width='2.6'/><line x1='81' y1='58' x2='81' y2='80' stroke='%237D736A' stroke-width='2.6'/><path d='M 14 58 L 14 38 L 36 58 Z' fill='none' stroke='%238C8278' stroke-width='2.5'/><line x1='14' y1='46' x2='36' y2='58' stroke='%238C8278' stroke-width='1.5'/><path d='M 80 58 L 80 42 L 85 42 L 85 46 L 82.5 46 L 82.5 58' fill='%238C8278'/><circle cx='82.5' cy='37' r='3.2' fill='%23D96B53'/><line x1='12' y1='58' x2='89' y2='58' stroke='%235C544C' stroke-width='3'/><line x1='12' y1='60' x2='89' y2='60' stroke='%23B5A89E' stroke-width='1.2'/><rect x='31' y='47' width='18' height='10' rx='4' fill='%23D96B53'/><rect x='52' y='47' width='18' height='10' rx='4' fill='%23E6B84D'/><rect x='35' y='50' width='10' height='4' rx='1' fill='%23FFFFFF'/><rect x='56' y='50' width='10' height='4' rx='1' fill='%23FFFFFF'/><circle cx='36' cy='57.5' r='1.5' fill='%23222'/><circle cx='44' cy='57.5' r='1.5' fill='%23222'/><circle cx='57' cy='57.5' r='1.5' fill='%23222'/><circle cx='65' cy='57.5' r='1.5' fill='%23222'/></svg>">
     <!-- Google Fonts -->
@@ -11,7 +16,20 @@
     <!-- GSAP & TextPlugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Observer.min.js"></script>
     <style>
+        @property --ang {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        @keyframes spinGradBorder {
+            to {
+                --ang: 360deg;
+            }
+        }
+
         :root {
             --bg-color: #FCFAF2;
             --paper-card: #FFFFFF;
@@ -41,18 +59,16 @@
         html {
             background-color: var(--bg-color);
             width: 100%;
-            overflow-x: hidden;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--ink-color);
             line-height: 1.65;
-            padding-bottom: 95px;
+            padding-bottom: 120px;
             min-height: 100vh;
             width: 100%;
             margin: 0 auto;
-            overflow-x: hidden;
             display: block;
         }
 
@@ -68,9 +84,16 @@
             box-sizing: border-box;
         }
 
-        /* 頁首標題區 */
+        /* 頁首標題區（與日期標籤一起凍結視窗 Sticky） */
         .hero-banner {
-            padding: 24px 4px 16px 4px;
+            position: sticky;
+            top: 0;
+            z-index: 950;
+            background: rgba(252, 250, 242, 0.96);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin: -20px -18px 0 -18px;
+            padding: 22px 22px 10px 22px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -85,6 +108,7 @@
             margin: 0 0 4px 0;
             padding: 0;
             line-height: 1.4;
+            transform: translateY(1px);
         }
 
         .title-group {
@@ -277,12 +301,103 @@
             color: var(--primary-coral);
         }
 
-        /* 日期選擇 Tabs：質感簡約風（淡化未選、選中帶底線 + 連結底線滑入動態效果） */
-        .day-tabs-wrapper {
+        /* Day 6 回程意境插圖卡 */
+        .day6-return-banner {
+            margin: 2px 0 22px 0;
             position: relative;
-            margin-bottom: 22px;
+            z-index: 1;
+        }
+
+        .day6-card-figure {
+            position: relative;
+            width: 100%;
+            height: 168px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(56, 52, 49, 0.08);
+            background: #1A2436;
+        }
+
+        .day6-card-figure > svg.day6-bg-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .day6-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 20, 28, 0.84) 0%, rgba(15, 20, 28, 0.28) 55%, rgba(15, 20, 28, 0.05) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 14px 18px;
+            color: #FFFFFF;
+        }
+
+        .day6-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            margin-bottom: 6px;
+        }
+
+        .day6-tag-box {
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            padding: 1px 8px;
+            border-radius: 4px;
+            font-size: 0.68rem;
+            font-family: 'Noto Serif TC', serif;
+            letter-spacing: 1px;
+            color: #F5F2EB;
+            background: rgba(15, 20, 30, 0.35);
+            flex-shrink: 0;
+        }
+
+        .day6-loc-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.76rem;
+            color: rgba(245, 242, 235, 0.9);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .day6-card-heading {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.18rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+            line-height: 1.3;
+        }
+
+        .day6-sparkle {
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            width: 13px;
+            height: 13px;
+            display: block;
+            opacity: 0.75;
+            pointer-events: none;
+        }
+
+        /* 日期選擇 Tabs：與標題區一起凍結視窗 Sticky */
+        .day-tabs-wrapper {
+            position: sticky;
+            top: var(--hero-sticky-h, 138px);
+            z-index: 940;
+            background: rgba(252, 250, 242, 0.96);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin: 0 -18px 22px -18px;
+            padding: 6px 18px 10px 18px;
             border-bottom: 1px solid #EFEAE2;
-            padding-bottom: 10px;
         }
         .day-tabs-row {
             display: grid;
@@ -360,7 +475,7 @@
             transform-origin: left;
         }
 
-        /* 參考圖風格文青簡約時間軸排版 */
+        /* 時間軸排版 */
         .elegant-timeline {
             position: relative;
             padding-left: 68px;
@@ -393,6 +508,17 @@
             font-family: 'Noto Serif TC', serif;
             text-align: right;
             line-height: 1.3;
+        }
+
+        .etimeline-time.label-text {
+            font-size: 0.68rem;
+            line-height: 1.3;
+            top: 3px;
+            left: -72px;
+            width: 50px;
+            white-space: nowrap;
+            color: var(--ink-muted);
+            letter-spacing: 0px;
         }
 
         .etimeline-dot {
@@ -451,6 +577,388 @@
             color: var(--ink-muted);
             margin-top: 5px;
             line-height: 1.55;
+        }
+
+        .etimeline-row.clickable-row {
+            cursor: pointer;
+            padding-right: 22px;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .etimeline-row.clickable-row:hover .etimeline-title {
+            color: var(--primary-coral);
+        }
+
+        .etimeline-row.clickable-row:active {
+            transform: scale(0.99);
+        }
+
+        .row-chevron {
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--ink-light);
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1;
+            pointer-events: none;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .etimeline-row.clickable-row:hover .row-chevron {
+            color: var(--primary-coral);
+            transform: translate(2px, -50%);
+        }
+
+        .etimeline-row.highlight-row {
+            position: relative;
+            margin-left: -68px;
+            padding: 2px;
+            border-radius: 14px;
+            background: conic-gradient(
+                from var(--ang),
+                #E5DFC9 0deg,
+                #C59B7D 90deg,
+                #D97A6C 180deg,
+                #E0B456 270deg,
+                #E5DFC9 360deg
+            );
+            animation: spinGradBorder 3s linear infinite;
+            cursor: pointer;
+            transition: transform 0.22s ease;
+            z-index: 1;
+        }
+
+        .etimeline-row.highlight-row::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 16px;
+            background: conic-gradient(
+                from var(--ang),
+                rgba(229, 223, 201, 0.35) 0deg,
+                rgba(197, 155, 125, 0.65) 90deg,
+                rgba(217, 122, 108, 0.7) 180deg,
+                rgba(224, 180, 86, 0.6) 270deg,
+                rgba(229, 223, 201, 0.35) 360deg
+            );
+            filter: blur(8px);
+            opacity: 0.65;
+            z-index: -1;
+            animation: spinGradBorder 3s linear infinite;
+            transition: opacity 0.25s ease, filter 0.25s ease;
+            pointer-events: none;
+        }
+
+        .etimeline-row.highlight-row:hover {
+            animation-duration: 1.15s;
+        }
+
+        .etimeline-row.highlight-row:hover::before {
+            animation-duration: 1.15s;
+            opacity: 0.92;
+            filter: blur(10px);
+        }
+
+        .etimeline-row.highlight-row:active {
+            transform: scale(0.985);
+        }
+
+        .etimeline-row.highlight-row .highlight-inner {
+            position: relative;
+            display: block;
+            width: 100%;
+            background: #FAF6EE;
+            border-radius: 12px;
+            padding: 13px 28px 13px 66px;
+            z-index: 1;
+            transition: background-color 0.22s ease;
+        }
+
+        .etimeline-row.highlight-row:hover .highlight-inner {
+            background: #F7F1E5;
+        }
+
+        .etimeline-row.highlight-row .etimeline-time {
+            left: 6px;
+            top: 14px;
+            width: 40px;
+            color: #8C6D46;
+            font-weight: 700;
+        }
+
+        .etimeline-row.highlight-row .etimeline-dot {
+            left: 48.5px;
+            top: 18px;
+            width: 8px;
+            height: 8px;
+            border-radius: 1.5px;
+            background: #B69265;
+            border: none;
+            transform: rotate(45deg);
+        }
+
+        .etimeline-row.highlight-row .etimeline-content {
+            border-left: none;
+            padding-left: 8px;
+        }
+
+        .etimeline-row.highlight-row .etimeline-title {
+            color: #5A4631;
+        }
+
+        .etimeline-row.highlight-row .etimeline-category {
+            color: #9C7A52;
+            font-weight: 700;
+        }
+
+        .etimeline-row.highlight-row .etimeline-category svg {
+            stroke: #9C7A52;
+        }
+
+        .highlight-chevron {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #B69265;
+            font-size: 1.15rem;
+            font-weight: 400;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* 底部抽屜（Bottom Sheet）樣式 */
+        .bottom-sheet-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .bottom-sheet-overlay.open {
+            display: flex;
+        }
+
+        .bottom-sheet-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(42, 38, 35, 0.48);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+        }
+
+        .bottom-sheet-panel {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            max-height: 86vh;
+            background: #FCFAF2;
+            border-radius: 22px 22px 0 0;
+            box-shadow: 0 -8px 34px rgba(42, 38, 35, 0.16);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1;
+            will-change: transform;
+            touch-action: none;
+        }
+
+        .sheet-drag-zone {
+            padding: 12px 0 8px 0;
+            cursor: grab;
+            touch-action: none;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .sheet-drag-zone:active {
+            cursor: grabbing;
+        }
+
+        .sheet-handle {
+            width: 38px;
+            height: 4px;
+            background: #D8D0C5;
+            border-radius: 999px;
+            margin: 0 auto;
+        }
+
+        .sheet-header {
+            position: relative;
+            padding: 4px 20px 14px 20px;
+            border-left: 4px solid #7BAAC8;
+            margin-left: 0;
+            flex-shrink: 0;
+        }
+
+        .sheet-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .sheet-meta-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sheet-cat-box {
+            border: 1px solid #7BAAC8;
+            color: #5B89A6;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 2px 10px;
+            border-radius: 3px;
+            background: rgba(123, 170, 200, 0.08);
+        }
+
+        .sheet-time-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--ink-muted);
+        }
+
+        .sheet-close-btn {
+            background: none;
+            border: none;
+            color: var(--ink-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px 6px;
+            line-height: 1;
+        }
+
+        .sheet-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--ink-color);
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .sheet-scroll-body {
+            padding: 4px 20px 30px 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+        }
+
+        .sheet-ticket-card {
+            background: #FFFFFF;
+            border: 1px solid #EAE4D8;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 10px rgba(56, 52, 49, 0.03);
+        }
+
+        .sheet-ticket-section {
+            padding: 13px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #F2EDE4;
+        }
+
+        .sheet-ticket-label {
+            font-size: 0.65rem;
+            color: var(--ink-light);
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .sheet-ticket-val {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--ink-color);
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .sheet-ticket-footer {
+            background: #F6F2EA;
+            padding: 8px 14px;
+            text-align: center;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 1.4px;
+            color: var(--ink-muted);
+        }
+
+        .sheet-subhead {
+            font-size: 0.72rem;
+            color: var(--ink-muted);
+            letter-spacing: 1.2px;
+            font-weight: 600;
+            margin: 16px 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .airport-map-card {
+            background: #EBE9E4;
+            border: 1px solid #DFDBD2;
+            border-radius: 10px;
+            padding: 12px 10px;
+            margin-bottom: 18px;
+        }
+
+        .airport-map-caption {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.72rem;
+            color: #5C544C;
+            margin-bottom: 8px;
+            padding: 0 2px;
+            font-weight: 600;
+        }
+
+        .point-speak-card {
+            background: #FFFFFF;
+            border: 1px solid #EAE4D8;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ps-zh {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ink-color);
+        }
+
+        .ps-kr {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #5A4631;
+            font-family: 'Noto Serif TC', serif;
+            text-align: right;
+        }
+
+        .sheet-about-box {
+            position: relative;
+            padding-left: 14px;
+            border-left: 1.5px solid #D8D0C5;
+            font-size: 0.82rem;
+            color: var(--ink-muted);
+            line-height: 1.65;
+            margin-top: 6px;
         }
 
         .metro-badge-oval {
@@ -603,6 +1111,428 @@
             cursor: pointer;
         }
 
+        /* 會員卡 (L.POINT 樂天超市條碼卡) */
+        .member-pass-card {
+            background: #FAF8F4;
+            border: 1px solid #EFEAE2;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 12px rgba(56, 52, 49, 0.03);
+        }
+
+        .member-pass-header {
+            background: #E5DFC9;
+            color: #5C544C;
+            padding: 9px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+        }
+
+        .member-brand-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .member-point-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: #FFFFFF;
+            padding: 2px 9px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--ink-color);
+            border: 1px solid #DFD7C8;
+        }
+
+        .member-point-check {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary-coral);
+            color: #FFFFFF;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .member-pass-body {
+            padding: 16px;
+        }
+
+        .member-barcode-box {
+            background: #FFFFFF;
+            border: 1px solid #EAE4D8;
+            border-radius: 12px;
+            padding: 18px 14px 14px 14px;
+            text-align: center;
+        }
+
+        .member-barcode-svg {
+            width: 100%;
+            max-width: 280px;
+            height: 68px;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .member-barcode-num {
+            font-family: monospace, 'Noto Sans TC', sans-serif;
+            font-size: 0.96rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #4A4542;
+        }
+
+        .member-pass-footer {
+            margin-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .member-perk-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.76rem;
+            color: var(--ink-muted);
+            font-weight: 500;
+        }
+
+        .member-perk-tag {
+            background: #EFEAE2;
+            color: #6E655F;
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        /* 對話卡片（參考圖二）與全螢幕放大字卡（參考圖一） */
+        .convo-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .convo-card {
+            position: relative;
+            background: #FFFFFF;
+            border: 1px solid #EAE4D8;
+            border-left: 4.5px solid var(--convo-bar, #383431);
+            border-radius: 4px;
+            padding: 15px 18px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(56, 52, 49, 0.025);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .convo-card:hover {
+            background: #FDFBF7;
+            box-shadow: 0 4px 14px rgba(56, 52, 49, 0.06);
+        }
+
+        .convo-card:active {
+            transform: scale(0.985);
+        }
+
+        .convo-cat-label {
+            font-size: 0.72rem;
+            color: var(--ink-muted);
+            font-family: 'Noto Serif TC', serif;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .convo-kr-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--ink-color);
+            font-family: 'Noto Serif TC', serif;
+            line-height: 1.35;
+            margin-bottom: 5px;
+        }
+
+        .convo-zh-text {
+            font-size: 0.8rem;
+            color: var(--ink-muted);
+        }
+
+        /* 全螢幕放大字卡 Modal (參考圖一) */
+        .flashcard-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            background: #FCFAF2;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 32px 26px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .flashcard-overlay.open {
+            display: flex;
+        }
+
+        .flashcard-tap-hint {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 0.78rem;
+            color: #B5A89E;
+            letter-spacing: 3.5px;
+            margin-bottom: 36px;
+            text-transform: uppercase;
+        }
+
+        .flashcard-frame {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            border-top: 2px solid #2C2927;
+            border-bottom: 2px solid #2C2927;
+            padding: 72px 18px 64px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 310px;
+        }
+
+        .flashcard-stamp {
+            position: absolute;
+            top: 18px;
+            right: 14px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1.6px solid rgba(201, 130, 122, 0.72);
+            color: #C9827A;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 0.74rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: 1px;
+            transform: rotate(6deg);
+            pointer-events: none;
+        }
+
+        .flashcard-kr-huge {
+            font-family: 'Noto Serif TC', serif;
+            font-size: clamp(2.15rem, 8.5vw, 3.1rem);
+            font-weight: 700;
+            color: #1F1D1B;
+            line-height: 1.38;
+            word-break: keep-all;
+            margin-bottom: 18px;
+        }
+
+        .flashcard-zh-sub {
+            font-size: 0.95rem;
+            color: var(--ink-muted);
+            font-weight: 500;
+            letter-spacing: 0.8px;
+        }
+
+        /* 緊急聯絡 & 支援資訊卡（韓國版，參照圖五設計） */
+        .emergency-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 26px 0 12px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #EFEAE2;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8E2424;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .emergency-card {
+            background: #FFFFFF;
+            border: 1px solid #EAE4D8;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(56, 52, 49, 0.03);
+            margin-bottom: 16px;
+        }
+
+        .emergency-top-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid #EAE4D8;
+        }
+
+        .emergency-top-cell {
+            padding: 18px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.2s ease;
+        }
+
+        .emergency-top-cell:first-child {
+            border-right: 1px solid #EAE4D8;
+        }
+
+        .emergency-top-cell:hover {
+            background: #FAF8F4;
+        }
+
+        .emergency-cell-label {
+            font-size: 0.76rem;
+            color: #A64B4B;
+            font-weight: 600;
+            font-family: 'Noto Serif TC', serif;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .emergency-cell-num {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #8E2424;
+            font-family: 'Noto Serif TC', serif;
+            line-height: 1.1;
+        }
+
+        .emergency-mid-section {
+            padding: 20px 18px;
+            border-bottom: 1px solid #EAE4D8;
+        }
+
+        .emergency-mid-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .emergency-hotline-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--ink-color);
+            line-height: 1.35;
+        }
+
+        .emergency-hotline-sub {
+            font-size: 0.66rem;
+            color: var(--ink-muted);
+            font-family: 'Noto Serif TC', serif;
+            letter-spacing: 0.8px;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        .emergency-hotline-num {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #4A4542;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .emergency-call-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #2C2927;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(44, 41, 39, 0.2);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .emergency-call-circle:active {
+            transform: scale(0.93);
+        }
+
+        .emergency-mid-note {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid #F4F0E8;
+            font-size: 0.74rem;
+            color: var(--ink-muted);
+        }
+
+        .emergency-bot-section {
+            background: #FAF8F4;
+            padding: 16px 18px;
+        }
+
+        .emergency-office-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .emergency-tag-badge {
+            background: #E5E0D8;
+            color: #554F4A;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .emergency-office-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--ink-color);
+        }
+
+        .emergency-tel-line {
+            font-size: 0.86rem;
+            color: #554F4A;
+            margin-top: 4px;
+            font-family: monospace, 'Noto Sans TC', sans-serif;
+        }
+
+        .emergency-tel-line a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .emergency-tel-urgent {
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: #8E2424;
+            margin-top: 4px;
+            font-family: monospace, 'Noto Sans TC', sans-serif;
+        }
+
+        .emergency-tel-urgent a {
+            color: #8E2424;
+            text-decoration: none;
+        }
+
         /* 記帳頁面 */
         .expense-card-item {
             background: #FAF6F0;
@@ -684,7 +1614,7 @@
             margin-top: 1px;
         }
 
-        /* 長按確認刪除按鈕（Hold to Confirm）：移至左側項目下方，不擠壓右側金額 */
+        /* 長按確認刪除按鈕（Hold to Confirm） */
         .expense-right {
             text-align: right;
             flex-shrink: 0;
@@ -993,6 +1923,111 @@
             pointer-events: none;
         }
 
+        /* 記帳天數分類：選單滑塊跟隨（Sliding Nav Highlight） */
+        .expense-filter-nav {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FAF6F0;
+            border: 1px solid #EFEAE2;
+            border-radius: 999px;
+            padding: 4px;
+            margin-bottom: 14px;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .expense-filter-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .expense-filter-pill {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            left: 0;
+            width: 0;
+            background: var(--accent-warm);
+            border-radius: 999px;
+            z-index: 0;
+            pointer-events: none;
+            box-shadow: 0 2px 8px rgba(197, 155, 125, 0.28);
+            transition: transform 0.4s cubic-bezier(.2, .9, .3, 1.1), width 0.4s cubic-bezier(.2, .9, .3, 1.1);
+        }
+
+        .expense-filter-btn {
+            position: relative;
+            z-index: 1;
+            flex: 1 0 auto;
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: var(--ink-muted);
+            cursor: pointer;
+            text-align: center;
+            white-space: nowrap;
+            transition: color 0.25s ease;
+        }
+
+        .expense-filter-btn.pill-focus {
+            color: #FFFFFF;
+        }
+
+        /* 下拉重新整理（Pull to Refresh） */
+        .ptr-wrapper {
+            position: relative;
+            overflow: hidden;
+            touch-action: pan-y;
+        }
+
+        .ptr-indicator {
+            position: absolute;
+            top: 4px;
+            left: 0;
+            right: 0;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ptr-spinner-box {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 1px solid #EFEAE2;
+            box-shadow: 0 4px 12px rgba(56, 52, 49, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.6);
+        }
+
+        .ptr-spinner-svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--primary-coral);
+            stroke-width: 2.2;
+            fill: none;
+            stroke-linecap: round;
+        }
+
+        .ptr-content {
+            position: relative;
+            z-index: 2;
+            will-change: transform;
+        }
+
         /* 美食打卡清單 */
         .checkin-card {
             background: #FAF8F4;
@@ -1147,11 +2182,14 @@
         /* 底部導覽列 */
         .bottom-nav {
             position: fixed;
-            bottom: 12px;
-            left: 14px;
-            right: 14px;
-            background: rgba(253, 251, 247, 0.94);
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 440px;
+            background: rgba(253, 251, 247, 0.95);
             backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid #E5DFC9;
             border-radius: 999px;
             box-shadow: 0 8px 26px rgba(56, 52, 49, 0.08);
@@ -1159,9 +2197,7 @@
             justify-content: space-around;
             align-items: center;
             padding: 6px 6px;
-            z-index: 1000;
-            max-width: 452px;
-            margin: 0 auto;
+            z-index: 999;
         }
 
         .nav-indicator {
@@ -1169,7 +2205,7 @@
             top: 5px;
             bottom: 5px;
             left: 0;
-            width: 64px;
+            width: 76px;
             background: #EFEAE2;
             border: 1px solid rgba(197, 155, 125, 0.35);
             border-radius: 999px;
@@ -1191,7 +2227,7 @@
             font-weight: 400;
             gap: 3px;
             cursor: pointer;
-            width: 20%;
+            width: 25%;
             padding: 5px 0;
             border-radius: 999px;
             transition: color 0.25s ease;
@@ -1226,7 +2262,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s;
-            z-index: 2000;
+            z-index: 4000;
         }
         .toast-msg.show { opacity: 1; }
     </style>
@@ -1236,7 +2272,7 @@
     <div class="container">
         <!-- 標題區 -->
         <header class="hero-banner">
-            <div class="hero-subhead">부산의 겨울 · 2027</div>
+            <div class="hero-subhead">FAMILY TRIP · 2027</div>
             <div class="title-group">
                 <h1 class="hero-title" id="floatTitle">
                     <span class="bounce-char">釜</span><span class="bounce-char">山</span><span class="bounce-char">·</span><span class="bounce-char">冬</span><span class="bounce-char">日</span><span class="bounce-char">遊</span>
@@ -1246,7 +2282,7 @@
                     <span class="karaoke-char">부</span><span class="karaoke-char">산</span><span class="karaoke-char"> </span><span class="karaoke-char">·</span><span class="karaoke-char"> </span><span class="karaoke-char">B</span><span class="karaoke-char">U</span><span class="karaoke-char">S</span><span class="karaoke-char">A</span><span class="karaoke-char">N</span>
                 </span>
             </div>
-            <div class="hero-date">2027.01.13 (三) - 01.18 (一)</div>
+            <div class="hero-date">2027.01.13 (三) - 01.18 (一) · 六天五夜</div>
             <div class="hero-badge-tag">
                 <span id="typingText"></span><span class="typing-cursor" id="typingCursor">|</span>
             </div>
@@ -1255,49 +2291,6 @@
         <div class="pages-stage">
             <!-- PAGE 1: 行程 -->
             <main id="page-itinerary" class="tab-page active">
-                <div class="card-wrapper" style="padding:16px;">
-                    <div class="train-viewport">
-                        <div class="capsule-svg-box">
-                            <svg width="100%" height="100%" viewBox="0 0 340 90">
-                                <path d="M0 60 Q 85 50, 170 60 T 340 55 L 340 90 L 0 90 Z" fill="#E2ECE9" opacity="0.6"/>
-                                <circle cx="280" cy="25" r="12" fill="#F4DCD0" opacity="0.8"/>
-                                <line x1="30" y1="45" x2="310" y2="45" stroke="#B8AEA3" stroke-width="1.5" stroke-dasharray="4 4"/>
-                                
-                                <line x1="45" y1="45" x2="45" y2="65" stroke="#B8AEA3" stroke-width="1.5"/>
-                                <circle cx="45" cy="45" r="3" fill="#D97A6C"/>
-                                <text x="45" y="33" font-size="9" fill="#7E756F" text-anchor="middle">尾浦</text>
-
-                                <line x1="170" y1="45" x2="170" y2="65" stroke="#B8AEA3" stroke-width="1.5"/>
-                                <circle cx="170" cy="45" r="3" fill="#D97A6C"/>
-                                <text x="170" y="33" font-size="9" fill="#7E756F" text-anchor="middle">青沙浦</text>
-
-                                <line x1="295" y1="45" x2="295" y2="65" stroke="#B8AEA3" stroke-width="1.5"/>
-                                <circle cx="295" cy="45" r="3" fill="#D97A6C"/>
-                                <text x="295" y="33" font-size="9" fill="#7E756F" text-anchor="middle">松亭</text>
-                            </svg>
-
-                            <div class="train-cars-group" id="trainCars">
-                                <svg width="24" height="20" viewBox="0 0 28 24">
-                                    <rect x="2" y="2" width="24" height="20" rx="8" fill="#F4C46C" stroke="#383431" stroke-width="1.5"/>
-                                    <rect x="6" y="5" width="16" height="9" rx="2" fill="#FFF"/>
-                                    <circle cx="14" cy="18" r="1.5" fill="#383431"/>
-                                </svg>
-                                <svg width="24" height="20" viewBox="0 0 28 24">
-                                    <rect x="2" y="2" width="24" height="20" rx="8" fill="#D97A6C" stroke="#383431" stroke-width="1.5"/>
-                                    <rect x="6" y="5" width="16" height="9" rx="2" fill="#FFF"/>
-                                    <circle cx="14" cy="18" r="1.5" fill="#383431"/>
-                                </svg>
-                            </div>
-                        </div>
-
-                        <div class="btn-controls-row">
-                            <button class="btn-station" onclick="moveTrain(-1)">〈 上一站</button>
-                            <span class="station-name-display" id="stationLabel">尾浦 Mipo</span>
-                            <button class="btn-station" onclick="moveTrain(1)">下一站 〉</button>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="card-wrapper">
                     <div class="day-tabs-wrapper">
                         <div class="day-tabs-row">
@@ -1332,106 +2325,7 @@
                 </div>
             </main>
 
-            <!-- PAGE 2: 航班 -->
-            <main id="page-flights" class="tab-page">
-                <div class="card-wrapper">
-                    <h2 class="section-title serif-font">
-                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5 5.3 6.7c-.8-.2-1.6.1-2.1.8l-.6.8c-.3.4-.2.9.2 1.2l5.6 4.1-3.2 3.2-2.3-.6c-.4-.1-.8.1-1.1.4l-.4.4c-.3.3-.3.8 0 1.1l2.8 2.8c.3.3.8.3 1.1 0l.4-.4c.3-.3.5-.7.4-1.1l-.6-2.3 3.2-3.2 4.1 5.6c.3.4.8.5 1.2.2l.8-.6c.7-.5 1-1.3.8-2.1z"/>
-                        </svg>
-                        航班資訊
-                    </h2>
-
-                    <div class="boarding-pass">
-                        <div class="ticket-header">
-                            <span>BOARDING PASS</span>
-                            <span>RMQ ➔ PUS</span>
-                        </div>
-                        <div class="ticket-body">
-                            <div class="airport-col-left">
-                                <div class="airport-code">RMQ</div>
-                                <div class="airport-name">台中</div>
-                            </div>
-                            <div class="flight-path">
-                            <div style="font-size:0.75rem; font-weight:700; color:var(--primary-coral);">JX310</div>
-                            <div class="flight-line">
-                                <div class="flight-time-badge">08:00 ➔ 11:15</div>
-                            </div>
-                        </div>
-                        <div class="airport-col-right">
-                                <div class="airport-code">PUS</div>
-                                <div class="airport-name">金海</div>
-                            </div>
-                        </div>
-                        <div class="ticket-footer">
-                            <div><span class="field-label">FLIGHT / DATE</span><span class="field-val">JX 310 · 01/13</span></div>
-                            <div><span class="field-label">TERMINAL</span><span class="field-val">2</span></div>
-                            <div><span class="field-label">SEAT</span><span class="field-val">--</span></div>
-                        </div>
-                    </div>
-
-                    <div class="boarding-pass">
-                        <div class="ticket-header" style="background:#DDE2E6; color:#475569;">
-                            <span>BOARDING PASS</span>
-                            <span>PUS ➔ RMQ</span>
-                        </div>
-                        <div class="ticket-body">
-                            <div class="airport-col-left">
-                                <div class="airport-code">PUS</div>
-                                <div class="airport-name">金海</div>
-                            </div>
-                            <div class="flight-path">
-                                <div style="font-size:0.75rem; font-weight:700; color:#475569;">JX311</div>
-                                <div class="flight-line">
-                                    <div class="flight-time-badge" style="color:#475569;">12:15 ➔ 14:00</div>
-                                </div>
-                            </div>
-                            <div class="airport-col-right">
-                                <div class="airport-code">RMQ</div>
-                                <div class="airport-name">台中</div>
-                            </div>
-                        </div>
-                        <div class="ticket-footer">
-                            <div><span class="field-label">FLIGHT / DATE</span><span class="field-val">JX 311 · 01/18</span></div>
-                            <div><span class="field-label">TERMINAL</span><span class="field-val">International</span></div>
-                            <div><span class="field-label">SEAT</span><span class="field-val">--</span></div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-
-            <!-- PAGE 3: 住宿 -->
-            <main id="page-hotel" class="tab-page">
-                <div class="card-wrapper">
-                    <h2 class="section-title serif-font">
-                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                            <polyline points="9 22 9 12 15 12 15 22"/>
-                        </svg>
-                        住宿資訊
-                    </h2>
-
-                    <div class="hotel-card">
-                        <div class="hotel-name">
-                            <a href="https://naver.me/xUZ2MLSG" target="_blank">L7 海雲臺 (L7 Haeundae) 🔗</a>
-                        </div>
-                        <div class="hotel-subtext">2027/01/13 ~ 01/15 (2晚)</div>
-                        <div class="hotel-addr-box" id="addr1">부산 해운대구 해운대로570번길 55</div>
-                        <button class="btn-copy-addr" onclick="copyText('addr1')">複製韓文地址</button>
-                    </div>
-
-                    <div class="hotel-card">
-                        <div class="hotel-name">
-                            <a href="https://naver.me/xwoh8zFn" target="_blank">Urban Groove Hotel 🔗</a>
-                        </div>
-                        <div class="hotel-subtext">2027/01/15 ~ 01/18 (3晚)</div>
-                        <div class="hotel-addr-box" id="addr2">부산 부산진구 황령대로17번길 18 어반그루브호텔</div>
-                        <button class="btn-copy-addr" onclick="copyText('addr2')">複製韓文地址</button>
-                    </div>
-                </div>
-            </main>
-
-            <!-- PAGE 4: 記帳 -->
+            <!-- PAGE 2: 記帳 -->
             <main id="page-accounting" class="tab-page">
                 <div class="card-wrapper">
                     <h2 class="section-title serif-font">
@@ -1455,7 +2349,7 @@
                         </div>
                     </div>
 
-                    <!-- 記帳日期 與 誰付的錢：雙欄對齊排列 -->
+                    <!-- 記帳日期 與 付款人：雙欄對齊排列 -->
                     <input type="hidden" id="accDay" value="D1">
                     <input type="hidden" id="accPayer" value="珍">
                     <div class="date-payer-grid">
@@ -1480,7 +2374,7 @@
                         </div>
 
                         <div>
-                            <span class="payer-section-label">誰付的錢 (付款人)</span>
+                            <span class="payer-section-label">付款人</span>
                             <div class="payer-circles-row" id="payerCircles">
                                 <button type="button" class="payer-circle-btn active" onclick="selectPayer('珍', this)">
                                     <span class="fill-bg"></span>
@@ -1531,12 +2425,258 @@
                             <span style="font-weight:600; font-size:0.88rem;">消費明細</span>
                             <span style="font-weight:700; color:var(--primary-coral); font-size:0.92rem;" id="totalKrwDisplay">總計：₩ 0</span>
                         </div>
-                        <div id="expenseList">載入中...</div>
+
+                        <!-- 記帳天數分類（選單滑塊跟隨 Sliding Nav Highlight） -->
+                        <div class="expense-filter-nav" id="expenseFilterNav">
+                            <div class="expense-filter-pill" id="expenseFilterPill"></div>
+                            <button type="button" class="expense-filter-btn active pill-focus" data-day="ALL" onclick="setExpenseDayFilter('ALL', this)">全部</button>
+                            <button type="button" class="expense-filter-btn" data-day="D1" onclick="setExpenseDayFilter('D1', this)">Day1</button>
+                            <button type="button" class="expense-filter-btn" data-day="D2" onclick="setExpenseDayFilter('D2', this)">Day2</button>
+                            <button type="button" class="expense-filter-btn" data-day="D3" onclick="setExpenseDayFilter('D3', this)">Day3</button>
+                            <button type="button" class="expense-filter-btn" data-day="D4" onclick="setExpenseDayFilter('D4', this)">Day4</button>
+                            <button type="button" class="expense-filter-btn" data-day="D5" onclick="setExpenseDayFilter('D5', this)">Day5</button>
+                            <button type="button" class="expense-filter-btn" data-day="D6" onclick="setExpenseDayFilter('D6', this)">Day6</button>
+                        </div>
+
+                        <!-- 下拉重新整理（Pull to Refresh）區域 -->
+                        <div class="ptr-wrapper" id="ptrWrapper">
+                            <div class="ptr-indicator">
+                                <div class="ptr-spinner-box" id="ptrSpinnerBox">
+                                    <svg class="ptr-spinner-svg" id="ptrSpinnerSvg" viewBox="0 0 24 24">
+                                        <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
+                                        <polyline points="21 3 21 9 15 9"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ptr-content" id="ptrContent">
+                                <div id="expenseList">載入中...</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
 
-            <!-- PAGE 5: 打卡清單 -->
+            <!-- PAGE 3: 資訊（合併原航班資訊、住宿資訊 與 新增緊急聯絡＆支援資訊卡） -->
+            <main id="page-info" class="tab-page">
+                <div class="card-wrapper">
+                    <!-- 航班資訊（保持原排版設計不更動） -->
+                    <h2 class="section-title serif-font">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5 5.3 6.7c-.8-.2-1.6.1-2.1.8l-.6.8c-.3.4-.2.9.2 1.2l5.6 4.1-3.2 3.2-2.3-.6c-.4-.1-.8.1-1.1.4l-.4.4c-.3.3-.3.8 0 1.1l2.8 2.8c.3.3.8.3 1.1 0l.4-.4c.3-.3.5-.7.4-1.1l-.6-2.3 3.2-3.2 4.1 5.6c.3.4.8.5 1.2.2l.8-.6c.7-.5 1-1.3.8-2.1z"/>
+                        </svg>
+                        航班資訊
+                    </h2>
+
+                    <div class="boarding-pass">
+                        <div class="ticket-header">
+                            <span>BOARDING PASS</span>
+                            <span>RMQ ➔ PUS</span>
+                        </div>
+                        <div class="ticket-body">
+                            <div class="airport-col-left">
+                                <div class="airport-code">RMQ</div>
+                                <div class="airport-name">台中</div>
+                            </div>
+                            <div class="flight-path">
+                                <div style="font-size:0.75rem; font-weight:700; color:var(--primary-coral);">JX310</div>
+                                <div class="flight-line">
+                                    <div class="flight-time-badge">08:00 ➔ 11:15</div>
+                                </div>
+                            </div>
+                            <div class="airport-col-right">
+                                <div class="airport-code">PUS</div>
+                                <div class="airport-name">金海</div>
+                            </div>
+                        </div>
+                        <div class="ticket-footer">
+                            <div><span class="field-label">FLIGHT / DATE</span><span class="field-val">JX 310 · 01/13</span></div>
+                            <div><span class="field-label">TERMINAL</span><span class="field-val">2</span></div>
+                            <div><span class="field-label">SEAT</span><span class="field-val">--</span></div>
+                        </div>
+                    </div>
+
+                    <div class="boarding-pass">
+                        <div class="ticket-header" style="background:#DDE2E6; color:#475569;">
+                            <span>BOARDING PASS</span>
+                            <span>PUS ➔ RMQ</span>
+                        </div>
+                        <div class="ticket-body">
+                            <div class="airport-col-left">
+                                <div class="airport-code">PUS</div>
+                                <div class="airport-name">金海</div>
+                            </div>
+                            <div class="flight-path">
+                                <div style="font-size:0.75rem; font-weight:700; color:#475569;">JX311</div>
+                                <div class="flight-line">
+                                    <div class="flight-time-badge" style="color:#475569;">12:15 ➔ 14:00</div>
+                                </div>
+                            </div>
+                            <div class="airport-col-right">
+                                <div class="airport-code">RMQ</div>
+                                <div class="airport-name">台中</div>
+                            </div>
+                        </div>
+                        <div class="ticket-footer">
+                            <div><span class="field-label">FLIGHT / DATE</span><span class="field-val">JX 311 · 01/18</span></div>
+                            <div><span class="field-label">TERMINAL</span><span class="field-val">International</span></div>
+                            <div><span class="field-label">SEAT</span><span class="field-val">--</span></div>
+                        </div>
+                    </div>
+
+                    <!-- 住宿資訊 -->
+                    <h2 class="section-title serif-font" style="margin-top: 26px;">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                        住宿資訊
+                    </h2>
+
+                    <div class="hotel-card">
+                        <div class="hotel-name">
+                            <a href="https://naver.me/xUZ2MLSG" target="_blank">L7 海雲臺 (L7 Haeundae) 🔗</a>
+                        </div>
+                        <div class="hotel-subtext">2027/01/13 ~ 01/15 (2晚) · 入住 15:00後 / 退房 11:00前</div>
+                        <div class="hotel-addr-box" id="addr1">부산광역시 해운대구 해운대로570번길 55</div>
+                        <button class="btn-copy-addr" onclick="copyText('addr1')">複製韓文地址</button>
+                    </div>
+
+                    <div class="hotel-card">
+                        <div class="hotel-name">
+                            <a href="https://naver.me/xUZ2MLSG" target="_blank">Urban Groove Hotel 🔗</a>
+                        </div>
+                        <div class="hotel-subtext">2027/01/15 ~ 01/18 (3晚) · 入住 17:00後 / 退房 12:00前</div>
+                        <div class="hotel-addr-box" id="addr2">부산광역시 부산진구 황령대로17번길 18 어반그루브호텔</div>
+                        <button class="btn-copy-addr" onclick="copyText('addr2')">複製韓文地址</button>
+                    </div>
+
+                    <!-- 會員卡（L.POINT 樂天超市 / 樂天百貨條碼） -->
+                    <h2 class="section-title serif-font" style="margin-top: 26px;">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <line x1="6" y1="8" x2="6" y2="16"/>
+                            <line x1="10" y1="8" x2="10" y2="16"/>
+                            <line x1="14" y1="8" x2="14" y2="16"/>
+                            <line x1="18" y1="8" x2="18" y2="16"/>
+                        </svg>
+                        會員卡
+                    </h2>
+
+                    <div class="member-pass-card">
+                        <div class="member-pass-header">
+                            <div class="member-brand-group">
+                                <span>L.POINT</span>
+                                <span style="font-weight:400; opacity:0.65;">❘</span>
+                                <span style="font-size:0.72rem; font-weight:600;">樂天超市 · 樂天百貨</span>
+                            </div>
+                            <div class="member-point-pill">
+                                <span class="member-point-check">✓</span>
+                                <span>0P</span>
+                            </div>
+                        </div>
+                        <div class="member-pass-body">
+                            <div class="member-barcode-box">
+                                <!-- Code-128C 標準條碼 SVG (8710410313575479) -->
+                                <svg class="member-barcode-svg" viewBox="0 0 132 54" preserveAspectRatio="none" aria-label="8710-4103-1357-5479">
+                                    <path d="M0 0h2v54H0zM3 0h1v54H3zM6 0h3v54H6zM11 0h4v54h-4zM16 0h1v54h-1zM19 0h1v54h-1zM22 0h1v54h-1zM25 0h2v54h-2zM30 0h2v54h-2zM33 0h3v54h-3zM37 0h1v54h-1zM41 0h2v54h-2zM44 0h1v54h-1zM46 0h1v54h-1zM50 0h3v54h-3zM55 0h1v54h-1zM57 0h2v54h-2zM62 0h1v54h-1zM66 0h2v54h-2zM69 0h2v54h-2zM73 0h3v54h-3zM77 0h1v54h-1zM79 0h3v54h-3zM83 0h1v54h-1zM86 0h1v54h-1zM88 0h3v54h-3zM93 0h2v54h-2zM96 0h2v54h-2zM99 0h4v54h-4zM105 0h3v54h-3zM110 0h1v54h-1zM113 0h2v54h-2zM116 0h1v54h-1zM119 0h2v54h-2zM124 0h3v54h-3zM128 0h1v54h-1zM130 0h2v54h-2z" fill="#181615"/>
+                                </svg>
+                                <div class="member-barcode-num" id="lpointCardNum">8710-4103-1357-5479</div>
+                            </div>
+                            <div class="member-pass-footer">
+                                <div class="member-perk-badge">
+                                    <span class="member-perk-tag">LOTTE Tourist</span>
+                                    <span>憑旅行者會員卡享 95 折優惠</span>
+                                </div>
+                                <button type="button" class="btn-copy-addr" onclick="copyMemberCard('lpointCardNum')">複製卡號</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 對話卡片（點擊放大為全螢幕字卡） -->
+                    <h2 class="section-title serif-font" style="margin-top: 26px;">
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                        對話卡片
+                    </h2>
+
+                    <div class="convo-card-list">
+                        <div class="convo-card" style="--convo-bar: #383431;" onclick="openFlashcard('영수증 주세요.', '(請給我收據)')">
+                            <div class="convo-cat-label">給司機 (TO DRIVER)</div>
+                            <div class="convo-kr-text">영수증 주세요.</div>
+                            <div class="convo-zh-text">(請給我收據)</div>
+                        </div>
+
+                        <div class="convo-card" style="--convo-bar: #9E968E;" onclick="openFlashcard('화장실이 어디예요?', '(廁所在哪裡？)')">
+                            <div class="convo-cat-label">詢問 (INQUIRY)</div>
+                            <div class="convo-kr-text">화장실이 어디예요?</div>
+                            <div class="convo-zh-text">(廁所在哪裡？)</div>
+                        </div>
+
+                        <div class="convo-card" style="--convo-bar: #C59B7D;" onclick="openFlashcard('세 명이고, 먹고 갈게요.', '(三位用餐，內用)')">
+                            <div class="convo-cat-label">餐廳 (RESTAURANT)</div>
+                            <div class="convo-kr-text">세 명이고, 먹고 갈게요.</div>
+                            <div class="convo-zh-text">(三位用餐，內用)</div>
+                        </div>
+                    </div>
+
+                    <!-- 緊急聯絡 & 支援資訊卡（韓國版本，參考圖五） -->
+                    <h2 class="emergency-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8E2424" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        緊急聯絡 & 支援
+                    </h2>
+
+                    <div class="emergency-card">
+                        <div class="emergency-top-grid">
+                            <a href="tel:112" class="emergency-top-cell">
+                                <div class="emergency-cell-label">警察 (POLICE)</div>
+                                <div class="emergency-cell-num">112</div>
+                            </a>
+                            <a href="tel:119" class="emergency-top-cell">
+                                <div class="emergency-cell-label">救護/火警</div>
+                                <div class="emergency-cell-num">119</div>
+                            </a>
+                        </div>
+
+                        <div class="emergency-mid-section">
+                            <div class="emergency-mid-row">
+                                <div>
+                                    <div class="emergency-hotline-title">訪韓外國人<br>旅遊 & 醫療急難熱線</div>
+                                    <div class="emergency-hotline-sub">KOREA TRAVEL HOTLINE (KTO)</div>
+                                    <div class="emergency-hotline-num">1330 <span style="font-size:0.9rem; font-weight:500; color:var(--ink-muted);">（+82-2-1330）</span></div>
+                                </div>
+                                <a href="tel:1330" class="emergency-call-circle" title="撥打 1330">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="emergency-mid-note">
+                                * 24小時對應（中/英/日/韓）。生病受傷、遺失物品、口譯支援或發生事故時可撥打（按 4 為中文服務）。
+                            </div>
+                        </div>
+
+                        <div class="emergency-bot-section">
+                            <div class="emergency-office-row">
+                                <span class="emergency-tag-badge">外交部</span>
+                                <span class="emergency-office-name">駐韓國台北代表部釜山辦事處</span>
+                            </div>
+                            <div class="emergency-tel-line">
+                                <a href="tel:+82514637965">051-463-7965</a>（上班時間）
+                            </div>
+                            <div class="emergency-tel-urgent">
+                                <a href="tel:+821045377961">010-4537-7961</a>（急難救助）
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- PAGE 4: 打卡清單 -->
             <main id="page-checkin" class="tab-page">
                 <div class="card-wrapper">
                     <h2 class="section-title serif-font">
@@ -1553,27 +2693,357 @@
         </div>
     </div>
 
-    <!-- 底部固定導覽列 -->
+    <!-- 底部抽屜（Bottom Sheet）：前往海雲臺 / L7 海雲臺 / Urban Groove Hotel -->
+    <div class="bottom-sheet-overlay" id="haeundaeSheetOverlay">
+        <div class="bottom-sheet-backdrop" id="haeundaeSheetBackdrop" onclick="closeBottomSheet()"></div>
+        <div class="bottom-sheet-panel" id="haeundaeSheetPanel">
+            <div class="sheet-drag-zone" id="sheetDragZone">
+                <div class="sheet-handle"></div>
+            </div>
+
+            <!-- VIEW 1: 前往海雲臺 (機場巴士) -->
+            <div class="sheet-view" id="sheet-view-haeundae">
+                <div class="sheet-header" style="border-left-color: #7BAAC8;">
+                    <div class="sheet-meta-row">
+                        <div class="sheet-meta-left">
+                            <span class="sheet-cat-box">TRANSPORT</span>
+                            <span class="sheet-time-label">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                12:15
+                            </span>
+                        </div>
+                        <button type="button" class="sheet-close-btn" onclick="closeBottomSheet()">✕</button>
+                    </div>
+                    <div class="sheet-title">前往海雲臺（機場豪華巴士）</div>
+                </div>
+
+                <div class="sheet-scroll-body">
+                    <div class="sheet-ticket-card sheet-stagger-item">
+                        <div class="sheet-ticket-section">
+                            <div>
+                                <div class="sheet-ticket-label">BOARDING PLATFORM</div>
+                                <div class="sheet-ticket-val">金海機場 國際線 1F · 3號月台</div>
+                            </div>
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C59B7D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="14" rx="2"/>
+                                <path d="M3 11h18M8 18l-1 3M16 18l1 3"/>
+                                <circle cx="7.5" cy="14.5" r="1"/><circle cx="16.5" cy="14.5" r="1"/>
+                            </svg>
+                        </div>
+                        <div class="sheet-ticket-section">
+                            <div>
+                                <div class="sheet-ticket-label">FARE & ROUTE</div>
+                                <div class="sheet-ticket-val">₩ 9,500 / 人 · 海雲臺海水浴場下車</div>
+                            </div>
+                        </div>
+                        <div class="sheet-ticket-footer">김해공항 ➔ 해운대해수욕장</div>
+                    </div>
+
+                    <div class="sheet-subhead sheet-stagger-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+                        乘車位置示意圖 (PLATFORM MAP)
+                    </div>
+
+                    <div class="airport-map-card sheet-stagger-item">
+                        <div class="airport-map-caption">
+                            <span>國際線 1F Gate 3 外 ➔ 3號乘車處</span>
+                            <span style="color:#B84A39;">★ 3號月台</span>
+                        </div>
+                        <svg viewBox="0 0 680 280" width="100%" style="display:block; border-radius:6px; background:#E6E4DF;">
+                            <g transform="translate(8, 8)">
+                                <rect x="135" y="2" width="22" height="22" rx="4" fill="#FFF" stroke="#222" stroke-width="2"/>
+                                <text x="146" y="18" font-size="15" font-weight="700" text-anchor="middle" fill="#222">P</text>
+                                <text x="146" y="35" font-size="9" text-anchor="middle" fill="#333">P2 旅客停車場</text>
+
+                                <rect x="0" y="42" width="320" height="22" rx="11" fill="#8C8C8C"/>
+                                <rect x="0" y="102" width="320" height="22" rx="11" fill="#8C8C8C"/>
+
+                                <g fill="#8C8C8C">
+                                    <rect x="46" y="67" width="26" height="4"/><rect x="46" y="74" width="26" height="4"/><rect x="46" y="81" width="26" height="4"/><rect x="46" y="88" width="26" height="4"/><rect x="46" y="95" width="26" height="4"/>
+                                    <rect x="165" y="67" width="26" height="4"/><rect x="165" y="74" width="26" height="4"/><rect x="165" y="81" width="26" height="4"/><rect x="165" y="88" width="26" height="4"/><rect x="165" y="95" width="26" height="4"/>
+                                    <rect x="260" y="67" width="26" height="4"/><rect x="260" y="74" width="26" height="4"/><rect x="260" y="81" width="26" height="4"/><rect x="260" y="88" width="26" height="4"/><rect x="260" y="95" width="26" height="4"/>
+                                    <rect x="46" y="127" width="26" height="4"/><rect x="46" y="134" width="26" height="4"/><rect x="46" y="141" width="26" height="4"/><rect x="46" y="148" width="26" height="4"/><rect x="46" y="155" width="26" height="4"/>
+                                    <rect x="165" y="127" width="26" height="4"/><rect x="165" y="134" width="26" height="4"/><rect x="165" y="141" width="26" height="4"/><rect x="165" y="148" width="26" height="4"/><rect x="165" y="155" width="26" height="4"/>
+                                    <rect x="260" y="127" width="26" height="4"/><rect x="260" y="134" width="26" height="4"/><rect x="260" y="141" width="26" height="4"/><rect x="260" y="148" width="26" height="4"/><rect x="260" y="155" width="26" height="4"/>
+                                </g>
+
+                                <rect x="208" y="72" width="24" height="16" rx="4" fill="#222"/>
+                                <text x="220" y="99" font-size="8.5" text-anchor="middle" fill="#222">出租車</text>
+
+                                <rect x="0" y="164" width="320" height="100" rx="4" fill="#D5D3CE"/>
+
+                                <g font-family="sans-serif">
+                                    <text x="28" y="188" font-size="18" font-weight="700" fill="#222">🚌1</text>
+                                    <text x="32" y="201" font-size="8" text-anchor="middle" fill="#333">機場擺渡車</text>
+
+                                    <text x="86" y="188" font-size="18" font-weight="700" fill="#222">🚌2</text>
+                                    <text x="92" y="201" font-size="8" text-anchor="middle" fill="#333">市內公交車</text>
+
+                                    <rect x="136" y="168" width="54" height="38" rx="6" fill="#FCE8E4" stroke="#D97A6C" stroke-width="2"/>
+                                    <text x="146" y="188" font-size="18" font-weight="700" fill="#B84A39">🚌3</text>
+                                    <text x="163" y="201" font-size="8.5" font-weight="700" text-anchor="middle" fill="#B84A39">機場大巴</text>
+
+                                    <text x="208" y="188" font-size="18" font-weight="700" fill="#222">🚌4</text>
+                                    <text x="215" y="201" font-size="8" text-anchor="middle" fill="#333">市外公交車</text>
+
+                                    <text x="266" y="188" font-size="18" font-weight="700" fill="#222">🚌5</text>
+                                    <text x="275" y="201" font-size="8" text-anchor="middle" fill="#333">市外公交車</text>
+                                </g>
+
+                                <rect x="10" y="218" width="300" height="42" rx="3" fill="#C2C0BB"/>
+                                <g fill="#84827E" font-size="9" font-weight="600">
+                                    <rect x="38" y="210" width="44" height="15" rx="3" fill="#84827E"/><text x="60" y="221" fill="#FFF" text-anchor="middle">Gate 1</text>
+                                    <rect x="98" y="210" width="44" height="15" rx="3" fill="#84827E"/><text x="120" y="221" fill="#FFF" text-anchor="middle">Gate 2</text>
+                                    <rect x="158" y="210" width="44" height="15" rx="3" fill="#B84A39"/><text x="180" y="221" fill="#FFF" text-anchor="middle">Gate 3</text>
+                                    <rect x="218" y="210" width="44" height="15" rx="3" fill="#84827E"/><text x="240" y="221" fill="#FFF" text-anchor="middle">Gate 4</text>
+                                </g>
+                                <text x="155" y="242" font-size="13" text-anchor="middle" fill="#555">✈</text>
+                                <text x="155" y="254" font-size="9.5" font-weight="600" text-anchor="middle" fill="#444">國際航班 1號到達區</text>
+                                <text x="282" y="250" font-size="8.5" font-weight="600" text-anchor="middle" fill="#333">🎫 巴士售票處</text>
+                            </g>
+
+                            <g transform="translate(344, 8)">
+                                <rect x="215" y="2" width="22" height="22" rx="4" fill="#FFF" stroke="#222" stroke-width="2"/>
+                                <text x="226" y="18" font-size="15" font-weight="700" text-anchor="middle" fill="#222">P</text>
+                                <text x="226" y="35" font-size="9" text-anchor="middle" fill="#333">P1 旅客停車場</text>
+
+                                <rect x="0" y="42" width="320" height="22" rx="11" fill="#8C8C8C"/>
+                                <text x="14" y="57" font-size="10" fill="#FFF" font-weight="600">🚝 輕軌</text>
+                                <rect x="0" y="102" width="320" height="22" rx="11" fill="#8C8C8C"/>
+
+                                <g fill="#8C8C8C">
+                                    <rect x="52" y="67" width="26" height="4"/><rect x="52" y="74" width="26" height="4"/><rect x="52" y="81" width="26" height="4"/><rect x="52" y="88" width="26" height="4"/><rect x="52" y="95" width="26" height="4"/>
+                                    <rect x="215" y="67" width="26" height="4"/><rect x="215" y="74" width="26" height="4"/><rect x="215" y="81" width="26" height="4"/><rect x="215" y="88" width="26" height="4"/><rect x="215" y="95" width="26" height="4"/>
+                                    <rect x="52" y="127" width="26" height="4"/><rect x="52" y="134" width="26" height="4"/><rect x="52" y="141" width="26" height="4"/><rect x="52" y="148" width="26" height="4"/><rect x="52" y="155" width="26" height="4"/>
+                                    <rect x="215" y="127" width="26" height="4"/><rect x="215" y="134" width="26" height="4"/><rect x="215" y="141" width="26" height="4"/><rect x="215" y="148" width="26" height="4"/><rect x="215" y="155" width="26" height="4"/>
+                                </g>
+
+                                <rect x="0" y="164" width="320" height="100" rx="4" fill="#D5D3CE"/>
+                                <g font-family="sans-serif">
+                                    <text x="175" y="188" font-size="16" font-weight="700" fill="#222">🚌1</text>
+                                    <text x="182" y="201" font-size="7.5" text-anchor="middle" fill="#333">機場擺渡車</text>
+                                    <text x="212" y="188" font-size="16" font-weight="700" fill="#222">🚌2</text>
+                                    <text x="219" y="201" font-size="7.5" text-anchor="middle" fill="#333">市內公交車</text>
+                                    <text x="249" y="188" font-size="16" font-weight="700" fill="#222">🚌3</text>
+                                    <text x="256" y="201" font-size="7.5" text-anchor="middle" fill="#333">機場大巴</text>
+                                    <text x="284" y="188" font-size="16" font-weight="700" fill="#222">🚌4</text>
+                                    <text x="291" y="201" font-size="7.5" text-anchor="middle" fill="#333">市外公交車</text>
+                                </g>
+
+                                <rect x="10" y="218" width="300" height="42" rx="3" fill="#C2C0BB"/>
+                                <g fill="#84827E" font-size="9" font-weight="600">
+                                    <rect x="38" y="210" width="44" height="15" rx="3" fill="#84827E"/><text x="60" y="221" fill="#FFF" text-anchor="middle">Gate 1</text>
+                                    <rect x="108" y="210" width="44" height="15" rx="3" fill="#84827E"/><text x="130" y="221" fill="#FFF" text-anchor="middle">Gate 2</text>
+                                    <rect x="178" y="210" width="44" height="15" rx="3" fill="#84827E"/><text x="200" y="221" fill="#FFF" text-anchor="middle">Gate 3</text>
+                                    <rect x="242" y="210" width="44" height="15" rx="3" fill="#84827E"/><text x="264" y="221" fill="#FFF" text-anchor="middle">Gate 4</text>
+                                </g>
+                                <text x="155" y="242" font-size="13" text-anchor="middle" fill="#555">✈</text>
+                                <text x="155" y="254" font-size="9.5" font-weight="600" text-anchor="middle" fill="#444">國內航班到達區</text>
+                                <text x="292" y="244" font-size="8" font-weight="600" text-anchor="middle" fill="#333">🎫 售票處</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <div class="sheet-subhead sheet-stagger-item">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m5 8 6 6"/>
+                            <path d="m4 14 6-6 2-3"/>
+                            <path d="M2 5h12"/>
+                            <path d="M7 2h1"/>
+                            <path d="m22 22-5-10-5 10"/>
+                            <path d="M14 18h6"/>
+                        </svg>
+                        손가락 회화 (POINT & SPEAK)
+                    </div>
+
+                    <div class="point-speak-card sheet-stagger-item" style="cursor:pointer;" onclick="openFlashcard('해운대 해수욕장 세 장 주세요', '(海雲臺海水浴場 3張)')">
+                        <span class="ps-zh">海雲臺海水浴場 3張</span>
+                        <span class="ps-kr">해운대 해수욕장 세 장 주세요</span>
+                    </div>
+                    <div class="point-speak-card sheet-stagger-item" style="cursor:pointer;" onclick="openFlashcard('해운대 해수욕장에서 내려주세요', '(在 海雲台海水浴場 下車)')">
+                        <span class="ps-zh">在 海雲台海水浴場 下車</span>
+                        <span class="ps-kr">해운대 해수욕장에서 내려주세요</span>
+                    </div>
+
+                    <div class="sheet-subhead sheet-stagger-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                        乘車指南 (BOARDING GUIDE)
+                    </div>
+                    <div class="sheet-about-box sheet-stagger-item">
+                        【購票與候車】領取行李步出國際線 1 樓入境大廳後，走至 Gate 4 附近的「巴士售票處」購買往海雲臺車票（₩9,500／人），再走出 Gate 3 門外的 3 號月台（機場大巴）排隊候車。
+                        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px dashed #DFD9CE;">
+                            <div style="font-weight: 700; color: var(--ink-color); margin-bottom: 4px;">往機張（Gijang）路線停靠站</div>
+                            <div style="font-size: 0.78rem; color: var(--ink-muted); line-height: 1.6;">
+                                國際航站樓 → 國內航站樓 → 南川洞 → The Beach PRUGIO Summit → 新世界Centum City → BEXCO → 遊艇中心 → 釜山柏悅酒店 → 韓華度假村海雲臺 → 冬柏島入口 → <strong style="color: var(--primary-coral);">海雲臺海水浴場</strong> → 海雲臺溫泉十字路口 → 長山站（5號出口） → 東岩後門（Ananti Cove） → 海雲臺釜山悅榕莊
+                            </div>
+                            <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 14px; font-size: 0.78rem; background: #F5F0E6; padding: 8px 12px; border-radius: 6px; color: var(--ink-color);">
+                                <div><strong style="color: #8C6D46;">發車時間：</strong>12:19 / 12:30 / 13:10</div>
+                                <div><strong style="color: #8C6D46;">班次間隔：</strong>約 60 分鐘</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 2: L7 海雲臺 (L7 HAEUNDAE by LOTTE HOTELS) -->
+            <div class="sheet-view" id="sheet-view-l7hotel" style="display:none;">
+                <div class="sheet-header" style="border-left-color: #7FA98B;">
+                    <div class="sheet-meta-row">
+                        <div class="sheet-meta-left">
+                            <span class="sheet-cat-box" style="border-color:#7FA98B; color:#527D60; background:rgba(127,169,139,0.1);">HOTEL</span>
+                            <span class="sheet-time-label">住宿資訊 · 2晚</span>
+                        </div>
+                        <button type="button" class="sheet-close-btn" onclick="closeBottomSheet()">✕</button>
+                    </div>
+                    <div class="sheet-title">L7 HAEUNDAE by LOTTE HOTELS</div>
+                    <div style="font-size:0.8rem; color:var(--ink-muted); margin-top:2px;">L7 해운대 바이 롯데호텔 · ★★★★</div>
+                </div>
+
+                <div class="sheet-scroll-body">
+                    <div class="sheet-ticket-card sheet-stagger-item">
+                        <div class="sheet-ticket-section" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                            <div style="border-right:1px solid #F2EDE4; padding-right:10px;">
+                                <div class="sheet-ticket-label">入住日期 (CHECK-IN)</div>
+                                <div class="sheet-ticket-val" style="font-size:0.86rem;">2027年1月13日 (三)</div>
+                                <div style="font-size:0.75rem; color:var(--ink-muted); font-weight:600; margin-top:2px;">下午 3:00 後</div>
+                            </div>
+                            <div style="padding-left:4px;">
+                                <div class="sheet-ticket-label">退房日期 (CHECK-OUT)</div>
+                                <div class="sheet-ticket-val" style="font-size:0.86rem;">2027年1月15日 (五)</div>
+                                <div style="font-size:0.75rem; color:var(--primary-coral); font-weight:700; margin-top:2px;">上午 11:00 前</div>
+                            </div>
+                        </div>
+                        <div class="sheet-ticket-section" style="display:block;">
+                            <div class="sheet-ticket-label">ADDRESS (韓文 / 英文地址)</div>
+                            <div class="sheet-ticket-val" id="sheetAddrL7" style="font-size:0.84rem; line-height:1.45; margin-top:4px;">부산광역시 해운대구 해운대로570번길 55, 부산, 대한민국, 48094</div>
+                            <div style="font-size:0.76rem; color:var(--ink-muted); margin-top:4px; line-height:1.4;">55, Haeun-daero 570beon-gil, Haeundae-gu, Busan, Republic of Korea, 釜山, 韓國, 48094</div>
+                            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+                                <button type="button" class="btn-copy-addr" onclick="copyText('sheetAddrL7')">複製韓文地址</button>
+                                <a href="https://naver.me/xUZ2MLSG" target="_blank" style="background:#F2EDE4; color:var(--ink-color); text-decoration:none; padding:6px 14px; border-radius:8px; font-size:0.75rem; font-weight:600;">開啟 Naver Map 導航 🔗</a>
+                            </div>
+                        </div>
+                        <div class="sheet-ticket-footer">L7 HAEUNDAE · HAEUNDAE BEACH</div>
+                    </div>
+
+                    <div class="sheet-subhead sheet-stagger-item">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>
+                        </svg>
+                        손가락 회화 (POINT & SPEAK)
+                    </div>
+                    <div class="point-speak-card sheet-stagger-item" style="cursor:pointer;" onclick="openFlashcard('해운대 L7 호텔로 가주세요', '(請載我到海雲臺 L7 飯店)')">
+                        <span class="ps-zh">請載我到海雲臺 L7 飯店</span>
+                        <span class="ps-kr">해운대 L7 호텔로 가주세요</span>
+                    </div>
+                    <div class="point-speak-card sheet-stagger-item" style="cursor:pointer;" onclick="openFlashcard('체크인 부탁합니다', '(我要辦理入住 Check-in)')">
+                        <span class="ps-zh">我要辦理入住 (Check-in)</span>
+                        <span class="ps-kr">체크인 부탁합니다</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 3: Urban Groove Hotel (Busan Seomyeon Urban Groove Hotel) -->
+            <div class="sheet-view" id="sheet-view-urbangroove" style="display:none;">
+                <div class="sheet-header" style="border-left-color: #7FA98B;">
+                    <div class="sheet-meta-row">
+                        <div class="sheet-meta-left">
+                            <span class="sheet-cat-box" style="border-color:#7FA98B; color:#527D60; background:rgba(127,169,139,0.1);">HOTEL</span>
+                            <span class="sheet-time-label">住宿資訊 · 3晚</span>
+                        </div>
+                        <button type="button" class="sheet-close-btn" onclick="closeBottomSheet()">✕</button>
+                    </div>
+                    <div class="sheet-title">Busan Seomyeon Urban Groove Hotel</div>
+                    <div style="font-size:0.8rem; color:var(--ink-muted); margin-top:2px;">부산 서면 어반 그루브 호텔</div>
+                </div>
+
+                <div class="sheet-scroll-body">
+                    <div class="sheet-ticket-card sheet-stagger-item">
+                        <div class="sheet-ticket-section" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                            <div style="border-right:1px solid #F2EDE4; padding-right:10px;">
+                                <div class="sheet-ticket-label">入住日期 (CHECK-IN)</div>
+                                <div class="sheet-ticket-val" style="font-size:0.86rem;">2027年1月15日 (五)</div>
+                                <div style="font-size:0.75rem; color:var(--ink-muted); font-weight:600; margin-top:2px;">下午 5:00 後</div>
+                            </div>
+                            <div style="padding-left:4px;">
+                                <div class="sheet-ticket-label">退房日期 (CHECK-OUT)</div>
+                                <div class="sheet-ticket-val" style="font-size:0.86rem;">2027年1月18日 (一)</div>
+                                <div style="font-size:0.75rem; color:var(--primary-coral); font-weight:700; margin-top:2px;">中午 12:00 前</div>
+                            </div>
+                        </div>
+                        <div class="sheet-ticket-section" style="display:block;">
+                            <div class="sheet-ticket-label">ADDRESS (韓文 / 英文地址)</div>
+                            <div class="sheet-ticket-val" id="sheetAddrUG" style="font-size:0.84rem; line-height:1.45; margin-top:4px;">부산광역시 부산진구 황령대로17번길 18, 부산, 대한민국, 47353</div>
+                            <div style="font-size:0.76rem; color:var(--ink-muted); margin-top:4px; line-height:1.4;">18, Hwangnyeong-daero 17beon-gil, Busanjin-gu, 釜山, 韓國, 47353</div>
+                            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+                                <button type="button" class="btn-copy-addr" onclick="copyText('sheetAddrUG')">複製韓文地址</button>
+                                <a href="https://naver.me/xUZ2MLSG" target="_blank" style="background:#F2EDE4; color:var(--ink-color); text-decoration:none; padding:6px 14px; border-radius:8px; font-size:0.75rem; font-weight:600;">開啟 Naver Map 導航 🔗</a>
+                            </div>
+                        </div>
+                        <div class="sheet-ticket-footer">SEOMYEON · URBAN GROOVE HOTEL</div>
+                    </div>
+
+                    <div class="sheet-subhead sheet-stagger-item">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>
+                        </svg>
+                        손가락 회화 (POINT & SPEAK)
+                    </div>
+                    <div class="point-speak-card sheet-stagger-item" style="cursor:pointer;" onclick="openFlashcard('서면 어반그루브호텔로 가주세요', '(請載我到西面 Urban Groove 飯店)')">
+                        <span class="ps-zh">請載我到西面 Urban Groove 飯店</span>
+                        <span class="ps-kr">서면 어반그루브호텔로 가주세요</span>
+                    </div>
+                    <div class="point-speak-card sheet-stagger-item" style="cursor:pointer;" onclick="openFlashcard('체크인 부탁합니다', '(我要辦理入住 Check-in)')">
+                        <span class="ps-zh">我要辦理入住 (Check-in)</span>
+                        <span class="ps-kr">체크인 부탁합니다</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全螢幕放大對話字卡 Modal（點擊任意處關閉） -->
+    <div class="flashcard-overlay" id="flashcardOverlay" onclick="closeFlashcard()">
+        <div class="flashcard-tap-hint">TAP TO CLOSE</div>
+        <div class="flashcard-frame" id="flashcardFrame">
+            <div class="flashcard-stamp"><span>釜</span><span>山</span></div>
+            <div class="flashcard-kr-huge" id="flashcardKrText">영수증 주세요.</div>
+            <div class="flashcard-zh-sub" id="flashcardZhText">(請給我收據)</div>
+        </div>
+    </div>
+
+    <!-- 底部導覽列（行程 ➔ 記帳 ➔ 資訊 ➔ 打卡） -->
     <nav class="bottom-nav" id="bottomNav">
         <div class="nav-indicator" id="navIndicator"></div>
         <div class="nav-item active" onclick="switchTab('itinerary', this)">
-            <svg width="20" height="20" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
             <span>行程</span>
         </div>
-        <div class="nav-item" onclick="switchTab('flights', this)">
-            <svg width="20" height="20" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5 5.3 6.7c-.8-.2-1.6.1-2.1.8l-.6.8c-.3.4-.2.9.2 1.2l5.6 4.1-3.2 3.2-2.3-.6c-.4-.1-.8.1-1.1.4l-.4.4c-.3.3-.3.8 0 1.1l2.8 2.8c.3.3.8.3 1.1 0l.4-.4c.3-.3.5-.7.4-1.1l-.6-2.3 3.2-3.2 4.1 5.6c.3.4.8.5 1.2.2l.8-.6c.7-.5 1-1.3.8-2.1z"/></svg>
-            <span>航班</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('hotel', this)">
-            <svg width="20" height="20" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            <span>住宿</span>
-        </div>
         <div class="nav-item" onclick="switchTab('accounting', this)">
-            <svg width="20" height="20" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h4"/><path d="M14 16h4"/><path d="M6 12h12"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+            </svg>
             <span>記帳</span>
         </div>
+        <div class="nav-item" onclick="switchTab('info', this)">
+            <svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="8" y1="13" x2="16" y2="13"></line>
+                <line x1="8" y1="17" x2="13" y2="17"></line>
+            </svg>
+            <span>資訊</span>
+        </div>
         <div class="nav-item" onclick="switchTab('checkin', this)">
-            <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </svg>
             <span>打卡</span>
         </div>
     </nav>
@@ -1583,7 +3053,6 @@
     <script>
         let headerAnimTl = null;
 
-        // 執行 1 次「釜山·冬日遊」逐字彈跳 + 接續執行「부산 · BUSAN」卡拉OK小球動畫
         function playOnceBounce() {
             const bounceChars = document.querySelectorAll('.bounce-char');
             const karaokeChars = Array.from(document.querySelectorAll('#karaokeSub .karaoke-char'));
@@ -1667,18 +3136,20 @@
             if (window.gsap && window.TextPlugin) {
                 gsap.registerPlugin(TextPlugin);
             }
+            if (window.gsap && window.Observer) {
+                gsap.registerPlugin(Observer);
+            }
 
             playOnceBounce();
 
-            // 打字速度調整為 0.5 秒打一個字
             const typingEl = document.getElementById('typingText');
             const cursorEl = document.getElementById('typingCursor');
-            const targetPhrase = "6天5夜·Bu想San班，就去釜山";
+            const part1 = "Bu想San班，";
+            const part2 = "就去釜山";
+            const fullPhrase = part1 + part2;
             if (window.gsap && typingEl) {
-                gsap.to(typingEl, {
-                    duration: targetPhrase.length * 0.5,
-                    text: { value: targetPhrase, delimiter: "" },
-                    ease: "none",
+                typingEl.textContent = "";
+                const typingTl = gsap.timeline({
                     onComplete: () => {
                         if (cursorEl) {
                             cursorEl.style.animation = 'none';
@@ -1686,10 +3157,28 @@
                         }
                     }
                 });
+                typingTl.to(typingEl, {
+                    duration: part1.length * 0.3,
+                    text: { value: part1, delimiter: "" },
+                    ease: "none"
+                })
+                .to(typingEl, {
+                    duration: part2.length * 0.3,
+                    text: { value: fullPhrase, delimiter: "" },
+                    ease: "none"
+                }, "+=0.5");
             }
 
+            updateStickyHeaderOffset();
             initNavIndicator();
-            window.addEventListener('resize', initNavIndicator);
+            initExpenseFilterNav();
+            initPullToRefresh();
+            initBottomSheetDrag();
+            window.addEventListener('resize', () => {
+                updateStickyHeaderOffset();
+                initNavIndicator();
+                updateActiveFilterPill();
+            });
 
             document.addEventListener('click', (e) => {
                 const dd = document.getElementById('dayDropdown');
@@ -1699,8 +3188,15 @@
             });
         });
 
+        function updateStickyHeaderOffset() {
+            const hero = document.querySelector('.hero-banner');
+            if (hero) {
+                document.documentElement.style.setProperty('--hero-sticky-h', hero.offsetHeight + 'px');
+            }
+        }
+
         let navIndicatorTl = null;
-        const TAB_ORDER = ['itinerary', 'flights', 'hotel', 'accounting', 'checkin'];
+        const TAB_ORDER = ['itinerary', 'accounting', 'info', 'checkin'];
         let currentTabIndex = 0;
 
         function initNavIndicator() {
@@ -1714,7 +3210,6 @@
             }
         }
 
-        // Apple Touch Icon 自動轉換
         (function setupAppleTouchIcon() {
             const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#F6F2EA"/><circle cx="22" cy="26" r="7" fill="#F2CBCB" opacity="0.75"/><path d="M 62 24 Q 67 20 72 24 Q 77 20 82 24" stroke="#8C8278" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M0 64 Q 25 60 50 64 T 100 64 L 100 100 L 0 100 Z" fill="#6B9AC4" opacity="0.35"/><path d="M0 70 Q 25 66 50 70 T 100 70 L 100 100 L 0 100 Z" fill="#3B719F"/><path d="M0 78 Q 25 74 50 78 T 100 78 L 100 100 L 0 100 Z" fill="#28537A"/><line x1="21" y1="58" x2="21" y2="80" stroke="#7D736A" stroke-width="2.6"/><line x1="51" y1="58" x2="51" y2="80" stroke="#7D736A" stroke-width="2.6"/><line x1="81" y1="58" x2="81" y2="80" stroke="#7D736A" stroke-width="2.6"/><path d="M 14 58 L 14 38 L 36 58 Z" fill="none" stroke="#8C8278" stroke-width="2.5"/><line x1="14" y1="46" x2="36" y2="58" stroke="#8C8278" stroke-width="1.5"/><path d="M 80 58 L 80 42 L 85 42 L 85 46 L 82.5 46 L 82.5 58" fill="#8C8278"/><circle cx="82.5" cy="37" r="3.2" fill="#D96B53"/><line x1="12" y1="58" x2="89" y2="58" stroke="#5C544C" stroke-width="3"/><line x1="12" y1="60" x2="89" y2="60" stroke="#B5A89E" stroke-width="1.2"/><rect x="31" y="47" width="18" height="10" rx="4" fill="#D96B53"/><rect x="52" y="47" width="18" height="10" rx="4" fill="#E6B84D"/><rect x="35" y="50" width="10" height="4" rx="1" fill="#FFFFFF"/><rect x="56" y="50" width="10" height="4" rx="1" fill="#FFFFFF"/><circle cx="36" cy="57.5" r="1.5" fill="#222"/><circle cx="44" cy="57.5" r="1.5" fill="#222"/><circle cx="57" cy="57.5" r="1.5" fill="#222"/><circle cx="65" cy="57.5" r="1.5" fill="#222"/></svg>`;
             const img = new Image();
@@ -1784,7 +3279,6 @@
             el.classList.add('active');
             currentTabIndex = newTabIndex;
 
-            // 修復分頁切換：確保絕對定位切換流暢且互不干擾
             if (window.gsap && oldPage && newPage && oldPage !== newPage) {
                 gsap.killTweensOf([oldPage, newPage]);
                 
@@ -1815,6 +3309,7 @@
             playOnceBounce();
 
             if (tabId === 'accounting') {
+                requestAnimationFrame(() => updateActiveFilterPill());
                 fetchCloudExpenses();
             }
             if (tabId === 'checkin') {
@@ -1834,15 +3329,55 @@
         };
 
         const CATEGORY_COLORS = {
-            FLIGHT: '#7BAAC8',        // 交通（藍色）
-            TRANSPORT: '#7BAAC8',     // 交通（藍色）
-            FOOD: '#E0B456',          // 飲食（黃色）
-            SIGHTSEEING: '#A78EC2',   // 景點（紫色）
-            ENTERTAINMENT: '#D98A6C', // 娛樂（暖橘紅）
-            EXPERIENCE: '#6BA6A8',    // 體驗（湖水青）
-            HOTEL: '#7FA98B',         // 住宿（綠色）
-            SHOPPING: '#E0959E'       // 購物（粉色）
+            FLIGHT: '#7BAAC8',
+            TRANSPORT: '#7BAAC8',
+            FOOD: '#E0B456',
+            SIGHTSEEING: '#A78EC2',
+            ENTERTAINMENT: '#E07A5F',
+            EXPERIENCE: '#C87A5B',
+            HOTEL: '#7FA98B',
+            SHOPPING: '#E0959E'
         };
+
+        function openFlashcard(krText, zhText) {
+            const overlay = document.getElementById('flashcardOverlay');
+            const frame = document.getElementById('flashcardFrame');
+            const krEl = document.getElementById('flashcardKrText');
+            const zhEl = document.getElementById('flashcardZhText');
+            if (!overlay || !krEl || !zhEl) return;
+
+            krEl.textContent = krText;
+            zhEl.textContent = zhText || '';
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+
+            if (window.gsap) {
+                gsap.fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power2.out" });
+                if (frame) {
+                    gsap.fromTo(frame, { scale: 0.94, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.28, ease: "back.out(1.4)" });
+                }
+            }
+        }
+
+        function closeFlashcard() {
+            const overlay = document.getElementById('flashcardOverlay');
+            if (!overlay) return;
+
+            if (window.gsap) {
+                gsap.to(overlay, {
+                    opacity: 0,
+                    duration: 0.18,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        overlay.classList.remove('open');
+                        document.body.style.overflow = '';
+                    }
+                });
+            } else {
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
 
         const stations = ["尾浦 Mipo", "青沙浦 Cheongsapo", "松亭 Songjeong"];
         const stationPositions = [25, 145, 265];
@@ -1852,22 +3387,127 @@
             currentStationIndex += direction;
             if (currentStationIndex < 0) currentStationIndex = 0;
             if (currentStationIndex >= stationPositions.length) currentStationIndex = stationPositions.length - 1;
-            document.getElementById('trainCars').style.left = stationPositions[currentStationIndex] + 'px';
-            document.getElementById('stationLabel').innerText = stations[currentStationIndex];
+            const trainCarsEl = document.getElementById('trainCars');
+            const stationLabelEl = document.getElementById('stationLabel');
+            if (trainCarsEl) trainCarsEl.style.left = stationPositions[currentStationIndex] + 'px';
+            if (stationLabelEl) stationLabelEl.innerText = stations[currentStationIndex];
         }
 
-        // 行程資料：第一行行程名稱、第二行縮小版透明感icon+類別、第三行備註說明（無說明則不顯示第三行）
+        function getTrainIllustrationHtml() {
+            const leftPos = stationPositions[currentStationIndex] || 25;
+            const labelTxt = stations[currentStationIndex] || stations[0];
+            return `
+                <div style="margin: 2px 0 22px 0;">
+                    <div class="train-viewport">
+                        <div class="capsule-svg-box">
+                            <svg width="100%" height="100%" viewBox="0 0 340 90">
+                                <path d="M0 60 Q 85 50, 170 60 T 340 55 L 340 90 L 0 90 Z" fill="#E2ECE9" opacity="0.6"/>
+                                <circle cx="280" cy="25" r="12" fill="#F4DCD0" opacity="0.8"/>
+                                <line x1="30" y1="45" x2="310" y2="45" stroke="#B8AEA3" stroke-width="1.5" stroke-dasharray="4 4"/>
+                                
+                                <line x1="45" y1="45" x2="45" y2="65" stroke="#B8AEA3" stroke-width="1.5"/>
+                                <circle cx="45" cy="45" r="3" fill="#D97A6C"/>
+                                <text x="45" y="33" font-size="9" fill="#7E756F" text-anchor="middle">尾浦</text>
+
+                                <line x1="170" y1="45" x2="170" y2="65" stroke="#B8AEA3" stroke-width="1.5"/>
+                                <circle cx="170" cy="45" r="3" fill="#D97A6C"/>
+                                <text x="170" y="33" font-size="9" fill="#7E756F" text-anchor="middle">青沙浦</text>
+
+                                <line x1="295" y1="45" x2="295" y2="65" stroke="#B8AEA3" stroke-width="1.5"/>
+                                <circle cx="295" cy="45" r="3" fill="#D97A6C"/>
+                                <text x="295" y="33" font-size="9" fill="#7E756F" text-anchor="middle">松亭</text>
+                            </svg>
+
+                            <div class="train-cars-group" id="trainCars" style="left: ${leftPos}px;">
+                                <svg width="24" height="20" viewBox="0 0 28 24">
+                                    <rect x="2" y="2" width="24" height="20" rx="8" fill="#F4C46C" stroke="#383431" stroke-width="1.5"/>
+                                    <rect x="6" y="5" width="16" height="9" rx="2" fill="#FFF"/>
+                                    <circle cx="14" cy="18" r="1.5" fill="#383431"/>
+                                </svg>
+                                <svg width="24" height="20" viewBox="0 0 28 24">
+                                    <rect x="2" y="2" width="24" height="20" rx="8" fill="#D97A6C" stroke="#383431" stroke-width="1.5"/>
+                                    <rect x="6" y="5" width="16" height="9" rx="2" fill="#FFF"/>
+                                    <circle cx="14" cy="18" r="1.5" fill="#383431"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div class="btn-controls-row">
+                            <button class="btn-station" onclick="moveTrain(-1)">〈 上一站</button>
+                            <span class="station-name-display" id="stationLabel">${labelTxt}</span>
+                            <button class="btn-station" onclick="moveTrain(1)">下一站 〉</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getDay6ReturnIllustrationHtml() {
+            return `
+                <div class="day6-return-banner">
+                    <div class="day6-card-figure">
+                        <svg class="day6-bg-svg" width="100%" height="100%" viewBox="0 0 480 220" preserveAspectRatio="xMidYMid slice">
+                            <defs>
+                                <linearGradient id="d6Sky" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#1A2436"/>
+                                    <stop offset="52%" stop-color="#35475E"/>
+                                    <stop offset="82%" stop-color="#7A524B"/>
+                                    <stop offset="100%" stop-color="#C88B6E"/>
+                                </linearGradient>
+                                <radialGradient id="d6SunGlow" cx="0.72" cy="0.62" r="0.38">
+                                    <stop offset="0%" stop-color="#FFE6C2" stop-opacity="0.92"/>
+                                    <stop offset="45%" stop-color="#E89973" stop-opacity="0.42"/>
+                                    <stop offset="100%" stop-color="#E89973" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            <rect width="480" height="220" fill="url(#d6Sky)"/>
+                            <circle cx="348" cy="136" r="85" fill="url(#d6SunGlow)"/>
+                            <circle cx="348" cy="136" r="19" fill="#FBE3C6" opacity="0.86"/>
+                            <path d="M 245 84 Q 310 74 370 82 Q 425 89 472 78" stroke="#F4D8C6" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.22"/>
+                            <path d="M 0 156 L 95 142 L 175 150 L 265 136 L 355 149 L 430 140 L 480 148 L 480 220 L 0 220 Z" fill="#1E242E" opacity="0.9"/>
+                            <path d="M 0 166 L 480 166 L 480 220 L 0 220 Z" fill="#131820"/>
+                            <line x1="215" y1="166" x2="80" y2="220" stroke="#D99B78" stroke-width="1.2" stroke-dasharray="5 5" opacity="0.55"/>
+                            <line x1="295" y1="166" x2="420" y2="220" stroke="#D99B78" stroke-width="1.2" stroke-dasharray="5 5" opacity="0.55"/>
+                            <path d="M 105 118 Q 195 90 292 52" stroke="#F8EFE6" stroke-width="1.4" stroke-dasharray="4 4" fill="none" opacity="0.65"/>
+                            <g transform="translate(300, 44) rotate(-21) scale(0.88)">
+                                <path d="M -18 2 L 14 0 C 19 0 22 2 23 4 C 22 6 19 7 14 7 L -18 6 Z" fill="#F8EFE6"/>
+                                <path d="M -2 1 L -9 -13 L -4 -13 L 6 1 Z" fill="#F8EFE6"/>
+                                <path d="M -1 6 L -7 16 L -3 16 L 5 6 Z" fill="#D8C8B8"/>
+                                <path d="M -17 2 L -23 -7 L -19 -7 L -13 2 Z" fill="#F8EFE6"/>
+                            </g>
+                            <line x1="118" y1="0" x2="102" y2="220" stroke="#0E131A" stroke-width="3" opacity="0.42"/>
+                            <line x1="368" y1="0" x2="384" y2="220" stroke="#0E131A" stroke-width="3" opacity="0.42"/>
+                            <line x1="0" y1="58" x2="480" y2="58" stroke="#0E131A" stroke-width="1.8" opacity="0.28"/>
+                        </svg>
+                        <div class="day6-card-overlay">
+                            <div class="day6-badge-row">
+                                <span class="day6-tag-box">DAY 6</span>
+                                <span class="day6-loc-text">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px; height:12px; flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    <span>金海國際機場 (PUS)</span>
+                                </span>
+                            </div>
+                            <div class="day6-card-heading">滿載回憶，平安賦歸</div>
+                            <svg class="day6-sparkle" width="13" height="13" viewBox="0 0 24 24" style="width:13px; height:13px; display:block; opacity:0.75;">
+                                <path fill="#DCE2EA" d="M12 2 L14.8 9.2 L22 12 L14.8 14.8 L12 22 L9.2 14.8 L2 12 L9.2 9.2 Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         const itineraryData = {
             1: [
                 { time: '05:30', category: 'TRANSPORT', icon: SVG_ICONS.train, title: '家 ➔ 台中機場', desc: '機場接送' },
                 { time: '08:00', category: 'FLIGHT', icon: SVG_ICONS.plane, title: '出發 (JX310)', desc: '台中 ➔ 11:15 抵達 釜山' },
                 { time: '11:30', category: 'EXPERIENCE', icon: SVG_ICONS.pin, title: '辦理 SES 快速通關', desc: '2F 出境大廳 Check-in D區右方' },
-                { time: '12:15', category: 'TRANSPORT', icon: SVG_ICONS.train, title: '前往海雲臺', desc: '機場巴士 3號月台 ❘ 票價：₩9,500/人' },
+                { time: '12:15', category: 'TRANSPORT', icon: SVG_ICONS.train, title: '前往海雲臺', desc: '機場巴士 3號月台 ❘ 票價：₩9,500/人', highlight: true, sheetId: 'haeundae' },
                 { time: '13:30', category: 'FOOD', icon: SVG_ICONS.food, title: '廣安木烤肉', desc: '' },
                 { time: '15:30', category: 'SHOPPING', icon: SVG_ICONS.shop, title: 'E-MART 海雲臺店', desc: '', metro: '海雲台 → 中洞 7號出口', metroName: '釜山2號線', metroColor: 'var(--metro-line-2)' },
                 { time: '17:30', category: 'SHOPPING', icon: SVG_ICONS.shop, title: '海雲台市場', desc: '海鮮蔥餅、名品糖餅' },
                 { time: '19:30', category: 'FOOD', icon: SVG_ICONS.food, title: '東大門獵奇辣炒年糕', desc: '推薦 玫瑰奶油辣炒年糕+寬粉+起司' },
-                { time: '21:00', category: 'HOTEL', icon: SVG_ICONS.hotel, title: 'L7 海雲臺 Check-in', desc: '' }
+                { time: '住宿資訊', isLabelTime: true, category: 'HOTEL', icon: SVG_ICONS.hotel, title: 'L7 海雲臺', desc: '點擊查看飯店地址與入住時間', sheetId: 'l7hotel' }
             ],
             2: [
                 { time: '08:00', category: 'FOOD', icon: SVG_ICONS.food, title: '極東豬肉湯飯', desc: '' },
@@ -1887,7 +3527,7 @@
                 { time: '16:00', category: 'TRANSPORT', icon: SVG_ICONS.train, title: '前往西面', desc: '', metro: '海雲臺 ➔ 西面', metroName: '釜山2號線', metroColor: 'var(--metro-line-2)' },
                 { time: '17:00', category: 'SHOPPING', icon: SVG_ICONS.shop, title: '西面商圈逛街', desc: 'Musinsa、大創' },
                 { time: '19:00', category: 'FOOD', icon: SVG_ICONS.food, title: '83 獬豸', desc: 'CatchTable 現場預約' },
-                { time: '21:00', category: 'HOTEL', icon: SVG_ICONS.hotel, title: 'Urban Groove Hotel Check-in', desc: '' }
+                { time: '住宿資訊', isLabelTime: true, category: 'HOTEL', icon: SVG_ICONS.hotel, title: 'Urban Groove Hotel', desc: '點擊查看飯店地址與入住時間', sheetId: 'urbangroove' }
             ],
             4: [
                 { time: '09:00', category: 'FOOD', icon: SVG_ICONS.food, title: 'Isaac Toast', desc: '', metro: '凡內谷 ➔ 西面 9號出口', metroName: '釜山1號線', metroColor: 'var(--metro-line-1)' },
@@ -1927,23 +3567,56 @@
 
             const container = document.getElementById('timelineContainer');
             const list = itineraryData[dayNum] || [];
-            let html = '<div class="elegant-timeline">';
+            let html = '';
+
+            if (dayNum === 2) {
+                html += getTrainIllustrationHtml();
+            } else if (dayNum === 6) {
+                html += getDay6ReturnIllustrationHtml();
+            }
+
+            html += '<div class="elegant-timeline">';
 
             list.forEach(item => {
                 const catKey = item.category || 'TRANSPORT';
                 const catColor = CATEGORY_COLORS[catKey] || '#C59B7D';
-                html += `
-                    <div class="etimeline-row">
-                        <div class="etimeline-time">${item.time || ''}</div>
-                        <div class="etimeline-dot"></div>
-                        <div class="etimeline-content" style="--cat-color: ${catColor};">
-                            <div class="etimeline-title">${item.title}</div>
-                            <div class="etimeline-category">${item.icon || ''}<span>${catKey}</span></div>
-                            ${item.metro ? `<div style="margin-top:4px;"><div class="metro-badge-oval" style="background:${item.metroColor};">${item.metroName || '地鐵'}</div> <span style="font-size:0.75rem; color:var(--ink-muted);">${item.metro}</span></div>` : ''}
-                            ${item.desc ? `<div class="etimeline-desc">${item.desc}</div>` : ''}
+                const isHighlight = !!item.highlight;
+                const hasSheet = !!item.sheetId;
+                const timeClass = item.isLabelTime ? 'etimeline-time label-text' : 'etimeline-time';
+                const clickAttr = hasSheet ? `onclick="openBottomSheet('${item.sheetId}')"` : '';
+
+                if (isHighlight) {
+                    html += `
+                        <div class="etimeline-row highlight-row" ${clickAttr}>
+                            <span class="highlight-inner">
+                                <div class="${timeClass}">${item.time || ''}</div>
+                                <div class="etimeline-dot"></div>
+                                <div class="etimeline-content" style="--cat-color: ${catColor};">
+                                    <div class="etimeline-title">${item.title}</div>
+                                    <div class="etimeline-category">${item.icon || ''}<span>${catKey}</span></div>
+                                    ${item.metro ? `<div style="margin-top:4px;"><div class="metro-badge-oval" style="background:${item.metroColor};">${item.metroName || '地鐵'}</div> <span style="font-size:0.75rem; color:var(--ink-muted);">${item.metro}</span></div>` : ''}
+                                    ${item.desc ? `<div class="etimeline-desc">${item.desc}</div>` : ''}
+                                </div>
+                                <span class="highlight-chevron">›</span>
+                            </span>
                         </div>
-                    </div>
-                `;
+                    `;
+                } else {
+                    const rowClass = hasSheet ? 'etimeline-row clickable-row' : 'etimeline-row';
+                    html += `
+                        <div class="${rowClass}" ${clickAttr}>
+                            <div class="${timeClass}">${item.time || ''}</div>
+                            <div class="etimeline-dot"></div>
+                            <div class="etimeline-content" style="--cat-color: ${catColor};">
+                                <div class="etimeline-title">${item.title}</div>
+                                <div class="etimeline-category">${item.icon || ''}<span>${catKey}</span></div>
+                                ${item.metro ? `<div style="margin-top:4px;"><div class="metro-badge-oval" style="background:${item.metroColor};">${item.metroName || '地鐵'}</div> <span style="font-size:0.75rem; color:var(--ink-muted);">${item.metro}</span></div>` : ''}
+                                ${item.desc ? `<div class="etimeline-desc">${item.desc}</div>` : ''}
+                            </div>
+                            ${hasSheet ? `<span class="row-chevron">›</span>` : ''}
+                        </div>
+                    `;
+                }
             });
 
             html += '</div>';
@@ -1958,7 +3631,126 @@
         }
         switchDay(1);
 
-        // 記帳日期下拉選單（Dropdown Reveal）控制
+        // 底部抽屜（Bottom Sheet）展開、關閉與手勢向下拖曳收回
+        let sheetTl = null;
+        function openBottomSheet(sheetId) {
+            const overlay = document.getElementById('haeundaeSheetOverlay');
+            const backdrop = document.getElementById('haeundaeSheetBackdrop');
+            const panel = document.getElementById('haeundaeSheetPanel');
+            if (!overlay || !backdrop || !panel || !window.gsap) return;
+
+            panel.querySelectorAll('.sheet-view').forEach(view => {
+                view.style.display = 'none';
+            });
+            const activeView = document.getElementById('sheet-view-' + (sheetId || 'haeundae'));
+            if (activeView) {
+                activeView.style.display = 'block';
+            }
+
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+
+            const staggerItems = activeView ? activeView.querySelectorAll('.sheet-stagger-item') : panel.querySelectorAll('.sheet-stagger-item');
+            if (sheetTl) sheetTl.kill();
+
+            gsap.set(backdrop, { opacity: 0 });
+            gsap.set(panel, { yPercent: 100, y: 0 });
+            gsap.set(staggerItems, { y: 8, opacity: 0 });
+
+            sheetTl = gsap.timeline();
+            sheetTl.to(backdrop, {
+                opacity: 1,
+                duration: 0.38,
+                ease: "power2.out"
+            }, 0)
+            .to(panel, {
+                yPercent: 0,
+                duration: 0.6,
+                ease: "back.out(1.1)"
+            }, 0)
+            .to(staggerItems, {
+                y: 0,
+                opacity: 1,
+                duration: 0.36,
+                stagger: 0.06,
+                ease: "power2.out"
+            }, 0.18);
+        }
+
+        function closeBottomSheet() {
+            const overlay = document.getElementById('haeundaeSheetOverlay');
+            const backdrop = document.getElementById('haeundaeSheetBackdrop');
+            const panel = document.getElementById('haeundaeSheetPanel');
+            if (!overlay || !backdrop || !panel || !window.gsap) return;
+
+            if (sheetTl) sheetTl.kill();
+            sheetTl = gsap.timeline({
+                onComplete: () => {
+                    overlay.classList.remove('open');
+                    document.body.style.overflow = '';
+                    gsap.set(panel, { clearProps: "y,yPercent" });
+                }
+            });
+
+            sheetTl.to(panel, {
+                yPercent: 100,
+                duration: 0.35,
+                ease: "power2.in"
+            }, 0)
+            .to(backdrop, {
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.in"
+            }, 0.04);
+        }
+
+        // 支援整顆面板或把手向下拖曳收回抽屜
+        function initBottomSheetDrag() {
+            const panel = document.getElementById('haeundaeSheetPanel');
+            const dragZone = document.getElementById('sheetDragZone');
+            if (!panel || !dragZone || !window.gsap) return;
+
+            let startY = 0;
+            let currentY = 0;
+            let isDragging = false;
+
+            const onPointerDown = (e) => {
+                if (e.target.closest('button, a')) return;
+                const scrollBody = e.target.closest('.sheet-scroll-body');
+                if (scrollBody && scrollBody.scrollTop > 0 && !dragZone.contains(e.target)) return;
+                isDragging = true;
+                startY = e.clientY;
+                currentY = 0;
+                panel.setPointerCapture(e.pointerId);
+            };
+
+            const onPointerMove = (e) => {
+                if (!isDragging) return;
+                const delta = e.clientY - startY;
+                if (delta > 0) {
+                    currentY = delta;
+                    gsap.set(panel, { y: currentY });
+                }
+            };
+
+            const onPointerUp = (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                try { panel.releasePointerCapture(e.pointerId); } catch (err) {}
+
+                if (currentY > 75) {
+                    closeBottomSheet();
+                } else {
+                    gsap.to(panel, { y: 0, duration: 0.3, ease: "back.out(1.4)" });
+                }
+            };
+
+            panel.addEventListener('pointerdown', onPointerDown);
+            panel.addEventListener('pointermove', onPointerMove);
+            panel.addEventListener('pointerup', onPointerUp);
+            panel.addEventListener('pointercancel', onPointerUp);
+        }
+
         function toggleDayDropdown(e) {
             e.stopPropagation();
             const dd = document.getElementById('dayDropdown');
@@ -1973,7 +3765,6 @@
             document.getElementById('dayDropdown').classList.remove('open');
         }
 
-        // 記帳人圓形按鈕選擇（珍 / 倫 / 婷）
         function selectPayer(payerName, btnEl) {
             document.getElementById('accPayer').value = payerName;
             document.querySelectorAll('#payerCircles .payer-circle-btn').forEach(b => b.classList.remove('active'));
@@ -1985,6 +3776,163 @@
         const LOCAL_STORAGE_KEY = 'busan_v2_expenses_clean';
         let expenses = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
         let isWritingLock = false;
+        let currentExpenseFilter = 'ALL';
+
+        function moveFilterPillTo(targetBtn) {
+            const pill = document.getElementById('expenseFilterPill');
+            const nav = document.getElementById('expenseFilterNav');
+            if (!pill || !targetBtn || !nav) return;
+
+            pill.style.width = `${targetBtn.offsetWidth}px`;
+            pill.style.transform = `translateX(${targetBtn.offsetLeft}px)`;
+
+            nav.querySelectorAll('.expense-filter-btn').forEach(btn => {
+                if (btn === targetBtn) btn.classList.add('pill-focus');
+                else btn.classList.remove('pill-focus');
+            });
+        }
+
+        function updateActiveFilterPill() {
+            const activeBtn = document.querySelector('#expenseFilterNav .expense-filter-btn.active');
+            if (activeBtn) moveFilterPillTo(activeBtn);
+        }
+
+        function initExpenseFilterNav() {
+            const nav = document.getElementById('expenseFilterNav');
+            if (!nav) return;
+            const buttons = nav.querySelectorAll('.expense-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('pointerenter', () => {
+                    moveFilterPillTo(btn);
+                });
+            });
+
+            nav.addEventListener('pointerleave', () => {
+                updateActiveFilterPill();
+            });
+
+            updateActiveFilterPill();
+        }
+
+        function setExpenseDayFilter(dayCode, btnEl) {
+            currentExpenseFilter = dayCode;
+            const nav = document.getElementById('expenseFilterNav');
+            if (nav) {
+                nav.querySelectorAll('.expense-filter-btn').forEach(b => b.classList.remove('active'));
+            }
+            if (btnEl) {
+                btnEl.classList.add('active');
+                moveFilterPillTo(btnEl);
+            }
+            renderExpenses();
+        }
+
+        function initPullToRefresh() {
+            const wrapper = document.getElementById('ptrWrapper');
+            const content = document.getElementById('ptrContent');
+            const spinnerBox = document.getElementById('ptrSpinnerBox');
+            const spinnerSvg = document.getElementById('ptrSpinnerSvg');
+            if (!wrapper || !content || !spinnerBox || !spinnerSvg || !window.gsap) return;
+
+            let pullRaw = 0;
+            let isPulling = false;
+            let isRefreshing = false;
+            const THRESHOLD = 62;
+
+            function onStart() {
+                if (isRefreshing) return;
+                const pageAcc = document.getElementById('page-accounting');
+                if (!pageAcc || !pageAcc.classList.contains('active')) return;
+                if (window.scrollY > 10) return;
+                pullRaw = 0;
+                isPulling = true;
+            }
+
+            function onMove(deltaY) {
+                if (!isPulling || isRefreshing) return;
+                if (window.scrollY > 10 && pullRaw <= 0) {
+                    isPulling = false;
+                    return;
+                }
+                pullRaw += deltaY;
+                if (pullRaw < 0) pullRaw = 0;
+
+                const dampedY = Math.min(115, Math.pow(pullRaw, 0.78) * 2.1);
+                const progress = Math.min(1, dampedY / THRESHOLD);
+
+                gsap.set(content, { y: dampedY });
+                gsap.set(spinnerBox, {
+                    opacity: progress,
+                    scale: 0.55 + 0.45 * progress,
+                    y: Math.min(10, dampedY * 0.12)
+                });
+                gsap.set(spinnerSvg, { rotation: dampedY * 3.4 });
+            }
+
+            function onRelease() {
+                if (!isPulling || isRefreshing) return;
+                isPulling = false;
+                const currentY = gsap.getProperty(content, "y") || 0;
+
+                if (currentY >= THRESHOLD) {
+                    isRefreshing = true;
+                    gsap.to(content, { y: 52, duration: 0.25, ease: "power2.out" });
+                    gsap.to(spinnerBox, { opacity: 1, scale: 1, duration: 0.2 });
+
+                    const spinTween = gsap.to(spinnerSvg, {
+                        rotation: "+=360",
+                        duration: 0.65,
+                        ease: "linear",
+                        repeat: -1
+                    });
+
+                    fetchCloudExpenses().finally(() => {
+                        setTimeout(() => {
+                            spinTween.kill();
+                            const tl = gsap.timeline({
+                                onComplete: () => {
+                                    isRefreshing = false;
+                                    pullRaw = 0;
+                                }
+                            });
+
+                            tl.to(spinnerBox, { opacity: 0, scale: 0.5, duration: 0.25, ease: "power2.in" }, 0)
+                              .to(content, { y: 0, duration: 0.5, ease: "power3.out" }, 0)
+                              .call(() => {
+                                  const items = document.querySelectorAll('#expenseList .expense-card-item');
+                                  const newestItem = items.length > 0 ? items[items.length - 1] : null;
+                                  if (newestItem) {
+                                      gsap.fromTo(newestItem,
+                                          { backgroundColor: "#F5E1DA", borderColor: "#D97A6C" },
+                                          { backgroundColor: "#FAF6F0", borderColor: "#EFEAE2", duration: 1.1, ease: "power2.out" }
+                                      );
+                                  }
+                              }, null, 0.22);
+                        }, 450);
+                    });
+                } else {
+                    pullRaw = 0;
+                    gsap.to(content, { y: 0, duration: 0.4, ease: "power3.out" });
+                    gsap.to(spinnerBox, { opacity: 0, scale: 0.5, duration: 0.25 });
+                }
+            }
+
+            if (window.Observer) {
+                Observer.create({
+                    target: wrapper,
+                    type: "touch,pointer",
+                    onPress: () => onStart(),
+                    onDrag: (self) => {
+                        if (self.deltaY > 0 || pullRaw > 0) {
+                            onMove(self.deltaY);
+                        }
+                    },
+                    onRelease: () => onRelease(),
+                    onStop: () => onRelease()
+                });
+            }
+        }
 
         function normalizeItem(raw) {
             if (!raw) return null;
@@ -2209,13 +4157,18 @@
             listEl.innerHTML = '';
             let totalKrw = 0;
 
-            if (!expenses || expenses.length === 0) {
-                listEl.innerHTML = '<div style="text-align:center; padding:20px; color:var(--ink-muted); font-size:0.8rem;">尚無記帳紀錄</div>';
+            const filteredList = (expenses || [])
+                .map((exp, realIdx) => ({ exp, realIdx }))
+                .filter(entry => currentExpenseFilter === 'ALL' || entry.exp.day === currentExpenseFilter);
+
+            if (filteredList.length === 0) {
+                const emptyText = currentExpenseFilter === 'ALL' ? '尚無記帳紀錄' : `尚無 ${currentExpenseFilter.replace('D', 'Day ')} 記帳紀錄`;
+                listEl.innerHTML = `<div style="text-align:center; padding:20px; color:var(--ink-muted); font-size:0.8rem;">${emptyText}</div>`;
                 totalEl.innerText = '總計：₩ 0';
                 return;
             }
 
-            expenses.forEach((exp, idx) => {
+            filteredList.forEach(({ exp, realIdx }) => {
                 const krwVal = parseFloat(exp.krw) || 0;
                 const twdVal = parseFloat(exp.twd) || Math.round(krwVal * RATE);
                 totalKrw += krwVal;
@@ -2260,7 +4213,7 @@
                             );
                         }
                         setTimeout(() => {
-                            deleteExpense(idx);
+                            deleteExpense(realIdx);
                         }, 320);
                     }, 1200);
                 };
@@ -2407,6 +4360,12 @@
             const txt = document.getElementById(id).innerText;
             navigator.clipboard.writeText(txt);
             showToast('已複製韓文地址！');
+        }
+
+        function copyMemberCard(id) {
+            const txt = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(txt);
+            showToast('已複製會員卡號！');
         }
 
         function showToast(text) {
