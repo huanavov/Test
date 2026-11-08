@@ -787,6 +787,14 @@
             cursor: grabbing;
         }
 
+        .sheet-view {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+        }
+
         .sheet-handle {
             width: 38px;
             height: 4px;
@@ -855,8 +863,11 @@
         }
 
         .sheet-scroll-body {
-            padding: 4px 20px 30px 20px;
+            flex: 1;
+            min-height: 0;
+            padding: 4px 20px calc(52px + env(safe-area-inset-bottom, 20px)) 20px;
             overflow-y: auto;
+            overscroll-behavior-y: contain;
             -webkit-overflow-scrolling: touch;
             touch-action: pan-y;
         }
@@ -3659,7 +3670,9 @@
             });
             const activeView = document.getElementById('sheet-view-' + (sheetId || 'haeundae'));
             if (activeView) {
-                activeView.style.display = 'block';
+                activeView.style.display = 'flex';
+                const scrollBody = activeView.querySelector('.sheet-scroll-body');
+                if (scrollBody) scrollBody.scrollTop = 0;
             }
 
             overlay.classList.add('open');
@@ -3720,6 +3733,7 @@
         }
 
         // 支援整顆面板或把手向下拖曳收回抽屜
+        // 支援頂部把手與標題區向下拖曳收回抽屜，保留內容區手機順暢上下捲動
         function initBottomSheetDrag() {
             const panel = document.getElementById('haeundaeSheetPanel');
             const dragZone = document.getElementById('sheetDragZone');
@@ -3731,8 +3745,7 @@
 
             const onPointerDown = (e) => {
                 if (e.target.closest('button, a')) return;
-                const scrollBody = e.target.closest('.sheet-scroll-body');
-                if (scrollBody && scrollBody.scrollTop > 0 && !dragZone.contains(e.target)) return;
+                if (e.target.closest('.sheet-scroll-body')) return;
                 isDragging = true;
                 startY = e.clientY;
                 currentY = 0;
