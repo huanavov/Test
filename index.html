@@ -111,7 +111,7 @@
             letter-spacing: 1.8px;
             font-weight: 500;
             margin: 0 0 4px 0;
-            padding: 0;
+            padding: 0 0 0 0.5em;
             line-height: 1.4;
             transform: translateY(1px); /* 視覺光學微調對齊 */
         }
@@ -306,7 +306,7 @@
             color: var(--primary-coral);
         }
 
-        /* Day 6 回程意境圖（參考圖二精巧高度比例 ＆ 圖三內部排版） */
+        /* Day 6 回程意境圖 */
         .day6-hero-wrap {
             margin: 4px 0 22px 0;
         }
@@ -371,13 +371,6 @@
             white-space: nowrap;
         }
 
-        .day6-loc-pin {
-            width: 12px;
-            height: 12px;
-            flex-shrink: 0;
-            display: inline-block;
-        }
-
         .day6-card-heading {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.16rem;
@@ -388,17 +381,7 @@
             line-height: 1.3;
         }
 
-        .day6-sparkle-icon {
-            position: absolute;
-            right: 13px;
-            bottom: 13px;
-            width: 13px;
-            height: 13px;
-            opacity: 0.78;
-            pointer-events: none;
-        }
-
-        /* 日期選擇 Tabs：與標題區一起凍結視窗 Sticky + 質感簡約風 + 連結底線滑入動態效果 */
+        /* 日期選擇 Tabs：與標題區一起凍結視窗 Sticky */
         .day-tabs-wrapper {
             position: sticky;
             top: var(--hero-sticky-h, 138px);
@@ -429,10 +412,6 @@
             position: relative;
             opacity: 0.45;
             transition: opacity 0.25s ease, transform 0.2s ease;
-        }
-
-        .day-tab-btn:hover {
-            opacity: 0.85;
         }
 
         .day-tab-label {
@@ -480,13 +459,12 @@
             transition: transform 0.45s cubic-bezier(.7, 0, .2, 1);
         }
 
-        .day-tab-btn:hover::after,
         .day-tab-btn.active::after {
             transform: scaleX(1);
             transform-origin: left;
         }
 
-        /* 參考圖風格文青簡約時間軸排版 */
+        /* 文青簡約時間軸排版 */
         .elegant-timeline {
             position: relative;
             padding-left: 68px;
@@ -590,7 +568,6 @@
             line-height: 1.55;
         }
 
-        /* 無外框可點擊列（如 Day1 & Day3 住宿資訊） */
         .etimeline-row.clickable-row {
             cursor: pointer;
             padding-right: 22px;
@@ -623,7 +600,6 @@
             transform: translate(2px, -50%);
         }
 
-        /* 每日行程 Highlight 外框樣式 + 旋轉光邊按鈕（Rotating Gradient Border）動態效果 */
         .etimeline-row.highlight-row {
             position: relative;
             margin-left: -68px;
@@ -776,28 +752,14 @@
             flex-direction: column;
             overflow: hidden;
             z-index: 1;
-            will-change: transform;
             touch-action: none;
         }
 
         .sheet-drag-zone {
             padding: 12px 0 8px 0;
             cursor: grab;
-            touch-action: none;
             user-select: none;
             flex-shrink: 0;
-        }
-
-        .sheet-drag-zone:active {
-            cursor: grabbing;
-        }
-
-        .sheet-view {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-height: 0;
-            overflow: hidden;
         }
 
         .sheet-handle {
@@ -812,7 +774,6 @@
             position: relative;
             padding: 4px 20px 14px 20px;
             border-left: 4px solid #7BAAC8;
-            margin-left: 0;
             flex-shrink: 0;
         }
 
@@ -857,7 +818,6 @@
             font-size: 1.2rem;
             cursor: pointer;
             padding: 4px 6px;
-            line-height: 1;
         }
 
         .sheet-title {
@@ -867,14 +827,21 @@
             font-family: 'Noto Serif TC', serif;
         }
 
-        .sheet-scroll-body {
+        .sheet-view {
+            display: flex;
+            flex-direction: column;
             flex: 1;
             min-height: 0;
-            padding: 4px 20px calc(52px + env(safe-area-inset-bottom, 20px)) 20px;
+            overflow: hidden;
+        }
+
+        .sheet-scroll-body {
+            padding: 4px 20px 48px 20px;
             overflow-y: auto;
-            overscroll-behavior-y: contain;
             -webkit-overflow-scrolling: touch;
             touch-action: pan-y;
+            flex: 1;
+            min-height: 0;
         }
 
         .sheet-ticket-card {
@@ -883,7 +850,6 @@
             border-radius: 10px;
             overflow: hidden;
             margin-bottom: 18px;
-            box-shadow: 0 2px 10px rgba(56, 52, 49, 0.03);
         }
 
         .sheet-ticket-section {
@@ -1135,7 +1101,7 @@
             cursor: pointer;
         }
 
-        /* 會員卡 (L.POINT 樂天超市條碼卡) */
+        /* 會員卡 */
         .member-pass-card {
             background: #FAF8F4;
             border: 1px solid #EFEAE2;
@@ -1245,7 +1211,7 @@
             border-radius: 6px;
         }
 
-        /* 對話卡片（參考圖二）與全螢幕放大字卡（參考圖一） */
+        /* 對話卡片與全螢幕字卡 */
         .convo-card-list {
             display: flex;
             flex-direction: column;
@@ -1270,10 +1236,6 @@
             box-shadow: 0 4px 14px rgba(56, 52, 49, 0.06);
         }
 
-        .convo-card:active {
-            transform: scale(0.985);
-        }
-
         .convo-cat-label {
             font-size: 0.72rem;
             color: var(--ink-muted);
@@ -1296,7 +1258,6 @@
             color: var(--ink-muted);
         }
 
-        /* 全螢幕放大字卡 Modal (參考圖一) */
         .flashcard-overlay {
             position: fixed;
             inset: 0;
@@ -1379,7 +1340,7 @@
             letter-spacing: 0.8px;
         }
 
-        /* 緊急聯絡 & 支援資訊卡（韓國版，參照圖五設計） */
+        /* 緊急聯絡 & 支援資訊卡 */
         .emergency-title {
             font-size: 1.05rem;
             font-weight: 700;
@@ -1413,15 +1374,10 @@
             text-align: center;
             text-decoration: none;
             display: block;
-            transition: background-color 0.2s ease;
         }
 
         .emergency-top-cell:first-child {
             border-right: 1px solid #EAE4D8;
-        }
-
-        .emergency-top-cell:hover {
-            background: #FAF8F4;
         }
 
         .emergency-cell-label {
@@ -1474,7 +1430,6 @@
             font-weight: 700;
             color: #4A4542;
             margin-top: 8px;
-            letter-spacing: 0.5px;
         }
 
         .emergency-call-circle {
@@ -1488,12 +1443,6 @@
             justify-content: center;
             flex-shrink: 0;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(44, 41, 39, 0.2);
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-
-        .emergency-call-circle:active {
-            transform: scale(0.93);
         }
 
         .emergency-mid-note {
@@ -1514,7 +1463,6 @@
             align-items: center;
             gap: 8px;
             margin-bottom: 10px;
-            flex-wrap: wrap;
         }
 
         .emergency-tag-badge {
@@ -1536,7 +1484,7 @@
             font-size: 0.86rem;
             color: #554F4A;
             margin-top: 4px;
-            font-family: monospace, 'Noto Sans TC', sans-serif;
+            font-family: monospace;
         }
 
         .emergency-tel-line a {
@@ -1549,7 +1497,7 @@
             font-weight: 700;
             color: #8E2424;
             margin-top: 4px;
-            font-family: monospace, 'Noto Sans TC', sans-serif;
+            font-family: monospace;
         }
 
         .emergency-tel-urgent a {
@@ -1564,7 +1512,6 @@
             border-radius: 12px;
             padding: 12px 14px;
             margin-bottom: 10px;
-            position: relative;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1585,7 +1532,6 @@
             align-items: center;
             gap: 8px;
             width: 100%;
-            min-width: 0;
         }
 
         .day-chip {
@@ -1593,7 +1539,6 @@
             padding: 2px 7px;
             border-radius: 6px;
             font-weight: 600;
-            flex-shrink: 0;
         }
 
         .day-chip-D1 { background: #FFEBE8; color: #D94E36; }
@@ -1629,7 +1574,6 @@
             font-size: 1rem;
             font-weight: 700;
             color: var(--ink-color);
-            line-height: 1.25;
         }
 
         .expense-twd {
@@ -1638,7 +1582,6 @@
             margin-top: 1px;
         }
 
-        /* 長按確認刪除按鈕（Hold to Confirm） */
         .expense-right {
             text-align: right;
             flex-shrink: 0;
@@ -1646,7 +1589,6 @@
 
         .btn-hold-del {
             position: relative;
-            transform: scale(1);
             background: #FFFFFF;
             border: 1px solid #E2D9C8;
             color: var(--ink-muted);
@@ -1656,13 +1598,9 @@
             border-radius: 999px;
             cursor: pointer;
             overflow: hidden;
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
         }
 
         .btn-hold-del .hold-fill {
@@ -1671,26 +1609,17 @@
             background: var(--primary-coral);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.22s ease-out;
+            transition: transform 1.2s linear;
             z-index: 0;
-            pointer-events: none;
         }
 
         .btn-hold-del .hold-label {
             position: relative;
             z-index: 1;
-            pointer-events: none;
-            transition: color 0.2s ease;
-        }
-
-        .btn-hold-del.holding {
-            transform: scale(0.94);
-            border-color: var(--primary-coral);
         }
 
         .btn-hold-del.holding .hold-fill {
             transform: scaleX(1);
-            transition: transform 1.2s linear;
         }
 
         .btn-hold-del.holding .hold-label,
@@ -1698,21 +1627,13 @@
             color: #FFFFFF;
         }
 
-        .btn-hold-del.confirmed .hold-fill {
-            transform: scaleX(1);
-            transition: none;
-        }
-
-        /* 記帳日期與付款人雙欄對齊列 */
         .date-payer-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
-            align-items: start;
             margin-bottom: 14px;
         }
 
-        /* 自訂下拉選單展開（Dropdown Reveal） */
         .custom-dropdown {
             position: relative;
             width: 100%;
@@ -1733,18 +1654,13 @@
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .dropdown-trigger:hover {
-            border-color: var(--accent-warm);
         }
 
         .dropdown-arrow {
             width: 16px;
             height: 16px;
             stroke: var(--ink-muted);
-            transition: transform 0.35s cubic-bezier(.3, 1.3, .5, 1);
+            transition: transform 0.35s ease;
         }
 
         .custom-dropdown.open .dropdown-arrow {
@@ -1767,15 +1683,13 @@
             transform: scaleY(0.6);
             opacity: 0;
             visibility: hidden;
-            pointer-events: none;
-            transition: transform 0.38s cubic-bezier(.3, 1.3, .5, 1), opacity 0.25s ease, visibility 0.25s;
+            transition: all 0.25s ease;
         }
 
         .custom-dropdown.open .dropdown-menu {
             transform: scaleY(1);
             opacity: 1;
             visibility: visible;
-            pointer-events: auto;
         }
 
         .dropdown-option {
@@ -1785,19 +1699,9 @@
             font-weight: 500;
             color: var(--ink-color);
             cursor: pointer;
-            opacity: 0;
-            transform: translateY(-8px);
-            transition: opacity 0.28s ease, transform 0.28s cubic-bezier(.3, 1.3, .5, 1), background-color 0.2s ease, color 0.2s ease;
-            transition-delay: 0s;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .custom-dropdown.open .dropdown-option {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: calc(var(--i) * 0.05s);
         }
 
         .dropdown-option:hover {
@@ -1811,7 +1715,6 @@
             font-weight: 700;
         }
 
-        /* 記帳人圓形按鈕（Social Icon Fill 社群圖示填滿動態效果） */
         .payer-section-label {
             font-size: 0.75rem;
             color: var(--ink-muted);
@@ -1838,9 +1741,6 @@
             overflow: hidden;
             display: grid;
             place-items: center;
-            padding: 0;
-            outline: none;
-            transition: transform 0.45s cubic-bezier(.25, 1, .5, 1), border-color 0.45s ease, box-shadow 0.45s ease;
         }
 
         .payer-circle-btn .fill-bg {
@@ -1849,7 +1749,7 @@
             background: var(--primary-coral);
             border-radius: 50%;
             transform: translateY(101%);
-            transition: transform 0.45s cubic-bezier(.4, 0, .2, 1);
+            transition: transform 0.45s ease;
             z-index: 0;
         }
 
@@ -1867,12 +1767,11 @@
             font-family: 'Noto Serif TC', serif;
             font-size: 0.96rem;
             font-weight: 700;
-            transition: transform 0.45s cubic-bezier(.4, 0, .2, 1), opacity 0.45s ease;
+            transition: transform 0.45s ease;
         }
 
         .payer-circle-btn .payer-char.char-default {
             color: var(--ink-muted);
-            transform: translateY(0);
         }
 
         .payer-circle-btn .payer-char.char-inverse {
@@ -1880,29 +1779,22 @@
             transform: translateY(130%);
         }
 
-        .payer-circle-btn:hover,
         .payer-circle-btn.active {
-            transform: translateY(-3px);
             border-color: var(--primary-coral);
-            box-shadow: 0 6px 14px rgba(217, 122, 108, 0.22);
         }
 
-        .payer-circle-btn:hover .fill-bg,
         .payer-circle-btn.active .fill-bg {
             transform: translateY(0);
         }
 
-        .payer-circle-btn:hover .payer-char.char-default,
         .payer-circle-btn.active .payer-char.char-default {
             transform: translateY(-130%);
         }
 
-        .payer-circle-btn:hover .payer-char.char-inverse,
         .payer-circle-btn.active .payer-char.char-inverse {
             transform: translateY(0);
         }
 
-        /* 新增開銷紀錄 Loading Button 動態 */
         .loading-btn-wrap {
             display: flex;
             justify-content: center;
@@ -1947,7 +1839,6 @@
             pointer-events: none;
         }
 
-        /* 記帳天數分類：選單滑塊跟隨（Sliding Nav Highlight） */
         .expense-filter-nav {
             position: relative;
             display: flex;
@@ -2000,10 +1891,9 @@
         }
 
         .expense-filter-btn.pill-focus {
-            color: #FFFFFF;
+            color: #FFFFFF !important;
         }
 
-        /* 下拉重新整理（Pull to Refresh） */
         .ptr-wrapper {
             position: relative;
             overflow: hidden;
@@ -2052,209 +1942,218 @@
             will-change: transform;
         }
 
-        /* 打卡分頁：購買清單 / 美食打卡 雙模式切換與卡片設計 */
+        /* 凍結頂部打卡分頁列（雙子分頁切換列 + 頂部提示文字 + 通路分類篩選列） */
+        .checkin-sticky-header {
+            position: sticky;
+            top: var(--hero-sticky-h, 138px);
+            z-index: 930;
+            background: rgba(252, 250, 242, 0.96);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin: -4px -18px 14px -18px;
+            padding: 8px 18px 12px 18px;
+            border-bottom: 1px solid #EFEAE2;
+        }
+
         .checkin-mode-switch {
-            position: relative;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            background: #F3EFE6;
+            background: #EFECE4;
             border: 1px solid #E5DFC9;
             border-radius: 999px;
             padding: 4px;
-            margin-bottom: 16px;
+            gap: 4px;
+            margin-bottom: 10px;
         }
 
         .checkin-mode-btn {
-            position: relative;
-            z-index: 1;
+            background: none;
             border: none;
-            background: transparent;
             padding: 8px 12px;
             border-radius: 999px;
-            font-size: 0.84rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 700;
             color: var(--ink-muted);
             cursor: pointer;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            transition: color 0.28s ease, background-color 0.28s ease, box-shadow 0.28s ease;
-        }
-
-        .checkin-mode-btn.active {
-            background: var(--paper-card);
-            color: var(--ink-color);
-            box-shadow: 0 3px 10px rgba(56, 52, 49, 0.08);
+            transition: all 0.25s ease;
         }
 
         .checkin-mode-btn svg {
             width: 16px;
             height: 16px;
-            stroke: currentColor;
+            stroke: var(--ink-muted);
             stroke-width: 1.8;
             fill: none;
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: stroke 0.25s ease, transform 0.25s ease;
+        }
+
+        .checkin-mode-btn.active {
+            background: #FFFFFF;
+            color: var(--ink-color);
+            box-shadow: 0 2px 10px rgba(56, 52, 49, 0.06);
         }
 
         .checkin-mode-btn.active svg {
             stroke: var(--primary-coral);
-            transform: scale(1.12) rotate(-5deg);
         }
 
         .checkin-mode-count {
-            font-size: 0.68rem;
+            background: #E5E0D5;
+            color: var(--ink-muted);
+            font-size: 0.7rem;
             padding: 1px 7px;
             border-radius: 999px;
-            background: #EFEAE2;
-            color: var(--ink-muted);
             font-weight: 700;
         }
 
         .checkin-mode-btn.active .checkin-mode-count {
-            background: rgba(217, 122, 108, 0.14);
+            background: #FCE8E6;
             color: var(--primary-coral);
         }
 
         .checkin-guide-banner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            background: #FAF6F0;
+            background: #FAF8F4;
             border: 1px solid #EFEAE2;
-            border-radius: 12px;
-            padding: 9px 13px;
-            margin-bottom: 14px;
-            font-size: 0.75rem;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 0.78rem;
             color: var(--ink-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
-        /* 購買清單：直式圖片卡片 Grid + Card Info Slide Up (0.5s) */
         .shopping-cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
         }
 
-        @media (max-width: 350px) {
-            .shopping-cards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        /* 資訊面板滑上（Card Info Slide Up：展開時上方微微露出部分原圖）與長按蓋章特效 */
         .shop-slide-card {
-            --title-bar-h: 50px;
             position: relative;
-            height: 256px;
+            background: #FAF8F4;
+            border: 1px solid #EAE3D5;
             border-radius: 14px;
             overflow: hidden;
-            background: #F6F2EA;
-            border: 1px solid #E8E1D3;
-            box-shadow: 0 4px 14px rgba(56, 52, 49, 0.05);
+            height: 270px;
             cursor: pointer;
+            box-shadow: 0 3px 12px rgba(56, 52, 49, 0.04);
             user-select: none;
             -webkit-user-select: none;
-            touch-action: pan-y;
-            transform-origin: center center;
-        }
-
-        .shop-card-visual {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            will-change: transform;
-        }
-
-        .shop-card-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            pointer-events: none;
-        }
-
-        .shop-slide-card:hover .shop-card-visual,
-        .shop-slide-card.panel-open .shop-card-visual {
-            transform: scale(1.08) translateY(-8px);
+            touch-action: manipulation;
         }
 
         .shop-store-pill {
             position: absolute;
-            top: 9px;
-            left: 9px;
-            z-index: 3;
-            background: rgba(252, 250, 242, 0.88);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(197, 155, 125, 0.38);
-            color: #6E5A49;
-            font-size: 0.62rem;
+            top: 10px;
+            left: 10px;
+            background: rgba(252, 250, 242, 0.92);
+            backdrop-filter: blur(4px);
+            border: 1px solid #DFD7C8;
+            color: #5C544C;
+            font-size: 0.65rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            padding: 2px 8px;
+            padding: 2px 9px;
             border-radius: 999px;
-            pointer-events: none;
+            z-index: 3;
+            letter-spacing: 0.3px;
         }
 
-        /* 底部半透明霧面資訊面板：平常只露出底部標題列，hover / 點擊滑上 */
+        .shop-card-visual {
+            position: absolute;
+            inset: 0 0 58px 0;
+            display: grid;
+            place-items: center;
+            padding: 16px 10px 8px 10px;
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .shop-card-visual svg {
+            width: 100%;
+            height: 100%;
+            max-height: 190px;
+            overflow: visible;
+        }
+
         .shop-info-panel {
             position: absolute;
             left: 0;
             right: 0;
             bottom: 0;
+            height: 202px;
+            background: rgba(252, 250, 242, 0.93);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(229, 223, 201, 0.9);
+            padding: 9px 12px 11px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transform: translateY(calc(100% - 58px));
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
             z-index: 4;
-            background: rgba(252, 250, 242, 0.88);
-            backdrop-filter: blur(11px);
-            -webkit-backdrop-filter: blur(11px);
-            border-top: 1px solid rgba(229, 223, 201, 0.85);
-            padding: 0 11px 11px 11px;
-            transform: translateY(calc(100% - var(--title-bar-h)));
-            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s ease;
-            will-change: transform;
         }
 
         .shop-slide-card:hover .shop-info-panel,
         .shop-slide-card.panel-open .shop-info-panel {
             transform: translateY(0);
-            background: rgba(252, 250, 242, 0.96);
+        }
+
+        .shop-slide-card:hover .shop-card-visual,
+        .shop-slide-card.panel-open .shop-card-visual {
+            transform: translateY(-10px) scale(1.08);
         }
 
         .shop-title-bar {
-            height: var(--title-bar-h);
+            height: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .shop-title-main {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 0.83rem;
+            font-size: 0.88rem;
             font-weight: 700;
             color: var(--ink-color);
-            line-height: 1.25;
+            font-family: 'Noto Serif TC', serif;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            line-height: 1.28;
         }
 
         .shop-title-kr {
-            font-size: 0.65rem;
+            font-size: 0.66rem;
             color: var(--accent-warm);
             font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            line-height: 1.25;
             margin-top: 1px;
         }
 
         .shop-panel-details {
-            padding-top: 7px;
-            border-top: 1px dashed #E5DFC9;
             opacity: 0;
-            transition: opacity 0.32s ease 0.06s;
+            transition: opacity 0.35s ease 0.08s;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 6px;
+            padding-top: 7px;
+            border-top: 1px dashed #E2DBD0;
+            flex: 1;
+            justify-content: space-between;
         }
 
         .shop-slide-card:hover .shop-panel-details,
@@ -2266,23 +2165,21 @@
             display: flex;
             flex-wrap: wrap;
             gap: 4px;
-            margin-bottom: 5px;
         }
 
         .shop-effect-tag {
-            background: #EFEAE2;
-            color: #5E5248;
+            background: #EBE5DA;
+            color: #5C5349;
             font-size: 0.62rem;
-            font-weight: 600;
-            padding: 1px 6px;
+            font-weight: 700;
+            padding: 2px 6px;
             border-radius: 4px;
         }
 
         .shop-desc-text {
             font-size: 0.71rem;
-            color: var(--ink-muted);
-            line-height: 1.42;
-            margin-bottom: 7px;
+            color: #6E655E;
+            line-height: 1.46;
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
@@ -2291,112 +2188,70 @@
 
         .shop-panel-footer {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 4px;
+            align-items: center;
+            padding-top: 2px;
         }
 
         .shop-hold-tip {
-            font-size: 0.62rem;
+            font-size: 0.63rem;
             color: var(--ink-light);
+            font-weight: 500;
         }
 
         .shop-more-link {
             background: none;
             border: none;
-            padding: 2px 0;
+            color: var(--primary-coral);
             font-size: 0.72rem;
             font-weight: 700;
-            color: var(--primary-coral);
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 2px;
+            padding: 2px 0;
         }
 
-        /* 紅色橡皮圖章（褪色墨水質感 + 右上角傾斜蓋印 + 撞擊震動） */
+        /* 褪色墨水橡皮圖章特效 */
         .rubber-stamp-mark {
             position: absolute;
             top: 12px;
-            right: 8px;
-            z-index: 6;
-            padding: 3px 8px;
-            border: 2.5px solid rgba(190, 46, 43, 0.84);
-            outline: 1px solid rgba(190, 46, 43, 0.45);
+            right: 10px;
+            border: 2.2px solid #C84B31;
+            outline: 1px solid rgba(200, 75, 49, 0.45);
             outline-offset: -4px;
-            border-radius: 4px;
-            color: rgba(190, 46, 43, 0.88);
-            background: rgba(255, 248, 245, 0.76);
+            color: #C84B31;
             font-family: 'Noto Serif TC', serif;
+            font-size: 0.76rem;
             font-weight: 700;
-            font-size: 0.74rem;
+            padding: 4px 9px;
+            border-radius: 4px;
+            background: rgba(200, 75, 49, 0.06);
             letter-spacing: 1.5px;
-            line-height: 1.15;
-            text-align: center;
-            transform: rotate(-14deg) scale(2.4);
+            transform: rotate(-14deg) scale(2.2);
             opacity: 0;
             pointer-events: none;
-            box-shadow: 0 2px 6px rgba(190, 46, 43, 0.12);
-            /* 模擬橡皮圖章褪色不均勻墨水紋理 */
-            mask-image: repeating-linear-gradient(125deg, rgba(0,0,0,0.95) 0px, rgba(0,0,0,0.95) 3px, rgba(0,0,0,0.62) 4px, rgba(0,0,0,0.88) 6px);
-            -webkit-mask-image: repeating-linear-gradient(125deg, rgba(0,0,0,0.95) 0px, rgba(0,0,0,0.95) 3px, rgba(0,0,0,0.62) 4px, rgba(0,0,0,0.88) 6px);
-        }
-
-        .rubber-stamp-sub {
-            display: block;
-            font-size: 0.46rem;
-            letter-spacing: 0.8px;
-            font-family: 'Noto Sans TC', sans-serif;
-            opacity: 0.8;
-            border-top: 1px dashed rgba(190, 46, 43, 0.55);
-            margin-top: 1px;
-            padding-top: 1px;
+            z-index: 6;
+            filter: url(#fadedInkFilter);
+            box-shadow: inset 0 0 6px rgba(200, 75, 49, 0.18);
+            transition: transform 0.22s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.2s ease;
         }
 
         .shop-slide-card.stamped .rubber-stamp-mark {
             transform: rotate(-14deg) scale(1);
-            opacity: 0.9;
+            opacity: 0.88;
         }
 
-        .shop-slide-card.stamp- slamming .rubber-stamp-mark {
-            animation: rubberStampSlam 0.36s cubic-bezier(0.2, 0.9, 0.3, 1.3) forwards;
-        }
-
-        .shop-slide-card.card-impact {
-            animation: cardStampImpact 0.36s ease-out;
-        }
-
-        @keyframes rubberStampSlam {
-            0% { transform: rotate(-24deg) scale(2.5); opacity: 0; }
-            65% { transform: rotate(-12deg) scale(0.92); opacity: 0.96; }
-            85% { transform: rotate(-15deg) scale(1.04); opacity: 0.9; }
-            100% { transform: rotate(-14deg) scale(1); opacity: 0.9; }
-        }
-
-        @keyframes cardStampImpact {
-            0% { transform: scale(1); }
-            35% { transform: scale(0.955) translateY(3px) rotate(-0.8deg); }
-            70% { transform: scale(1.015) translateY(-1px) rotate(0.4deg); }
-            100% { transform: scale(1) translateY(0) rotate(0); }
-        }
-
-        /* 長按集氣進度條 */
         .shop-hold-progress {
             position: absolute;
             top: 0;
             left: 0;
             height: 3px;
-            width: 100%;
             background: var(--primary-coral);
-            transform: scaleX(0);
-            transform-origin: left;
-            z-index: 8;
-            pointer-events: none;
+            width: 0%;
+            z-index: 10;
         }
 
         .shop-slide-card.holding-press .shop-hold-progress {
-            transform: scaleX(1);
-            transition: transform 0.65s linear;
+            width: 100%;
+            transition: width 0.65s linear;
         }
 
         /* 美食打卡分頁卡片設計 */
@@ -2406,7 +2261,6 @@
             border-radius: 14px;
             padding: 14px;
             margin-bottom: 12px;
-            transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         .food-pocket-card.eaten {
@@ -2440,13 +2294,11 @@
             justify-content: center;
             flex-shrink: 0;
             margin-top: 2px;
-            transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .food-pocket-card.eaten .food-check-circle {
             background: var(--primary-coral);
             border-color: var(--primary-coral);
-            transform: scale(1.05);
         }
 
         .food-check-circle svg {
@@ -2456,13 +2308,10 @@
             stroke-width: 2.8;
             fill: none;
             opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.2s ease;
         }
 
         .food-pocket-card.eaten .food-check-circle svg {
             opacity: 1;
-            transform: scale(1);
         }
 
         .food-name-zh {
@@ -2528,16 +2377,6 @@
             display: inline-flex;
             align-items: baseline;
             gap: 6px;
-            transition: border-color 0.2s ease, transform 0.15s ease, background-color 0.2s ease;
-        }
-
-        .food-pick-chip:hover {
-            border-color: var(--primary-coral);
-            background: #FFFDF9;
-        }
-
-        .food-pick-chip:active {
-            transform: scale(0.97);
         }
 
         .food-pick-zh {
@@ -2618,7 +2457,6 @@
             stroke: #7D756D;
             stroke-width: 1.6;
             fill: none;
-            will-change: transform;
         }
 
         .nav-item.active {
@@ -2649,11 +2487,19 @@
     </style>
 </head>
 <body>
+    <!-- 褪色橡皮圖章墨水 SVG 濾鏡 -->
+    <svg width="0" height="0" style="position:absolute; pointer-events:none;">
+        <defs>
+            <filter id="fadedInkFilter" x="-10%" y="-10%" width="120%" height="120%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="3" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.6" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
 
     <div class="container">
-        <!-- 標題區（第一行小標縮排對齊） -->
         <header class="hero-banner">
-            <div class="hero-subhead" style="padding-left: 6px;">FAMILY TRIP · 2027</div>
+            <div class="hero-subhead">FAMILY TRIP · 2027</div>
             <div class="title-group">
                 <h1 class="hero-title" id="floatTitle">
                     <span class="bounce-char">釜</span><span class="bounce-char">山</span><span class="bounce-char">·</span><span class="bounce-char">冬</span><span class="bounce-char">日</span><span class="bounce-char">遊</span>
@@ -2675,33 +2521,14 @@
                 <div class="card-wrapper">
                     <div class="day-tabs-wrapper">
                         <div class="day-tabs-row">
-                            <button class="day-tab-btn active" onclick="switchDay(1)">
-                                <span class="day-tab-label">Wed</span>
-                                <span class="day-tab-date">13</span>
-                            </button>
-                            <button class="day-tab-btn" onclick="switchDay(2)">
-                                <span class="day-tab-label">Thu</span>
-                                <span class="day-tab-date">14</span>
-                            </button>
-                            <button class="day-tab-btn" onclick="switchDay(3)">
-                                <span class="day-tab-label">Fri</span>
-                                <span class="day-tab-date">15</span>
-                            </button>
-                            <button class="day-tab-btn" onclick="switchDay(4)">
-                                <span class="day-tab-label">Sat</span>
-                                <span class="day-tab-date">16</span>
-                            </button>
-                            <button class="day-tab-btn" onclick="switchDay(5)">
-                                <span class="day-tab-label">Sun</span>
-                                <span class="day-tab-date">17</span>
-                            </button>
-                            <button class="day-tab-btn" onclick="switchDay(6)">
-                                <span class="day-tab-label">Mon</span>
-                                <span class="day-tab-date">18</span>
-                            </button>
+                            <button class="day-tab-btn active" onclick="switchDay(1)"><span class="day-tab-label">Wed</span><span class="day-tab-date">13</span></button>
+                            <button class="day-tab-btn" onclick="switchDay(2)"><span class="day-tab-label">Thu</span><span class="day-tab-date">14</span></button>
+                            <button class="day-tab-btn" onclick="switchDay(3)"><span class="day-tab-label">Fri</span><span class="day-tab-date">15</span></button>
+                            <button class="day-tab-btn" onclick="switchDay(4)"><span class="day-tab-label">Sat</span><span class="day-tab-date">16</span></button>
+                            <button class="day-tab-btn" onclick="switchDay(5)"><span class="day-tab-label">Sun</span><span class="day-tab-date">17</span></button>
+                            <button class="day-tab-btn" onclick="switchDay(6)"><span class="day-tab-label">Mon</span><span class="day-tab-date">18</span></button>
                         </div>
                     </div>
-
                     <div id="timelineContainer"></div>
                 </div>
             </main>
@@ -2718,19 +2545,16 @@
                         </svg>
                         記帳與匯率換算
                     </h2>
-
                     <div style="padding: 2px 0 16px 0; border-bottom: 1px dashed #E5DFC9; margin-bottom: 14px;">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                             <span style="font-size:0.75rem; color:var(--ink-muted); font-weight:700;">即時試算</span>
                             <span id="rateBadge" style="background:#FFFFFF; border:1px solid #E5E0D5; padding:2px 10px; border-radius:20px; font-size:0.7rem; color:var(--ink-muted);">即時匯率 0.0243</span>
                         </div>
                         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-                            <input type="number" inputmode="numeric" pattern="[0-9]*" id="calcKrw" placeholder="韓元 KRW" oninput="quickCalc('krw')" style="width:100%; height:42px; padding:0 12px; border:1px solid #E5E0D5; border-radius:10px; outline:none; background:#FFF; font-size:0.84rem;">
-                            <input type="number" inputmode="numeric" pattern="[0-9]*" id="calcTwd" placeholder="台幣 TWD" oninput="quickCalc('twd')" style="width:100%; height:42px; padding:0 12px; border:1px solid #E5E0D5; border-radius:10px; outline:none; background:#FFF; font-size:0.84rem;">
+                            <input type="number" inputmode="numeric" pattern="[0-9]*" id="calcKrw" placeholder="韓元 KRW" oninput="quickCalc('krw')" style="width:100%; height:42px; padding:0 12px; border:1px solid #E5E0D5; border-radius:10px; outline:none; background:#FFF;">
+                            <input type="number" inputmode="numeric" pattern="[0-9]*" id="calcTwd" placeholder="台幣 TWD" oninput="quickCalc('twd')" style="width:100%; height:42px; padding:0 12px; border:1px solid #E5E0D5; border-radius:10px; outline:none; background:#FFF;">
                         </div>
                     </div>
-
-                    <!-- 記帳日期 與 付款人：雙欄對齊排列 -->
                     <input type="hidden" id="accDay" value="D1">
                     <input type="hidden" id="accPayer" value="珍">
                     <div class="date-payer-grid">
@@ -2739,9 +2563,7 @@
                             <div class="custom-dropdown" id="dayDropdown">
                                 <button type="button" class="dropdown-trigger" onclick="toggleDayDropdown(event)">
                                     <span id="dayDropdownLabel">Day 1 ❘ 1/13</span>
-                                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
+                                    <svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown-option selected" style="--i:0" onclick="selectDayOption('D1', 'Day 1 ❘ 1/13', this)"><span>Day 1 ❘ 1/13</span><span>Wed</span></li>
@@ -2753,41 +2575,19 @@
                                 </ul>
                             </div>
                         </div>
-
                         <div>
                             <span class="payer-section-label">付款人</span>
                             <div class="payer-circles-row" id="payerCircles">
-                                <button type="button" class="payer-circle-btn active" onclick="selectPayer('珍', this)">
-                                    <span class="fill-bg"></span>
-                                    <span class="icon-stack">
-                                        <span class="payer-char char-default">珍</span>
-                                        <span class="payer-char char-inverse">珍</span>
-                                    </span>
-                                </button>
-                                <button type="button" class="payer-circle-btn" onclick="selectPayer('倫', this)">
-                                    <span class="fill-bg"></span>
-                                    <span class="icon-stack">
-                                        <span class="payer-char char-default">倫</span>
-                                        <span class="payer-char char-inverse">倫</span>
-                                    </span>
-                                </button>
-                                <button type="button" class="payer-circle-btn" onclick="selectPayer('婷', this)">
-                                    <span class="fill-bg"></span>
-                                    <span class="icon-stack">
-                                        <span class="payer-char char-default">婷</span>
-                                        <span class="payer-char char-inverse">婷</span>
-                                    </span>
-                                </button>
+                                <button type="button" class="payer-circle-btn active" onclick="selectPayer('珍', this)"><span class="fill-bg"></span><span class="icon-stack"><span class="payer-char char-default">珍</span><span class="payer-char char-inverse">珍</span></span></button>
+                                <button type="button" class="payer-circle-btn" onclick="selectPayer('倫', this)"><span class="fill-bg"></span><span class="icon-stack"><span class="payer-char char-default">倫</span><span class="payer-char char-inverse">倫</span></span></button>
+                                <button type="button" class="payer-circle-btn" onclick="selectPayer('婷', this)"><span class="fill-bg"></span><span class="icon-stack"><span class="payer-char char-default">婷</span><span class="payer-char char-inverse">婷</span></span></button>
                             </div>
                         </div>
                     </div>
-
                     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-bottom:14px;">
-                        <input type="text" id="accItem" placeholder="項目 (例: 豬肉湯飯)" style="width:100%; height:42px; padding:0 12px; border:1px solid #E5E0D5; border-radius:10px; font-size:0.84rem; background:#FFF; outline:none;">
-                        <input type="number" inputmode="numeric" pattern="[0-9]*" id="accKrwVal" placeholder="金額 (韓元)" style="width:100%; height:42px; padding:0 12px; border:1px solid #E5E0D5; border-radius:10px; font-size:0.84rem; background:#FFF; outline:none;">
+                        <input type="text" id="accItem" placeholder="項目 (例: 豬肉湯飯)" style="width:100%; height:42px; padding:0 12px; border:1px solid #E5E0D5; border-radius:10px; background:#FFF; outline:none;">
+                        <input type="number" inputmode="numeric" pattern="[0-9]*" id="accKrwVal" placeholder="金額 (韓元)" style="width:100%; height:42px; padding:0 12px; border:1px solid #E5E0D5; border-radius:10px; background:#FFF; outline:none;">
                     </div>
-
-                    <!-- 新增開銷紀錄：按鈕載入成功（Loading Button）動態 -->
                     <div class="loading-btn-wrap">
                         <button id="addExpenseBtn" onclick="addExpense()" class="btn-submit-expense">
                             <span class="btn-text">+ 新增開銷紀錄</span>
@@ -2800,14 +2600,11 @@
                             </svg>
                         </button>
                     </div>
-
                     <div style="margin-top:20px;">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
                             <span style="font-weight:600; font-size:0.88rem;">消費明細</span>
                             <span style="font-weight:700; color:var(--primary-coral); font-size:0.92rem;" id="totalKrwDisplay">總計：₩ 0</span>
                         </div>
-
-                        <!-- 記帳天數分類（選單滑塊跟隨 Sliding Nav Highlight） -->
                         <div class="expense-filter-nav" id="expenseFilterNav">
                             <div class="expense-filter-pill" id="expenseFilterPill"></div>
                             <button type="button" class="expense-filter-btn active pill-focus" data-day="ALL" onclick="setExpenseDayFilter('ALL', this)">全部</button>
@@ -2818,8 +2615,6 @@
                             <button type="button" class="expense-filter-btn" data-day="D5" onclick="setExpenseDayFilter('D5', this)">Day5</button>
                             <button type="button" class="expense-filter-btn" data-day="D6" onclick="setExpenseDayFilter('D6', this)">Day6</button>
                         </div>
-
-                        <!-- 下拉重新整理（Pull to Refresh）區域 -->
                         <div class="ptr-wrapper" id="ptrWrapper">
                             <div class="ptr-indicator">
                                 <div class="ptr-spinner-box" id="ptrSpinnerBox">
@@ -2837,10 +2632,9 @@
                 </div>
             </main>
 
-            <!-- PAGE 3: 資訊（合併原航班資訊、住宿資訊 與 新增緊急聯絡＆支援資訊卡） -->
+            <!-- PAGE 3: 資訊 -->
             <main id="page-info" class="tab-page">
                 <div class="card-wrapper">
-                    <!-- 航班資訊（保持原排版設計不更動） -->
                     <h2 class="section-title serif-font">
                         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5 5.3 6.7c-.8-.2-1.6.1-2.1.8l-.6.8c-.3.4-.2.9.2 1.2l5.6 4.1-3.2 3.2-2.3-.6c-.4-.1-.8.1-1.1.4l-.4.4c-.3.3-.3.8 0 1.1l2.8 2.8c.3.3.8.3 1.1 0l.4-.4c.3-.3.5-.7.4-1.1l-.6-2.3 3.2-3.2 4.1 5.6c.3.4.8.5 1.2.2l.8-.6c.7-.5 1-1.3.8-2.1z"/>
@@ -2931,7 +2725,7 @@
                         <button class="btn-copy-addr" onclick="copyText('addr2')">複製韓文地址</button>
                     </div>
 
-                    <!-- 會員卡（L.POINT 樂天超市 / 樂天百貨條碼） -->
+                    <!-- 會員卡 -->
                     <h2 class="section-title serif-font" style="margin-top: 26px;">
                         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -2957,7 +2751,6 @@
                         </div>
                         <div class="member-pass-body">
                             <div class="member-barcode-box">
-                                <!-- Code-128C 標準條碼 SVG (8710410313575479) -->
                                 <svg class="member-barcode-svg" viewBox="0 0 132 54" preserveAspectRatio="none" aria-label="8710-4103-1357-5479">
                                     <path d="M0 0h2v54H0zM3 0h1v54H3zM6 0h3v54H6zM11 0h4v54h-4zM16 0h1v54h-1zM19 0h1v54h-1zM22 0h1v54h-1zM25 0h2v54h-2zM30 0h2v54h-2zM33 0h3v54h-3zM37 0h1v54h-1zM41 0h2v54h-2zM44 0h1v54h-1zM46 0h1v54h-1zM50 0h3v54h-3zM55 0h1v54h-1zM57 0h2v54h-2zM62 0h1v54h-1zM66 0h2v54h-2zM69 0h2v54h-2zM73 0h3v54h-3zM77 0h1v54h-1zM79 0h3v54h-3zM83 0h1v54h-1zM86 0h1v54h-1zM88 0h3v54h-3zM93 0h2v54h-2zM96 0h2v54h-2zM99 0h4v54h-4zM105 0h3v54h-3zM110 0h1v54h-1zM113 0h2v54h-2zM116 0h1v54h-1zM119 0h2v54h-2zM124 0h3v54h-3zM128 0h1v54h-1zM130 0h2v54h-2z" fill="#181615"/>
                                 </svg>
@@ -2973,7 +2766,7 @@
                         </div>
                     </div>
 
-                    <!-- 對話卡片（點擊放大為全螢幕字卡） -->
+                    <!-- 對話卡片 -->
                     <h2 class="section-title serif-font" style="margin-top: 26px;">
                         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--accent-warm)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -3001,7 +2794,7 @@
                         </div>
                     </div>
 
-                    <!-- 緊急聯絡 & 支援資訊卡（韓國版本，參考圖五） -->
+                    <!-- 緊急聯絡 & 支援資訊卡 -->
                     <h2 class="emergency-title">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8E2424" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -3057,46 +2850,70 @@
                 </div>
             </main>
 
-            <!-- PAGE 4: 打卡清單（購買清單 / 美食打卡 雙子分頁） -->
+            <!-- PAGE 4: 打卡清單 -->
             <main id="page-checkin" class="tab-page">
                 <div class="card-wrapper">
-                    <!-- 頂部子分頁切換器 -->
-                    <div class="checkin-mode-switch">
-                        <button type="button" class="checkin-mode-btn active" id="modeBtnShop" onclick="switchCheckinMode('shopping')">
-                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
-                                <path d="M3 6h18"/>
-                                <path d="M16 10a4 4 0 0 1-8 0"/>
-                            </svg>
-                            <span>購買清單</span>
-                            <span class="checkin-mode-count" id="shopCountBadge">0/10</span>
-                        </button>
-                        <button type="button" class="checkin-mode-btn" id="modeBtnFood" onclick="switchCheckinMode('food')">
-                            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
-                                <path d="M7 2v20"/>
-                                <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
-                            </svg>
-                            <span>美食打卡</span>
-                            <span class="checkin-mode-count" id="foodCountBadge">0/9</span>
-                        </button>
+                    <!-- 凍結置頂欄位：雙子分頁切換列 + 頂部提示文字 + 分類篩選列 -->
+                    <div class="checkin-sticky-header">
+                        <div class="checkin-mode-switch">
+                            <button type="button" class="checkin-mode-btn active" id="modeBtnShop" onclick="switchCheckinMode('shopping')">
+                                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                                    <path d="M3 6h18"/>
+                                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                                </svg>
+                                <span>購買清單</span>
+                                <span class="checkin-mode-count" id="shopCountBadge">0/11</span>
+                            </button>
+                            <button type="button" class="checkin-mode-btn" id="modeBtnFood" onclick="switchCheckinMode('food')">
+                                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                                    <path d="M7 2v20"/>
+                                    <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                                </svg>
+                                <span>美食打卡</span>
+                                <span class="checkin-mode-count" id="foodCountBadge">0/9</span>
+                            </button>
+                        </div>
+
+                        <div id="shopHeaderContainer">
+                            <div class="checkin-guide-banner" style="margin-bottom:8px;">
+                                <span>點選卡片滑出功用說明 · <strong>長按圖片蓋章「已購買」</strong></span>
+                                <span style="color:var(--primary-coral); font-weight:700; white-space:nowrap;">印章打卡</span>
+                            </div>
+                            <div class="expense-filter-nav" id="shopStoreFilterNav" style="margin-bottom:0;">
+                                <div class="expense-filter-pill" id="shopFilterPill"></div>
+                                <button type="button" class="expense-filter-btn active pill-focus" data-store="ALL" onclick="setShopStoreFilter('ALL', this)">全部</button>
+                                <button type="button" class="expense-filter-btn" data-store="藥局" onclick="setShopStoreFilter('藥局', this)">藥局</button>
+                                <button type="button" class="expense-filter-btn" data-store="超市" onclick="setShopStoreFilter('超市', this)">超市</button>
+                                <button type="button" class="expense-filter-btn" data-store="大創" onclick="setShopStoreFilter('大創', this)">大創</button>
+                                <button type="button" class="expense-filter-btn" data-store="Olive young" onclick="setShopStoreFilter('Olive young', this)">Olive young</button>
+                                <button type="button" class="expense-filter-btn" data-store="其他" onclick="setShopStoreFilter('其他', this)">其他</button>
+                            </div>
+                        </div>
+
+                        <div id="foodHeaderContainer" style="display: none;">
+                            <div class="checkin-guide-banner" style="margin-bottom:8px;">
+                                <span>釜山口袋美食 · 點擊<strong>必點品項</strong>放大韓文字卡</span>
+                                <span style="color:var(--accent-warm); font-weight:700; white-space:nowrap;">中韓對照</span>
+                            </div>
+                            <div class="expense-filter-nav" id="foodCategoryFilterNav" style="margin-bottom:0;">
+                                <div class="expense-filter-pill" id="foodFilterPill"></div>
+                                <button type="button" class="expense-filter-btn active pill-focus" data-cat="ALL" onclick="setFoodCategoryFilter('ALL', this)">全部</button>
+                                <button type="button" class="expense-filter-btn" data-cat="小吃" onclick="setFoodCategoryFilter('小吃', this)">小吃</button>
+                                <button type="button" class="expense-filter-btn" data-cat="速食" onclick="setFoodCategoryFilter('速食', this)">速食</button>
+                                <button type="button" class="expense-filter-btn" data-cat="餐廳" onclick="setFoodCategoryFilter('餐廳', this)">餐廳</button>
+                                <button type="button" class="expense-filter-btn" data-cat="輕食與下午茶" onclick="setFoodCategoryFilter('輕食與下午茶', this)">輕食與下午茶</button>
+                                <button type="button" class="expense-filter-btn" data-cat="伴手禮" onclick="setFoodCategoryFilter('伴手禮', this)">伴手禮</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- 子分頁 A：購買清單 -->
-                    <div id="checkinPaneShopping">
-                        <div class="checkin-guide-banner">
-                            <span>點選卡片滑出功用說明 · <strong>長按圖片蓋章「已購買」</strong></span>
-                            <span style="color:var(--primary-coral); font-weight:700; white-space:nowrap;">印章打卡</span>
-                        </div>
+                    <div id="checkinPaneShopping" style="margin-top:14px;">
                         <div class="shopping-cards-grid" id="shoppingCardsGrid"></div>
                     </div>
 
-                    <!-- 子分頁 B：美食打卡 -->
-                    <div id="checkinPaneFood" style="display: none;">
-                        <div class="checkin-guide-banner">
-                            <span>釜山連鎖＆人氣名店 · 點擊<strong>必點品項</strong>可放大韓文字卡</span>
-                            <span style="color:var(--accent-warm); font-weight:700; white-space:nowrap;">中韓對照</span>
-                        </div>
+                    <div id="checkinPaneFood" style="display: none; margin-top:14px;">
                         <div id="foodPocketList"></div>
                     </div>
                 </div>
@@ -3263,12 +3080,7 @@
 
                     <div class="sheet-subhead sheet-stagger-item">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m5 8 6 6"/>
-                            <path d="m4 14 6-6 2-3"/>
-                            <path d="M2 5h12"/>
-                            <path d="M7 2h1"/>
-                            <path d="m22 22-5-10-5 10"/>
-                            <path d="M14 18h6"/>
+                            <path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>
                         </svg>
                         會話 (POINT & SPEAK)
                     </div>
@@ -3287,7 +3099,7 @@
                         乘車指南 (BOARDING GUIDE)
                     </div>
                     <div class="sheet-about-box sheet-stagger-item">
-                        【購票與候車】領取行李步出國際線 1 樓入境大廳後，走至 Gate 4 附近的「巴士售票處」購買往海雲臺車票（₩9,500／人），再走出 Gate 3 門外的 3 號月台（機場大巴）排隊候車。
+                        【購票與候車】領取行李步出國際線 1 樓入境大廳後，走至 Gate 4 附近的「巴士售票處」購買往海雲臺車票（₩9,500／人），再走出 Gate 3 門外的 <strong>3 號月台（機場大巴）</strong>排隊候車。
                         <div style="margin-top: 12px; padding-top: 12px; border-top: 1px dashed #DFD9CE;">
                             <div style="font-weight: 700; color: var(--ink-color); margin-bottom: 4px;">往機張（Gijang）路線停靠站</div>
                             <div style="font-size: 0.78rem; color: var(--ink-muted); line-height: 1.6;">
@@ -3302,7 +3114,7 @@
                 </div>
             </div>
 
-            <!-- VIEW 2: L7 海雲臺 (L7 HAEUNDAE by LOTTE HOTELS) -->
+            <!-- VIEW 2: L7 海雲臺 -->
             <div class="sheet-view" id="sheet-view-l7hotel" style="display:none;">
                 <div class="sheet-header" style="border-left-color: #7FA98B;">
                     <div class="sheet-meta-row">
@@ -3359,7 +3171,7 @@
                 </div>
             </div>
 
-            <!-- VIEW 3: Urban Groove Hotel (Busan Seomyeon Urban Groove Hotel) -->
+            <!-- VIEW 3: Urban Groove Hotel -->
             <div class="sheet-view" id="sheet-view-urbangroove" style="display:none;">
                 <div class="sheet-header" style="border-left-color: #7FA98B;">
                     <div class="sheet-meta-row">
@@ -3418,7 +3230,7 @@
         </div>
     </div>
 
-    <!-- 全螢幕放大對話字卡 Modal（點擊任意處關閉） -->
+    <!-- 全螢幕放大對話字卡 Modal -->
     <div class="flashcard-overlay" id="flashcardOverlay" onclick="closeFlashcard()">
         <div class="flashcard-tap-hint">TAP TO CLOSE</div>
         <div class="flashcard-frame" id="flashcardFrame">
@@ -3428,7 +3240,7 @@
         </div>
     </div>
 
-    <!-- 底部導覽列（行程 ➔ 記帳 ➔ 資訊 ➔ 打卡） -->
+    <!-- 底部導覽列 -->
     <nav class="bottom-nav" id="bottomNav">
         <div class="nav-indicator" id="navIndicator"></div>
         <div class="nav-item active" onclick="switchTab('itinerary', this)">
@@ -3589,12 +3401,16 @@
             updateStickyHeaderOffset();
             initNavIndicator();
             initExpenseFilterNav();
+            initShopFilterNav();
+            initFoodFilterNav();
             initPullToRefresh();
             initBottomSheetDrag();
             window.addEventListener('resize', () => {
                 updateStickyHeaderOffset();
                 initNavIndicator();
                 updateActiveFilterPill();
+                updateActiveShopFilterPill();
+                updateActiveFoodFilterPill();
             });
 
             document.addEventListener('click', (e) => {
@@ -3626,27 +3442,6 @@
                 });
             }
         }
-
-        (function setupAppleTouchIcon() {
-            const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#F6F2EA"/><circle cx="22" cy="26" r="7" fill="#F2CBCB" opacity="0.75"/><path d="M 62 24 Q 67 20 72 24 Q 77 20 82 24" stroke="#8C8278" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M0 64 Q 25 60 50 64 T 100 64 L 100 100 L 0 100 Z" fill="#6B9AC4" opacity="0.35"/><path d="M0 70 Q 25 66 50 70 T 100 70 L 100 100 L 0 100 Z" fill="#3B719F"/><path d="M0 78 Q 25 74 50 78 T 100 78 L 100 100 L 0 100 Z" fill="#28537A"/><line x1="21" y1="58" x2="21" y2="80" stroke="#7D736A" stroke-width="2.6"/><line x1="51" y1="58" x2="51" y2="80" stroke="#7D736A" stroke-width="2.6"/><line x1="81" y1="58" x2="81" y2="80" stroke="#7D736A" stroke-width="2.6"/><path d="M 14 58 L 14 38 L 36 58 Z" fill="none" stroke="#8C8278" stroke-width="2.5"/><line x1="14" y1="46" x2="36" y2="58" stroke="#8C8278" stroke-width="1.5"/><path d="M 80 58 L 80 42 L 85 42 L 85 46 L 82.5 46 L 82.5 58" fill="#8C8278"/><circle cx="82.5" cy="37" r="3.2" fill="#D96B53"/><line x1="12" y1="58" x2="89" y2="58" stroke="#5C544C" stroke-width="3"/><line x1="12" y1="60" x2="89" y2="60" stroke="#B5A89E" stroke-width="1.2"/><rect x="31" y="47" width="18" height="10" rx="4" fill="#D96B53"/><rect x="52" y="47" width="18" height="10" rx="4" fill="#E6B84D"/><rect x="35" y="50" width="10" height="4" rx="1" fill="#FFFFFF"/><rect x="56" y="50" width="10" height="4" rx="1" fill="#FFFFFF"/><circle cx="36" cy="57.5" r="1.5" fill="#222"/><circle cx="44" cy="57.5" r="1.5" fill="#222"/><circle cx="57" cy="57.5" r="1.5" fill="#222"/><circle cx="65" cy="57.5" r="1.5" fill="#222"/></svg>`;
-            const img = new Image();
-            const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
-            const url = URL.createObjectURL(svgBlob);
-            img.onload = function () {
-                const canvas = document.createElement('canvas');
-                canvas.width = 180;
-                canvas.height = 180;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, 180, 180);
-                URL.revokeObjectURL(url);
-                try {
-                    const pngDataUrl = canvas.toDataURL('image/png');
-                    const iconLink = document.getElementById('appleTouchIcon');
-                    if (iconLink) iconLink.href = pngDataUrl;
-                } catch (e) {}
-            };
-            img.src = url;
-        })();
 
         function switchTab(tabId, el) {
             const prevActive = document.querySelector('.bottom-nav .nav-item.active');
@@ -3693,12 +3488,11 @@
             }
 
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            el.classList.add('active');
+            if (el) el.classList.add('active');
             currentTabIndex = newTabIndex;
 
             if (window.gsap && oldPage && newPage && oldPage !== newPage) {
                 gsap.killTweensOf([oldPage, newPage]);
-                
                 document.querySelectorAll('.tab-page').forEach(p => {
                     p.classList.remove('active');
                     gsap.set(p, { clearProps: "all" });
@@ -3722,7 +3516,6 @@
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
             playOnceBounce();
 
             if (tabId === 'accounting') {
@@ -3730,7 +3523,12 @@
                 fetchCloudExpenses();
             }
             if (tabId === 'checkin') {
-                renderCheckin();
+                renderShoppingGrid();
+                renderFoodPocketList();
+                requestAnimationFrame(() => {
+                    updateActiveShopFilterPill();
+                    updateActiveFoodFilterPill();
+                });
             }
         }
 
@@ -3821,15 +3619,12 @@
                                 <path d="M0 60 Q 85 50, 170 60 T 340 55 L 340 90 L 0 90 Z" fill="#E2ECE9" opacity="0.6"/>
                                 <circle cx="280" cy="25" r="12" fill="#F4DCD0" opacity="0.8"/>
                                 <line x1="30" y1="45" x2="310" y2="45" stroke="#B8AEA3" stroke-width="1.5" stroke-dasharray="4 4"/>
-                                
                                 <line x1="45" y1="45" x2="45" y2="65" stroke="#B8AEA3" stroke-width="1.5"/>
                                 <circle cx="45" cy="45" r="3" fill="#D97A6C"/>
                                 <text x="45" y="33" font-size="9" fill="#7E756F" text-anchor="middle">尾浦</text>
-
                                 <line x1="170" y1="45" x2="170" y2="65" stroke="#B8AEA3" stroke-width="1.5"/>
                                 <circle cx="170" cy="45" r="3" fill="#D97A6C"/>
                                 <text x="170" y="33" font-size="9" fill="#7E756F" text-anchor="middle">青沙浦</text>
-
                                 <line x1="295" y1="45" x2="295" y2="65" stroke="#B8AEA3" stroke-width="1.5"/>
                                 <circle cx="295" cy="45" r="3" fill="#D97A6C"/>
                                 <text x="295" y="33" font-size="9" fill="#7E756F" text-anchor="middle">松亭</text>
@@ -3861,54 +3656,59 @@
 
         function getDay6ReturnIllustrationHtml() {
             return `
-                <div class="day6-return-banner">
+                <div class="day6-hero-wrap">
                     <div class="day6-card-figure">
-                        <svg class="day6-bg-svg" width="100%" height="100%" viewBox="0 0 480 220" preserveAspectRatio="xMidYMid slice">
+                        <svg class="day6-bg-svg" viewBox="0 0 420 185" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
                             <defs>
-                                <linearGradient id="d6Sky" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#1A2436"/>
-                                    <stop offset="52%" stop-color="#35475E"/>
-                                    <stop offset="82%" stop-color="#7A524B"/>
-                                    <stop offset="100%" stop-color="#C88B6E"/>
+                                <linearGradient id="d6SkyGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#1A2434"/>
+                                    <stop offset="48%" stop-color="#353E52"/>
+                                    <stop offset="82%" stop-color="#8A6153"/>
+                                    <stop offset="100%" stop-color="#C98D6B"/>
                                 </linearGradient>
-                                <radialGradient id="d6SunGlow" cx="0.72" cy="0.62" r="0.38">
-                                    <stop offset="0%" stop-color="#FFE6C2" stop-opacity="0.92"/>
-                                    <stop offset="45%" stop-color="#E89973" stop-opacity="0.42"/>
-                                    <stop offset="100%" stop-color="#E89973" stop-opacity="0"/>
+                                <radialGradient id="d6SunGlow" cx="72%" cy="62%" r="36%">
+                                    <stop offset="0%" stop-color="#F6D0A8" stop-opacity="0.72"/>
+                                    <stop offset="55%" stop-color="#D98B6C" stop-opacity="0.28"/>
+                                    <stop offset="100%" stop-color="#353E52" stop-opacity="0"/>
                                 </radialGradient>
                             </defs>
-                            <rect width="480" height="220" fill="url(#d6Sky)"/>
-                            <circle cx="348" cy="136" r="85" fill="url(#d6SunGlow)"/>
-                            <circle cx="348" cy="136" r="19" fill="#FBE3C6" opacity="0.86"/>
-                            <path d="M 245 84 Q 310 74 370 82 Q 425 89 472 78" stroke="#F4D8C6" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.22"/>
-                            <path d="M 0 156 L 95 142 L 175 150 L 265 136 L 355 149 L 430 140 L 480 148 L 480 220 L 0 220 Z" fill="#1E242E" opacity="0.9"/>
-                            <path d="M 0 166 L 480 166 L 480 220 L 0 220 Z" fill="#131820"/>
-                            <line x1="215" y1="166" x2="80" y2="220" stroke="#D99B78" stroke-width="1.2" stroke-dasharray="5 5" opacity="0.55"/>
-                            <line x1="295" y1="166" x2="420" y2="220" stroke="#D99B78" stroke-width="1.2" stroke-dasharray="5 5" opacity="0.55"/>
-                            <path d="M 105 118 Q 195 90 292 52" stroke="#F8EFE6" stroke-width="1.4" stroke-dasharray="4 4" fill="none" opacity="0.65"/>
-                            <g transform="translate(300, 44) rotate(-21) scale(0.88)">
-                                <path d="M -18 2 L 14 0 C 19 0 22 2 23 4 C 22 6 19 7 14 7 L -18 6 Z" fill="#F8EFE6"/>
-                                <path d="M -2 1 L -9 -13 L -4 -13 L 6 1 Z" fill="#F8EFE6"/>
-                                <path d="M -1 6 L -7 16 L -3 16 L 5 6 Z" fill="#D8C8B8"/>
-                                <path d="M -17 2 L -23 -7 L -19 -7 L -13 2 Z" fill="#F8EFE6"/>
+                            <rect width="420" height="185" fill="url(#d6SkyGrad)"/>
+                            <rect width="420" height="185" fill="url(#d6SunGlow)"/>
+                            <circle cx="72" cy="28" r="1" fill="#FFF" opacity="0.55"/>
+                            <circle cx="155" cy="22" r="1.2" fill="#FFF" opacity="0.4"/>
+                            <circle cx="348" cy="30" r="1" fill="#FFF" opacity="0.5"/>
+                            <circle cx="300" cy="112" r="18" fill="#F7DFC2" opacity="0.75"/>
+                            <path d="M 225 78 Q 290 70 365 78" stroke="#F4DCD0" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.24"/>
+                            <path d="M 105 96 Q 190 66 258 44" stroke="#F6E6D4" stroke-width="1.2" stroke-dasharray="3 4" fill="none" opacity="0.6"/>
+                            <g transform="translate(260, 41) rotate(-17)">
+                                <path d="M -9 0 L 8 0 L 12 -2 L 8 -2.5 L 1 -1.8 L -4 -8 L -6.5 -7.5 L -3.5 -1.5 L -9 -1 L -11.5 -4.5 L -13 -4.2 L -11 0.5 Z" fill="#FFF8EE" opacity="0.92"/>
                             </g>
-                            <line x1="118" y1="0" x2="102" y2="220" stroke="#0E131A" stroke-width="3" opacity="0.42"/>
-                            <line x1="368" y1="0" x2="384" y2="220" stroke="#0E131A" stroke-width="3" opacity="0.42"/>
-                            <line x1="0" y1="58" x2="480" y2="58" stroke="#0E131A" stroke-width="1.8" opacity="0.28"/>
+                            <path d="M 0 132 L 68 118 L 136 127 L 210 112 L 288 126 L 358 116 L 420 124 L 420 185 L 0 185 Z" fill="#1E2532" opacity="0.88"/>
+                            <rect x="0" y="132" width="420" height="53" fill="#141923"/>
+                            <line x1="158" y1="185" x2="245" y2="136" stroke="#C59B7D" stroke-width="1" stroke-dasharray="4 5" opacity="0.45"/>
+                            <line x1="365" y1="185" x2="292" y2="136" stroke="#C59B7D" stroke-width="1" stroke-dasharray="4 5" opacity="0.45"/>
+                            <g stroke="#0D1118" stroke-opacity="0.42" stroke-width="2.2">
+                                <line x1="108" y1="0" x2="94" y2="185"/>
+                                <line x1="312" y1="0" x2="326" y2="185"/>
+                                <line x1="0" y1="62" x2="420" y2="62" stroke-width="1.4"/>
+                            </g>
                         </svg>
                         <div class="day6-card-overlay">
                             <div class="day6-badge-row">
-                                <span class="day6-tag-box">DAY 6</span>
+                                <span class="day6-pill-box">DAY 6</span>
                                 <span class="day6-loc-text">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px; height:12px; flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                    <span>金海國際機場 (PUS)</span>
+                                    <svg class="day6-loc-pin" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    金海國際機場 (PUS)
                                 </span>
                             </div>
                             <div class="day6-card-heading">滿載回憶，平安賦歸</div>
-                            <svg class="day6-sparkle" width="13" height="13" viewBox="0 0 24 24" style="width:13px; height:13px; display:block; opacity:0.75;">
-                                <path fill="#DCE2EA" d="M12 2 L14.8 9.2 L22 12 L14.8 14.8 L12 22 L9.2 14.8 L2 12 L9.2 9.2 Z"/>
-                            </svg>
                         </div>
+                        <svg class="day6-sparkle-icon" width="13" height="13" viewBox="0 0 24 24" fill="#E5DFC9">
+                            <path d="M12 1 L14.8 9.2 L23 12 L14.8 14.8 L12 23 L9.2 14.8 L1 12 L9.2 9.2 Z"/>
+                        </svg>
                     </div>
                 </div>
             `;
@@ -3988,8 +3788,7 @@
 
             if (dayNum === 2) {
                 html += getTrainIllustrationHtml();
-            }
-            if (dayNum === 6) {
+            } else if (dayNum === 6) {
                 html += getDay6ReturnIllustrationHtml();
             }
 
@@ -4049,7 +3848,6 @@
         }
         switchDay(1);
 
-        // 底部抽屜（Bottom Sheet）展開、關閉與手勢向下拖曳收回
         let sheetTl = null;
         function openBottomSheet(sheetId) {
             const overlay = document.getElementById('haeundaeSheetOverlay');
@@ -4063,8 +3861,6 @@
             const activeView = document.getElementById('sheet-view-' + (sheetId || 'haeundae'));
             if (activeView) {
                 activeView.style.display = 'flex';
-                const scrollBody = activeView.querySelector('.sheet-scroll-body');
-                if (scrollBody) scrollBody.scrollTop = 0;
             }
 
             overlay.classList.add('open');
@@ -4124,8 +3920,6 @@
             }, 0.04);
         }
 
-        // 支援整顆面板或把手向下拖曳收回抽屜
-        // 支援頂部把手與標題區向下拖曳收回抽屜，保留內容區手機順暢上下捲動
         function initBottomSheetDrag() {
             const panel = document.getElementById('haeundaeSheetPanel');
             const dragZone = document.getElementById('sheetDragZone');
@@ -4141,7 +3935,7 @@
                 isDragging = true;
                 startY = e.clientY;
                 currentY = 0;
-                panel.setPointerCapture(e.pointerId);
+                dragZone.setPointerCapture(e.pointerId);
             };
 
             const onPointerMove = (e) => {
@@ -4156,7 +3950,7 @@
             const onPointerUp = (e) => {
                 if (!isDragging) return;
                 isDragging = false;
-                try { panel.releasePointerCapture(e.pointerId); } catch (err) {}
+                try { dragZone.releasePointerCapture(e.pointerId); } catch (err) {}
 
                 if (currentY > 75) {
                     closeBottomSheet();
@@ -4165,10 +3959,10 @@
                 }
             };
 
-            panel.addEventListener('pointerdown', onPointerDown);
-            panel.addEventListener('pointermove', onPointerMove);
-            panel.addEventListener('pointerup', onPointerUp);
-            panel.addEventListener('pointercancel', onPointerUp);
+            dragZone.addEventListener('pointerdown', onPointerDown);
+            dragZone.addEventListener('pointermove', onPointerMove);
+            dragZone.addEventListener('pointerup', onPointerUp);
+            dragZone.addEventListener('pointercancel', onPointerUp);
         }
 
         function toggleDayDropdown(e) {
@@ -4318,17 +4112,7 @@
                             });
 
                             tl.to(spinnerBox, { opacity: 0, scale: 0.5, duration: 0.25, ease: "power2.in" }, 0)
-                              .to(content, { y: 0, duration: 0.5, ease: "power3.out" }, 0)
-                              .call(() => {
-                                  const items = document.querySelectorAll('#expenseList .expense-card-item');
-                                  const newestItem = items.length > 0 ? items[items.length - 1] : null;
-                                  if (newestItem) {
-                                      gsap.fromTo(newestItem,
-                                          { backgroundColor: "#F5E1DA", borderColor: "#D97A6C" },
-                                          { backgroundColor: "#FAF6F0", borderColor: "#EFEAE2", duration: 1.1, ease: "power2.out" }
-                                      );
-                                  }
-                              }, null, 0.22);
+                              .to(content, { y: 0, duration: 0.5, ease: "power3.out" }, 0);
                         }, 450);
                     });
                 } else {
@@ -4485,7 +4269,7 @@
             const checkPath = document.getElementById('btnCheckPath');
             const fullWidth = btn.offsetWidth;
 
-            if (window.gsap && btn) {
+            if (window.gsap && btn && btnSpinner && btnCheck && checkPath) {
                 const tl = gsap.timeline();
                 tl.to(btn, { scale: 0.95, duration: 0.1, ease: "power1.out" })
                   .to(btnText, { opacity: 0, duration: 0.15 }, "<")
@@ -4523,14 +4307,7 @@
             try {
                 await syncToCloud({
                     action: 'add',
-                    record: {
-                        id: uniqueId,
-                        day: day,
-                        payer: payer,
-                        item: item,
-                        krw: krw,
-                        twd: twd
-                    }
+                    record: { id: uniqueId, day, payer, item, krw, twd }
                 });
                 showToast('雲端同步成功！');
             } catch (e) {
@@ -4574,6 +4351,7 @@
         function renderExpenses() {
             const listEl = document.getElementById('expenseList');
             const totalEl = document.getElementById('totalKrwDisplay');
+            if (!listEl || !totalEl) return;
             listEl.innerHTML = '';
             let totalKrw = 0;
 
@@ -4626,12 +4404,6 @@
                         holdBtn.classList.remove('holding');
                         holdBtn.classList.add('confirmed');
                         holdLabel.textContent = '已刪除 ✓';
-                        if (window.gsap) {
-                            gsap.fromTo(holdBtn,
-                                { scale: 0.9 },
-                                { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }
-                            );
-                        }
                         setTimeout(() => {
                             deleteExpense(realIdx);
                         }, 320);
@@ -4658,460 +4430,304 @@
             totalEl.innerText = `總計：₩ ${totalKrw.toLocaleString()}`;
         }
 
-        // 產生高質感一致風格的產品簡約插畫 SVG Data URI
-        function makeProductSvgDataUri(cfg) {
-            const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" width="300" height="340">
-                <defs>
-                    <linearGradient id="bg_${cfg.id}" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stop-color="${cfg.bg1}"/>
-                        <stop offset="100%" stop-color="${cfg.bg2}"/>
-                    </linearGradient>
-                </defs>
-                <rect width="300" height="340" fill="url(#bg_${cfg.id})"/>
-                <circle cx="240" cy="65" r="56" fill="#FFFFFF" opacity="0.42"/>
-                <ellipse cx="150" cy="262" rx="76" ry="11" fill="#383431" opacity="0.08"/>
-                ${cfg.art}
-            </svg>`;
-            return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-        }
-
-        // 10 款必買商品清單（依使用者上傳圖片整理：含功用、特色標籤、韓文名稱與購買通路）
-        const DEFAULT_SHOPPING_DATA = [
-            {
-                id: 'celimax',
-                store: 'Olive Young',
-                name: 'Celimax A醇微針緊緻霜',
-                krName: '셀리맥스 레티날샷 타이트닝 부스터',
-                tags: ['毛孔緊緻', '彈力抗老', '微針導入'],
-                desc: '含 0.1% A醇與積雪草微針，針對粗大毛孔與細紋局部夜間保養，韓國 Olive Young 爆紅組合。',
-                stamped: false,
-                bg1: '#F4F6EA',
-                bg2: '#E4ECC8',
-                art: `
-                    <g transform="translate(88, 38)">
-                        <rect x="38" y="8" width="66" height="196" rx="8" fill="#D5E344" stroke="#383431" stroke-width="1.5"/>
-                        <rect x="38" y="8" width="66" height="26" rx="4" fill="#2A2B26"/>
-                        <text x="71" y="25" font-size="8" fill="#D5E344" text-anchor="middle" font-weight="700" font-family="sans-serif">RETINAL SHOT</text>
-                        <text x="71" y="64" font-size="11" fill="#222" text-anchor="middle" font-weight="800" font-family="sans-serif">레티날샷</text>
-                        <text x="71" y="80" font-size="9.5" fill="#222" text-anchor="middle" font-weight="700" font-family="sans-serif">스팟크림</text>
-                        <circle cx="84" cy="112" r="14" fill="#FFF" stroke="#3A8E5B" stroke-width="1.5"/>
-                        <text x="84" y="115" font-size="7" fill="#3A8E5B" text-anchor="middle" font-weight="700">ONLY</text>
-                        <!-- 銀色鋁管瓶身 -->
-                        <path d="M 8 56 L 44 56 L 38 182 L 14 182 Z" fill="#EAEAEA" stroke="#383431" stroke-width="1.5"/>
-                        <rect x="11" y="72" width="30" height="68" rx="3" fill="#D5E344"/>
-                        <path d="M 20 182 L 32 182 L 29 212 L 23 212 Z" fill="#C8C8C8" stroke="#383431" stroke-width="1.4"/>
-                        <text x="71" y="190" font-size="10" fill="#222" text-anchor="middle" font-weight="700" font-family="sans-serif">celimax</text>
-                    </g>
-                `
-            },
-            {
-                id: 'acnon',
-                store: '韓國藥局',
-                name: 'Acnon 紅腫痘痘軟膏',
-                krName: '동아제약 애크논 크림 (13g)',
-                tags: ['發炎紅腫痘', '囊腫大痘', '抗菌消炎'],
-                desc: '東亞製藥明星痘痘藥！專門對付紅腫痛的發炎性大痘、膿包痘，洗臉後早晚局部厚敷消腫超快。',
-                stamped: false,
-                bg1: '#FDF3F1',
-                bg2: '#F6E2DD',
-                art: `
-                    <g transform="translate(36, 86)">
-                        <rect x="0" y="0" width="228" height="78" rx="8" fill="#FFFFFF" stroke="#383431" stroke-width="1.6"/>
-                        <rect x="0" y="0" width="58" height="78" rx="8" fill="#F4A49E"/>
-                        <path d="M 22 22 H 36 V 32 H 46 V 46 H 36 V 56 H 22 V 46 H 12 V 32 H 22 Z" fill="#D93829"/>
-                        <text x="72" y="30" font-size="20" fill="#D93829" font-weight="800" font-family="serif">acnon</text>
-                        <text x="145" y="30" font-size="7.5" fill="#444" font-weight="700">CREAM</text>
-                        <text x="72" y="48" font-size="13" fill="#383431" font-weight="700">애크논 크림</text>
-                        <text x="72" y="63" font-size="7" fill="#D93829" font-weight="600">Pimples / Red acne / Pustular acne</text>
-                        <text x="206" y="66" font-size="8.5" fill="#383431" font-weight="700" text-anchor="end">13g</text>
-                    </g>
-                `
-            },
-            {
-                id: 'noscarna',
-                store: '韓國藥局',
-                name: 'Noscarna 除疤祛痘印凝膠',
-                krName: '동아제약 노스카나 겔 (20g)',
-                tags: ['淡化痘印', '新舊痘疤', '傷口癒合後'],
-                desc: '含高濃度肝素鈉與尿囊素，專門淡化紅色與深色新生痘印、手術疤痕，質地清爽好吸收，早晚塗抹。',
-                stamped: false,
-                bg1: '#FDF5EE',
-                bg2: '#F5E4D4',
-                art: `
-                    <g transform="translate(36, 86)">
-                        <rect x="0" y="0" width="228" height="78" rx="8" fill="#FFFFFF" stroke="#383431" stroke-width="1.6"/>
-                        <rect x="0" y="0" width="58" height="78" rx="8" fill="#F4A27E"/>
-                        <path d="M 22 22 H 36 V 32 H 46 V 46 H 36 V 56 H 22 V 46 H 12 V 32 H 22 Z" fill="#D83B1E"/>
-                        <text x="72" y="30" font-size="18.5" fill="#383431" font-weight="800" font-family="serif">noscarna</text>
-                        <text x="172" y="30" font-size="7.5" fill="#444" font-weight="700">GEL</text>
-                        <text x="72" y="48" font-size="13" fill="#383431" font-weight="700">노스카나 겔</text>
-                        <text x="72" y="63" font-size="7" fill="#D83B1E" font-weight="600">Acne scar / Surgical scar / Keloid scar</text>
-                        <text x="206" y="66" font-size="8.5" fill="#383431" font-weight="700" text-anchor="end">20g</text>
-                    </g>
-                `
-            },
-            {
-                id: 'aclean',
-                store: '韓國藥局',
-                name: 'Aclean 水楊酸粉刺凝膠',
-                krName: '동아제약 애크린 겔 (20g)',
-                tags: ['黑頭白頭', '閉鎖性粉刺', '2%水楊酸'],
-                desc: '含 2% 水楊酸與茶樹精油，專門代謝閉鎖性內包粉刺、黑頭與白頭粉刺，角質調理必備（白天需防曬）。',
-                stamped: false,
-                bg1: '#EFF8F1',
-                bg2: '#DAEDE0',
-                art: `
-                    <g transform="translate(36, 86)">
-                        <rect x="0" y="0" width="228" height="78" rx="8" fill="#FFFFFF" stroke="#383431" stroke-width="1.6"/>
-                        <rect x="0" y="0" width="58" height="78" rx="8" fill="#82CA9C"/>
-                        <path d="M 22 22 H 36 V 32 H 46 V 46 H 36 V 56 H 22 V 46 H 12 V 32 H 22 Z" fill="#0B7A43"/>
-                        <text x="72" y="30" font-size="20" fill="#1C5E3A" font-weight="800" font-family="serif">aclean</text>
-                        <text x="146" y="30" font-size="7.5" fill="#444" font-weight="700">GEL</text>
-                        <text x="72" y="48" font-size="13" fill="#383431" font-weight="700">애크린 겔</text>
-                        <text x="72" y="63" font-size="7" fill="#0B7A43" font-weight="600">Blackheads / Whiteheads / Salicylic Acid 2%</text>
-                        <text x="206" y="66" font-size="8.5" fill="#383431" font-weight="700" text-anchor="end">20g</text>
-                    </g>
-                `
-            },
-            {
-                id: 'noscardin',
-                store: '韓國藥局',
-                name: 'Noscardin 痘痘傷口藥膏',
-                krName: '동아제약 노스카딘 겔 (18g)',
-                tags: ['擠完痘痘擦', '預防感染', '傷口修護'],
-                desc: '含 2% 夫西地酸抗生素與積雪草，專門在「擠完痘痘後」塗抹於破皮小傷口，避免細菌感染發炎並加速癒合。',
-                stamped: false,
-                bg1: '#F4F8EC',
-                bg2: '#E3EDD0',
-                art: `
-                    <g transform="translate(36, 86)">
-                        <rect x="0" y="0" width="228" height="78" rx="8" fill="#FFFFFF" stroke="#383431" stroke-width="1.6"/>
-                        <rect x="0" y="0" width="58" height="78" rx="8" fill="#B5E048"/>
-                        <path d="M 22 22 H 36 V 32 H 46 V 46 H 36 V 56 H 22 V 46 H 12 V 32 H 22 Z" fill="#2E8B22"/>
-                        <text x="72" y="30" font-size="18.5" fill="#23571D" font-weight="800" font-family="serif">noscardin</text>
-                        <text x="174" y="30" font-size="7.5" fill="#444" font-weight="700">GEL</text>
-                        <text x="72" y="48" font-size="13" fill="#383431" font-weight="700">노스카딘 겔</text>
-                        <text x="72" y="63" font-size="7" fill="#2E8B22" font-weight="600">Post-acne wounds / Fusidic acid 2%</text>
-                        <text x="206" y="66" font-size="8.5" fill="#383431" font-weight="700" text-anchor="end">18g</text>
-                    </g>
-                `
-            },
-            {
-                id: 'antiphlamine',
-                store: '韓國藥局',
-                name: '孫興慜 痠痛消炎乳液',
-                krName: '유한양행 안티푸라민 에스로션',
-                tags: ['消炎止痛', '附按摩滾輪', '肩頸腿痠'],
-                desc: '韓國國民藥廠柳韓洋行出品、孫興慜代言！瓶身側邊自帶按摩滾輪，逛街鐵腿、肩頸僵硬與腰背痠痛塗抹超舒緩。',
-                stamped: false,
-                bg1: '#FCF2F0',
-                bg2: '#F2DDD8',
-                art: `
-                    <g transform="translate(65, 36)">
-                        <!-- 紅色外盒 -->
-                        <rect x="85" y="14" width="84" height="176" rx="6" fill="#D92B2B" stroke="#383431" stroke-width="1.5"/>
-                        <circle cx="110" cy="44" r="14" fill="#FFF"/>
-                        <text x="127" y="76" font-size="12" fill="#FFF" text-anchor="middle" font-weight="800">안티푸라민</text>
-                        <text x="127" y="92" font-size="8.5" fill="#FFE380" text-anchor="middle" font-weight="700">에스 로션 (100ml)</text>
-                        <!-- 白色滾輪瓶 -->
-                        <rect x="14" y="22" width="38" height="24" rx="4" fill="#F2F2F2" stroke="#383431" stroke-width="1.4"/>
-                        <path d="M 4 58 Q 4 46 16 46 L 52 46 Q 66 46 66 60 L 66 182 Q 66 190 56 190 L 14 190 Q 4 190 4 182 Z" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                        <rect x="66" y="68" width="11" height="96" rx="5" fill="#E6E6E6" stroke="#383431" stroke-width="1.2"/>
-                        <rect x="12" y="72" width="44" height="98" rx="6" fill="#D92B2B"/>
-                        <text x="34" y="115" font-size="8.5" fill="#FFF" text-anchor="middle" font-weight="800">안티푸라민</text>
-                        <text x="34" y="130" font-size="7" fill="#FFE380" text-anchor="middle" font-weight="600">消炎 · 止痛</text>
-                    </g>
-                `
-            },
-            {
-                id: 'daiso_pad',
-                store: 'DAISO 大創',
-                name: '大創 海葡萄妝前保濕棉片',
-                krName: '다이소 화잘먹 바다포도 스킨팩',
-                tags: ['妝前急救', '服貼底妝', '₩5,000高CP'],
-                desc: '韓國大創斷貨王！富含海葡萄保濕精華，薄透棉片上妝前濕敷 3～5 分鐘，底妝超服貼不起皮。',
-                stamped: false,
-                bg1: '#F1F8EC',
-                bg2: '#DCECD0',
-                art: `
-                    <g transform="translate(76, 32)">
-                        <path d="M 12 12 L 136 12 L 144 202 Q 144 212 134 212 L 14 212 Q 4 212 4 202 Z" fill="#8CD246" stroke="#383431" stroke-width="1.6"/>
-                        <line x1="8" y1="32" x2="140" y2="32" stroke="#5EA322" stroke-width="1.5" stroke-dasharray="4 3"/>
-                        <text x="74" y="62" font-size="14" fill="#183A1D" text-anchor="middle" font-weight="900">화잘먹</text>
-                        <text x="74" y="82" font-size="11.5" fill="#FFFFFF" text-anchor="middle" font-weight="800">바다포도 스킨팩</text>
-                        <circle cx="74" cy="142" r="42" fill="#FFFFFF" stroke="#62B327" stroke-width="1.5"/>
-                        <circle cx="105" cy="126" r="6" fill="#7BC636"/><circle cx="113" cy="132" r="5" fill="#5EA322"/><circle cx="102" cy="136" r="5.5" fill="#9BE156"/>
-                        <text x="70" y="140" font-size="8" fill="#2E6B1E" text-anchor="middle" font-weight="700">海葡萄保濕棉片</text>
-                        <text x="70" y="154" font-size="7" fill="#666" text-anchor="middle">60 Pads · ₩5,000</text>
-                    </g>
-                `
-            },
-            {
-                id: 'madeca21',
-                store: 'Olive Young / 大創',
-                name: 'Madeca 21 積雪草舒緩噴霧',
-                krName: '마데카21 테카솔루션 수딩 미스트 토너',
-                tags: ['東國製藥', '鎮靜退紅', '隨時補水'],
-                desc: '東國製藥旗下積雪草保養系列，細緻噴霧能快速鎮靜冬日乾冷泛紅肌，洗臉後或機上隨時噴灑保濕。',
-                stamped: false,
-                bg1: '#EDF7F4',
-                bg2: '#D4EBE4',
-                art: `
-                    <g transform="translate(74, 30)">
-                        <!-- 紙盒 -->
-                        <rect x="6" y="16" width="66" height="192" rx="4" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                        <rect x="6" y="136" width="66" height="72" fill="#A6E6CE"/>
-                        <rect x="6" y="34" width="5" height="62" fill="#E86327"/>
-                        <text x="39" y="56" font-size="10.5" fill="#222" text-anchor="middle" font-weight="800">Madeca 21</text>
-                        <text x="39" y="88" font-size="7" fill="#0B5D46" text-anchor="middle" font-weight="700">TECA SOLUTION</text>
-                        <!-- 噴霧瓶 -->
-                        <rect x="98" y="20" width="28" height="32" rx="4" fill="#F5F5F5" stroke="#383431" stroke-width="1.3"/>
-                        <rect x="93" y="52" width="38" height="18" rx="2" fill="#FFFFFF" stroke="#383431" stroke-width="1.3"/>
-                        <rect x="82" y="70" width="60" height="142" rx="10" fill="#0D7A5F" stroke="#383431" stroke-width="1.5"/>
-                        <rect x="82" y="86" width="60" height="96" fill="#FFFFFF"/>
-                        <rect x="82" y="138" width="60" height="44" fill="#9EE4C9"/>
-                        <text x="112" y="108" font-size="9.5" fill="#222" text-anchor="middle" font-weight="800">Madeca 21</text>
-                        <text x="112" y="122" font-size="6.5" fill="#0D7A5F" text-anchor="middle" font-weight="700">Soothing Mist</text>
-                    </g>
-                `
-            },
-            {
-                id: 'daiso_cloth',
-                store: 'DAISO 大創',
-                name: '大創 超細纖維抹布 (3入)',
-                krName: '다이소 극세사 행주 3매입 (₩1,000)',
-                tags: ['吸水力強', '不留水痕', '銅板價伴手禮'],
-                desc: '只要 ₩1,000（約台幣24元）卻超耐用的家事神器！32x32cm 柔和馬卡龍三色入，吸水去油力極佳。',
-                stamped: false,
-                bg1: '#F2F5F8',
-                bg2: '#E1E8F0',
-                art: `
-                    <g transform="translate(68, 30)">
-                        <rect x="8" y="8" width="148" height="202" rx="8" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                        <circle cx="82" cy="20" r="5" fill="#E1E8F0"/>
-                        <text x="22" y="28" font-size="12" fill="#444" font-weight="800">3매입</text>
-                        <text x="142" y="26" font-size="9.5" fill="#222" text-anchor="end" font-weight="800">₩1,000</text>
-                        <!-- 三色毛巾層 -->
-                        <rect x="18" y="38" width="128" height="50" rx="5" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
-                        <rect x="18" y="92" width="128" height="50" rx="5" fill="#B5D3E7" stroke="#94B8D0" stroke-width="1.2"/>
-                        <rect x="18" y="146" width="128" height="50" rx="5" fill="#CBD2D9" stroke="#9AA5B1" stroke-width="1.2"/>
-                        <!-- 中央腰封 -->
-                        <rect x="50" y="46" width="64" height="142" rx="3" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
-                        <text x="82" y="74" font-size="11.5" fill="#222" text-anchor="middle" font-weight="800">극세사행주</text>
-                        <text x="82" y="92" font-size="7" fill="#D9534F" text-anchor="middle" font-weight="700">32cm × 32cm</text>
-                        <rect x="62" y="106" width="40" height="32" rx="3" fill="#E6CCB2"/>
-                        <path d="M 68 126 Q 82 114 96 124" stroke="#6B9AC4" stroke-width="5" stroke-linecap="round" fill="none"/>
-                        <text x="82" y="172" font-size="14" fill="#222" text-anchor="middle" font-weight="800">3매입</text>
-                    </g>
-                `
-            },
-            {
-                id: 'daiso_handmask',
-                store: 'DAISO 大創',
-                name: '大創 蜂膠膠原蛋白保濕手膜',
-                krName: '다이소 꿀광보습 핸드케어 팩 (1세트)',
-                tags: ['手套型設計', '蜂膠膠原蛋白', '冬日護手'],
-                desc: '韓國冬天乾冷必備！穿戴式手套型手膜，敷 20 分鐘還能滑手機，蜂膠與膠原蛋白深層滋潤乾燥雙手與指緣。',
-                stamped: false,
-                bg1: '#EAF6F8',
-                bg2: '#CFE8EE',
-                art: `
-                    <g transform="translate(72, 28)">
-                        <rect x="8" y="10" width="140" height="204" rx="6" fill="#BCE3EB" stroke="#383431" stroke-width="1.5"/>
-                        <circle cx="78" cy="22" r="5" fill="#EAF6F8" stroke="#383431" stroke-width="1"/>
-                        <!-- 手部柔美插圖 -->
-                        <path d="M 24 72 Q 68 56 116 74 Q 130 80 124 92 Q 92 98 52 96 Z" fill="#FBE6D8" stroke="#E2BFA8" stroke-width="1.2"/>
-                        <path d="M 38 118 Q 76 92 128 84 L 138 108 Q 92 128 50 132 Z" fill="#F7DBC8" stroke="#E2BFA8" stroke-width="1.2"/>
-                        <rect x="8" y="146" width="140" height="68" rx="4" fill="#F7F9F9"/>
-                        <text x="20" y="166" font-size="10" fill="#0B5563" font-weight="800">꿀광보습</text>
-                        <text x="20" y="182" font-size="12" fill="#0B5563" font-weight="900">핸드케어 팩</text>
-                        <text x="20" y="200" font-size="7.5" fill="#18778A" font-weight="700">Propolis &amp; Collagen · 20 min</text>
-                    </g>
-                `
-            }
-        ];
-
-        // 美食打卡口袋清單（含分店區域、中韓雙語推薦必點品項、備註）
-        const DEFAULT_CHECKIN_DATA = [
-            {
-                name: '東大門獵奇辣炒年糕',
-                krName: '동대문엽기떡볶이',
-                area: '海雲臺 / 西面皆有分店',
-                checked: false,
-                picks: [
-                    { zh: '玫瑰奶油辣炒年糕', kr: '로제떡볶이' },
-                    { zh: '加中國寬粉', kr: '중국당면 추가' },
-                    { zh: '加雙倍起司', kr: '치즈 추가' }
-                ],
-                note: '建議點微辣（착한맛），玫瑰奶油醬汁濃郁不嗆口！'
-            },
-            {
-                name: 'Puraduk 炸雞',
-                krName: '푸라닭치킨 (PuraDak)',
-                area: '飯店外送 / 連鎖分店',
-                checked: false,
-                picks: [
-                    { zh: '烤玉米起司炸雞', kr: '콘소메이징' },
-                    { zh: '青陽辣椒美乃滋炸雞', kr: '고추마요 치킨' },
-                    { zh: '黑蒜醬油炸雞', kr: '블랙알리오' }
-                ],
-                note: '被譽為炸雞界 Prada，先烤後炸外皮酥脆不油膩，推薦點無骨（순살）。'
-            },
-            {
-                name: 'What the Burger',
-                krName: '왓더버거 (What the Burger)',
-                area: '西面 / 海雲臺分店',
-                checked: false,
-                picks: [
-                    { zh: '招牌手工牛肉堡', kr: '시그니처 버거' },
-                    { zh: '松露蘑菇漢堡', kr: '트러플 머쉬룸 버거' },
-                    { zh: '酥脆薯條套餐', kr: '프렌치프라이 세트' }
-                ],
-                note: '釜山人氣美式手工漢堡店，肉排多汁、麵包鬆軟焦香。'
-            },
-            {
-                name: 'All Sunday 貝果',
-                krName: '올선데이 (All Sunday)',
-                area: '西面店 / 廣安里店',
-                checked: false,
-                picks: [
-                    { zh: '海鹽奶油貝果', kr: '소금버터 베이글' },
-                    { zh: '大蔥奶油乳酪貝果', kr: '대파 크림치즈 베이글' },
-                    { zh: '藍莓乳酪抹醬', kr: '블루베리 크림치즈' }
-                ],
-                note: '早上出爐時口味最齊全，西面店買完可先拿回飯店放。'
-            },
-            {
-                name: 'OOZY Coffee',
-                krName: '우지커피 (OOZY Coffee)',
-                area: '西面 / 南浦洞連鎖',
-                checked: false,
-                picks: [
-                    { zh: '紅寶石石榴冰茶', kr: '루비 석류 아이스티' },
-                    { zh: '新鮮草莓拿鐵', kr: '리얼 딸기라떼' },
-                    { zh: '招牌深焙拿鐵', kr: '딥라떼' }
-                ],
-                note: '高 CP 值大杯量連鎖咖啡廳，石榴冰茶清爽解膩超好喝！'
-            },
-            {
-                name: '李在模披薩',
-                krName: '이재모피자',
-                area: '西面店 / 南浦洞創始店',
-                checked: false,
-                picks: [
-                    { zh: '雙重起司餅皮披薩 (L)', kr: '이재모 크러스트 피자' },
-                    { zh: '烤肉起司焗烤義大利麵', kr: '불고기 치즈 오븐스파게티' }
-                ],
-                note: '釜山傳奇排隊披薩（週日公休），滿滿邪惡莫札瑞拉起司牽絲必吃！'
-            },
-            {
-                name: '83 獬豸 烤肉',
-                krName: '83해치 (83 Haechi)',
-                area: '西面站人氣名店',
-                checked: false,
-                picks: [
-                    { zh: '厚切熟成豬五花', kr: '숙성 삼겹살' },
-                    { zh: '秘製烤豬肋排', kr: '구이갈비' },
-                    { zh: '辣味海鮮大醬鍋', kr: '해물 된장찌개' }
-                ],
-                note: '全程專人代烤，可用 CatchTable 現場抽號碼牌候位。'
-            },
-            {
-                name: 'Working Holiday 早午餐',
-                krName: '워킹홀리데이 해운대',
-                area: '海雲臺海景店 / 西面店',
-                checked: false,
-                picks: [
-                    { zh: '法式蕎麥薄餅 (Galette)', kr: '갈레트 브런치' },
-                    { zh: '主廚今日濃湯', kr: '오늘의 스프' },
-                    { zh: '焦糖布蕾法式吐司', kr: '프렌치 토스트' }
-                ],
-                note: '坐擁海雲臺海景第一排窗邊座位，早午餐擺盤與氛圍滿分。'
-            },
-            {
-                name: 'Yoajung 優格冰淇淋',
-                krName: '요아정 (요거트아이스크림의정석)',
-                area: '西面 / 海雲臺連鎖外帶',
-                checked: false,
-                picks: [
-                    { zh: '原味優格冰淇淋 + 蜂巢蜜', kr: '요거트 아이스크림 + 벌집꿀' },
-                    { zh: '加脆片與新鮮水果', kr: '그래놀라 + 제철과일 추가' }
-                ],
-                note: '韓國超紅客製化優格冰淇淋，酸甜清爽搭配整塊蜂巢蜜超療癒！'
-            }
-        ];
-
-        const SHOPPING_STORAGE_KEY = 'busan_v5_shopping_stamp_items';
-        const CHECKIN_STORAGE_KEY = 'busan_v5_food_pocket_items';
-
-        let shoppingItems = JSON.parse(localStorage.getItem(SHOPPING_STORAGE_KEY) || 'null');
-        if (!shoppingItems || !Array.isArray(shoppingItems) || shoppingItems.length !== DEFAULT_SHOPPING_DATA.length) {
-            const oldStampedMap = {};
-            if (Array.isArray(shoppingItems)) {
-                shoppingItems.forEach(i => { if (i && i.id) oldStampedMap[i.id] = !!i.stamped; });
-            }
-            shoppingItems = DEFAULT_SHOPPING_DATA.map(item => ({
-                ...item,
-                stamped: oldStampedMap[item.id] !== undefined ? oldStampedMap[item.id] : item.stamped
-            }));
-            localStorage.setItem(SHOPPING_STORAGE_KEY, JSON.stringify(shoppingItems));
-        }
-
-        let checkinItems = JSON.parse(localStorage.getItem(CHECKIN_STORAGE_KEY) || 'null');
-        if (!checkinItems || !Array.isArray(checkinItems) || !checkinItems[0] || !Array.isArray(checkinItems[0].picks)) {
-            checkinItems = JSON.parse(JSON.stringify(DEFAULT_CHECKIN_DATA));
-            localStorage.setItem(CHECKIN_STORAGE_KEY, JSON.stringify(checkinItems));
-        }
-
-        let currentCheckinMode = 'shopping';
-
-        function saveShoppingData() {
-            localStorage.setItem(SHOPPING_STORAGE_KEY, JSON.stringify(shoppingItems));
-            updateCheckinCounters();
-        }
-
-        function saveCheckinData() {
-            localStorage.setItem(CHECKIN_STORAGE_KEY, JSON.stringify(checkinItems));
-            updateCheckinCounters();
-        }
-
-        function updateCheckinCounters() {
-            const shopBadge = document.getElementById('shopCountBadge');
-            const foodBadge = document.getElementById('foodCountBadge');
-            if (shopBadge) {
-                const stampedCount = shoppingItems.filter(i => i.stamped).length;
-                shopBadge.textContent = `${stampedCount}/${shoppingItems.length}`;
-            }
-            if (foodBadge) {
-                const eatenCount = checkinItems.filter(i => i.checked).length;
-                foodBadge.textContent = `${eatenCount}/${checkinItems.length}`;
-            }
-        }
-
+        // ==================== 打卡分頁：購買清單 & 美食打卡 ====================
         function switchCheckinMode(mode) {
-            currentCheckinMode = mode;
             const btnShop = document.getElementById('modeBtnShop');
             const btnFood = document.getElementById('modeBtnFood');
             const paneShop = document.getElementById('checkinPaneShopping');
             const paneFood = document.getElementById('checkinPaneFood');
+            const headShop = document.getElementById('shopHeaderContainer');
+            const headFood = document.getElementById('foodHeaderContainer');
 
             if (mode === 'shopping') {
                 if (btnShop) btnShop.classList.add('active');
                 if (btnFood) btnFood.classList.remove('active');
                 if (paneShop) paneShop.style.display = 'block';
                 if (paneFood) paneFood.style.display = 'none';
+                if (headShop) headShop.style.display = 'block';
+                if (headFood) headFood.style.display = 'none';
+                requestAnimationFrame(() => updateActiveShopFilterPill());
             } else {
-                if (btnFood) btnFood.classList.add('active');
                 if (btnShop) btnShop.classList.remove('active');
-                if (paneFood) paneFood.style.display = 'block';
+                if (btnFood) btnFood.classList.add('active');
                 if (paneShop) paneShop.style.display = 'none';
+                if (paneFood) paneFood.style.display = 'block';
+                if (headShop) headShop.style.display = 'none';
+                if (headFood) headFood.style.display = 'block';
+                requestAnimationFrame(() => updateActiveFoodFilterPill());
             }
+        }
 
-            if (window.gsap) {
-                const targetPane = mode === 'shopping' ? paneShop : paneFood;
-                if (targetPane) {
-                    gsap.fromTo(targetPane, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.26, ease: "power2.out" });
-                }
+        function getShopSvgIllustration(id) {
+            const illustrations = {
+                celimax: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="80" cy="138" rx="44" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <!-- 右側外盒 -->
+                    <rect x="68" y="16" width="42" height="114" rx="5" fill="#CFE036" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="68" y="16" width="42" height="19" rx="4" fill="#2B2927"/>
+                    <text x="89" y="28" font-size="5.5" fill="#DCE775" text-anchor="middle" font-weight="700" letter-spacing="0.4">RETINAL SHOT</text>
+                    <text x="89" y="54" font-size="8.5" fill="#2B2927" text-anchor="middle" font-weight="700">레티날샷</text>
+                    <text x="89" y="66" font-size="7.5" fill="#2B2927" text-anchor="middle" font-weight="700">스팟크림</text>
+                    <circle cx="96" cy="84" r="9.5" fill="#FFFFFF" stroke="#558B2F" stroke-width="1.2"/>
+                    <text x="96" y="86.5" font-size="5.5" fill="#33691E" text-anchor="middle" font-weight="700">ONLY</text>
+                    <text x="89" y="121" font-size="7.5" fill="#2B2927" text-anchor="middle" font-weight="700">celimax</text>
+                    <!-- 左側軟管 -->
+                    <path d="M46 44 L70 44 L67 102 L49 102 Z" fill="#F5F5F0" stroke="#383431" stroke-width="1.4"/>
+                    <path d="M47.2 56 L68.8 56 L67.3 94 L48.7 94 Z" fill="#D4E63C"/>
+                    <path d="M51 102 L65 102 L63 118 L53 118 Z" fill="#E8EAE6" stroke="#383431" stroke-width="1.3"/>
+                    <path d="M55.5 118 L60.5 118 L59.2 133 L56.8 133 Z" fill="#B0B5B8" stroke="#383431" stroke-width="1.2"/>
+                </svg>`,
+                acnon: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="80" cy="136" rx="48" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <rect x="16" y="42" width="128" height="58" rx="7" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="16" y="42" width="38" height="58" rx="7" fill="#F29B94"/>
+                    <line x1="54" y1="42" x2="54" y2="100" stroke="#383431" stroke-width="1.2"/>
+                    <path d="M31 61 H39 V67 H45 V75 H39 V81 H31 V75 H25 V67 H31 Z" fill="#D32F2F"/>
+                    <text x="64" y="62" font-size="13" fill="#D32F2F" font-family="Noto Serif TC, serif" font-weight="700">acnon</text>
+                    <text x="108" y="62" font-size="6.5" fill="#383431" font-weight="700">CREAM</text>
+                    <text x="64" y="75" font-size="9" fill="#383431" font-weight="700">애크논 크림</text>
+                    <text x="64" y="88" font-size="5.3" fill="#D32F2F" font-weight="600">Pimples / Red acne / Pustular acne</text>
+                    <text x="128" y="90" font-size="7" fill="#383431" font-weight="700">13g</text>
+                </svg>`,
+                noscarna: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="80" cy="136" rx="48" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <rect x="16" y="42" width="128" height="58" rx="7" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="16" y="42" width="38" height="58" rx="7" fill="#F29C78"/>
+                    <line x1="54" y1="42" x2="54" y2="100" stroke="#383431" stroke-width="1.2"/>
+                    <path d="M31 61 H39 V67 H45 V75 H39 V81 H31 V75 H25 V67 H31 Z" fill="#D83A22"/>
+                    <text x="62" y="62" font-size="12" fill="#2B2927" font-family="Noto Serif TC, serif" font-weight="700">noscarna</text>
+                    <text x="118" y="62" font-size="6.5" fill="#383431" font-weight="700">GEL</text>
+                    <text x="62" y="75" font-size="9" fill="#383431" font-weight="700">노스카나 겔</text>
+                    <text x="62" y="88" font-size="5.2" fill="#D83A22" font-weight="600">Acne scar / Surgical scar / Keloid scar</text>
+                    <text x="126" y="90" font-size="7" fill="#383431" font-weight="700">20g</text>
+                </svg>`,
+                aclean: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="80" cy="136" rx="48" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <rect x="16" y="42" width="128" height="58" rx="7" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="16" y="42" width="38" height="58" rx="7" fill="#81C79B"/>
+                    <line x1="54" y1="42" x2="54" y2="100" stroke="#383431" stroke-width="1.2"/>
+                    <path d="M31 61 H39 V67 H45 V75 H39 V81 H31 V75 H25 V67 H31 Z" fill="#157A3C"/>
+                    <text x="63" y="62" font-size="12.5" fill="#157A3C" font-family="Noto Serif TC, serif" font-weight="700">aclean</text>
+                    <text x="108" y="62" font-size="6.5" fill="#383431" font-weight="700">GEL</text>
+                    <text x="63" y="75" font-size="9" fill="#383431" font-weight="700">애크린 겔</text>
+                    <text x="63" y="88" font-size="5.1" fill="#157A3C" font-weight="600">Blackheads / Whiteheads / Salicylic Acid 2%</text>
+                    <text x="126" y="90" font-size="7" fill="#383431" font-weight="700">20g</text>
+                </svg>`,
+                noscardin: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="80" cy="136" rx="48" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <rect x="16" y="42" width="128" height="58" rx="7" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="16" y="42" width="38" height="58" rx="7" fill="#A9D84B"/>
+                    <line x1="54" y1="42" x2="54" y2="100" stroke="#383431" stroke-width="1.2"/>
+                    <path d="M31 61 H39 V67 H45 V75 H39 V81 H31 V75 H25 V67 H31 Z" fill="#2A7B2E"/>
+                    <text x="62" y="62" font-size="11.5" fill="#2A7B2E" font-family="Noto Serif TC, serif" font-weight="700">noscardin</text>
+                    <text x="118" y="62" font-size="6.5" fill="#383431" font-weight="700">GEL</text>
+                    <text x="62" y="75" font-size="9" fill="#383431" font-weight="700">노스카딘 겔</text>
+                    <text x="62" y="88" font-size="5.2" fill="#2A7B2E" font-weight="600">Post-acne wounds / Fusidic acid 2%</text>
+                    <text x="126" y="90" font-size="7" fill="#383431" font-weight="700">18g</text>
+                </svg>`,
+                antiphlamine: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="82" cy="138" rx="46" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <!-- 左側瓶身與滾輪 -->
+                    <rect x="44" y="20" width="22" height="15" rx="3" fill="#F3EFEA" stroke="#383431" stroke-width="1.4"/>
+                    <rect x="36" y="34" width="38" height="92" rx="9" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="74" y="48" width="6.5" height="66" rx="3" fill="#E0DBD3" stroke="#383431" stroke-width="1.3"/>
+                    <rect x="42" y="50" width="26" height="64" rx="4" fill="#D62828"/>
+                    <text x="55" y="79" font-size="5.8" fill="#FFFFFF" text-anchor="middle" font-weight="700">안티푸라민</text>
+                    <text x="55" y="90" font-size="5.5" fill="#FFE082" text-anchor="middle" font-weight="700">消炎·止痛</text>
+                    <!-- 右側紅盒 -->
+                    <rect x="86" y="24" width="48" height="102" rx="4" fill="#D62828" stroke="#383431" stroke-width="1.5"/>
+                    <circle cx="102" cy="44" r="8" fill="#FFFFFF"/>
+                    <text x="110" y="68" font-size="8" fill="#FFFFFF" text-anchor="middle" font-weight="700">안티푸라민</text>
+                    <text x="110" y="79" font-size="6" fill="#FFE082" text-anchor="middle" font-weight="700">에스 로션 (100ml)</text>
+                </svg>`,
+                daisopad: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="80" cy="138" rx="44" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <rect x="38" y="18" width="84" height="108" rx="9" fill="#9CCC65" stroke="#383431" stroke-width="1.5"/>
+                    <line x1="38" y1="30" x2="122" y2="30" stroke="#7CB342" stroke-width="1.2" stroke-dasharray="3 2"/>
+                    <text x="80" y="45" font-size="7.5" fill="#1B5E20" text-anchor="middle" font-weight="700">화잘먹</text>
+                    <text x="80" y="57" font-size="9" fill="#FFFFFF" text-anchor="middle" font-weight="700">바다포도 스킨팩</text>
+                    <circle cx="78" cy="88" r="24" fill="#F9FBE7" stroke="#689F38" stroke-width="1.3"/>
+                    <circle cx="94" cy="78" r="4.5" fill="#7CB342"/><circle cx="101" cy="84" r="4.5" fill="#8BC34A"/><circle cx="93" cy="87" r="4.5" fill="#558B2F"/><circle cx="100" cy="93" r="4" fill="#689F38"/>
+                    <text x="75" y="91" font-size="7.5" fill="#33691E" text-anchor="middle" font-weight="700">海葡萄棉片</text>
+                </svg>`,
+                madeca21: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="80" cy="138" rx="44" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <!-- 左側外盒 -->
+                    <rect x="38" y="20" width="38" height="106" rx="4" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="38" y="88" width="38" height="38" rx="2" fill="#98E2C6"/>
+                    <line x1="41" y1="20" x2="41" y2="88" stroke="#E65100" stroke-width="2.5"/>
+                    <text x="58" y="44" font-size="6.8" fill="#2B2927" text-anchor="middle" font-weight="700">Madeca 21</text>
+                    <text x="58" y="64" font-size="5" fill="#1B5E20" text-anchor="middle" font-weight="700">TECA SOLUTION</text>
+                    <!-- 右側噴霧瓶 -->
+                    <rect x="92" y="22" width="16" height="20" rx="3" fill="#F5F5F5" stroke="#383431" stroke-width="1.4"/>
+                    <rect x="82" y="42" width="36" height="84" rx="8" fill="#1B6CA8" fill-opacity="0" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="82" y="42" width="36" height="84" rx="8" fill="#1E7E5C" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="82" y="55" width="36" height="50" fill="#FFFFFF"/>
+                    <text x="100" y="75" font-size="6.8" fill="#1E7E5C" text-anchor="middle" font-weight="700">Madeca 21</text>
+                    <text x="100" y="86" font-size="5" fill="#383431" text-anchor="middle" font-weight="600">Mist Toner</text>
+                </svg>`,
+                daisocloth: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="80" cy="138" rx="46" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <rect x="34" y="18" width="92" height="108" rx="6" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="40" y="34" width="80" height="26" rx="4" fill="#FAF8F5" stroke="#D8D0C5" stroke-width="1.2"/>
+                    <rect x="40" y="63" width="80" height="26" rx="4" fill="#AFCBE0" stroke="#8FAEC7" stroke-width="1.2"/>
+                    <rect x="40" y="92" width="80" height="26" rx="4" fill="#CFCBC4" stroke="#B2ADA4" stroke-width="1.2"/>
+                    <rect x="60" y="30" width="40" height="92" fill="#FFFFFF" stroke="#E0DAD0" stroke-width="1.2"/>
+                    <text x="80" y="52" font-size="8.5" fill="#2B2927" text-anchor="middle" font-weight="700">극세사행주</text>
+                    <text x="80" y="64" font-size="5.5" fill="#D94E36" text-anchor="middle" font-weight="600">32cm × 32cm</text>
+                    <text x="80" y="108" font-size="10" fill="#2B2927" text-anchor="middle" font-weight="700">3매입</text>
+                </svg>`,
+                daisohand: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="80" cy="138" rx="44" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <rect x="36" y="16" width="88" height="110" rx="6" fill="#BCE0E8" stroke="#383431" stroke-width="1.5"/>
+                    <circle cx="80" cy="26" r="4" fill="#FCFAF2" stroke="#383431" stroke-width="1.2"/>
+                    <path d="M48 64 Q76 46 110 56 Q96 76 56 78 Z" fill="#FAE5D3" stroke="#C59B7D" stroke-width="1.3"/>
+                    <rect x="36" y="88" width="88" height="38" rx="4" fill="#FFFFFF" stroke="#383431" stroke-width="1.2"/>
+                    <text x="80" y="103" font-size="8.5" fill="#125B70" text-anchor="middle" font-weight="700">꿀광보습 핸드케어 팩</text>
+                    <text x="80" y="116" font-size="6.2" fill="#5C544C" text-anchor="middle" font-weight="600">Propolis &amp; Collagen · 20 min</text>
+                </svg>`,
+                hetras: `<svg viewBox="0 0 160 150">
+                    <defs>
+                        <linearGradient id="tinGrad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#9E9E9E"/>
+                            <stop offset="28%" stop-color="#F5F5F5"/>
+                            <stop offset="55%" stop-color="#BDBDBD"/>
+                            <stop offset="82%" stop-color="#E0E0E0"/>
+                            <stop offset="100%" stop-color="#8D8D8D"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
+                    <ellipse cx="84" cy="138" rx="52" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 後方顏料罐 -->
+                    <g transform="translate(18, 20)">
+                        <path d="M 4 22 L 0 22 Q -4 22 -4 27 L -2 45" fill="none" stroke="#616161" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M 76 22 L 80 22 Q 84 22 84 27 L 82 45" fill="none" stroke="#616161" stroke-width="1.8" stroke-linecap="round"/>
+                        <rect x="4" y="8" width="72" height="68" rx="4" fill="url(#tinGrad)" stroke="#383431" stroke-width="1.4"/>
+                        <ellipse cx="40" cy="8" rx="36" ry="5" fill="#E0E0E0" stroke="#383431" stroke-width="1.4"/>
+                        <path d="M 24 28 Q 36 22 54 38 Q 62 46 50 56 Q 34 52 22 36 Z" fill="#F4C430" stroke="#D4A017" stroke-width="1"/>
+                        <text x="66" y="38" font-size="8.5" fill="#FFFFFF" font-weight="700" transform="rotate(90, 66, 38)">Daisy</text>
+                    </g>
+                    <!-- 前方主顏料罐 (Daisy) -->
+                    <g transform="translate(52, 46)">
+                        <path d="M 4 22 L -1 22 Q -5 22 -4 28 L 0 48" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M 80 22 L 85 22 Q 89 22 88 28 L 84 48" fill="none" stroke="#555" stroke-width="2" stroke-linecap="round"/>
+                        <rect x="2" y="17" width="4" height="8" rx="1" fill="#D6D6D6" stroke="#383431" stroke-width="1.2"/>
+                        <rect x="78" y="17" width="4" height="8" rx="1" fill="#D6D6D6" stroke="#383431" stroke-width="1.2"/>
+                        <rect x="4" y="8" width="76" height="74" rx="4" fill="url(#tinGrad)" stroke="#383431" stroke-width="1.5"/>
+                        <ellipse cx="42" cy="8" rx="38" ry="5.5" fill="#ECECEC" stroke="#383431" stroke-width="1.5"/>
+                        <ellipse cx="42" cy="8" rx="30" ry="3.2" fill="none" stroke="#616161" stroke-width="1"/>
+                        <text x="10" y="21" font-size="4.6" fill="#FFFFFF" font-weight="600">Premium Perfume</text>
+                        <text x="10" y="27" font-size="4.6" fill="#FFFFFF" font-weight="600">Odor Eliminator</text>
+                        <!-- 黃色奶油顏料抹痕 -->
+                        <path d="M 22 36 Q 34 25 54 42 Q 66 54 56 68 Q 42 74 28 56 Q 16 42 22 36 Z" fill="#F5C732" stroke="#D49B16" stroke-width="1.2"/>
+                        <path d="M 27 40 Q 38 33 50 47 Q 58 56 50 63" fill="none" stroke="#FFE57F" stroke-width="1.5" stroke-linecap="round"/>
+                        <text x="41" y="50" font-size="8.5" fill="#FFFFFF" font-family="Noto Serif TC, serif" text-anchor="middle" font-weight="700" letter-spacing="1">HET</text>
+                        <text x="41" y="60" font-size="8.5" fill="#FFFFFF" font-family="Noto Serif TC, serif" text-anchor="middle" font-weight="700" letter-spacing="1">RAS</text>
+                        <text x="69" y="34" font-size="9.5" fill="#FFFFFF" font-weight="700" transform="rotate(90, 69, 34)">Daisy</text>
+                        <text x="10" y="75" font-size="4.8" fill="#FFFFFF" font-weight="600">10.58 oz. 300 g</text>
+                    </g>
+                </svg>`
+            };
+            return illustrations[id] || illustrations.celimax;
+        }
+
+        const DEFAULT_SHOPPING_DATA = [
+            { id: 'celimax', store: 'Olive young', badge: 'Olive Young', bg: '#EBF3DD', name: 'Celimax A醇微針緊緻霜', krName: '셀리맥스 레티날샷 타이트닝 부스터', tags: ['毛孔緊緻', '彈力抗老', '微針導入'], desc: '含 0.1% A醇與積雪草微針，針對粗大毛孔與細紋局部夜間保養，韓國 Olive Young 爆紅組合。', stamped: false },
+            { id: 'acnon', store: '藥局', badge: '韓國藥局', bg: '#F9EAE8', name: 'Acnon 紅腫痘痘軟膏', krName: '동아제약 애크논 크림 (13g)', tags: ['發炎紅腫痘', '囊腫大痘', '抗菌消炎'], desc: '東亞製藥明星痘痘藥！專門對付紅腫痛的發炎性大痘、膿包痘，洗臉後早晚局部厚敷消腫超快。', stamped: false },
+            { id: 'noscarna', store: '藥局', badge: '韓國藥局', bg: '#F9EBE0', name: 'Noscarna 除疤祛痘印凝膠', krName: '동아제약 노스카나 겔 (20g)', tags: ['痘疤凹洞', '淡化痘印', '手術疤痕'], desc: '韓國藥局人手一條的除疤神膏！含肝素鈉與尿囊素，針對新生紅黑痘印、疤痕早晚薄擦。', stamped: false },
+            { id: 'aclean', store: '藥局', badge: '韓國藥局', bg: '#E4F4EC', name: 'Aclean 水楊酸粉刺凝膠', krName: '동아제약 애크린 겔 (20g)', tags: ['黑頭白頭', '閉鎖粉刺', '控油角質'], desc: '含 2% 水楊酸與茶樹精油凝膠，專攻鼻頭黑頭、下巴白頭與閉鎖性小粉刺，白天使用需擦防曬。', stamped: false },
+            { id: 'noscardin', store: '藥局', badge: '韓國藥局', bg: '#EAF3DF', name: 'Noscardin 痘痘傷口軟膏', krName: '동아제약 노스카딘 겔 (18g)', tags: ['擠完痘痘', '傷口防感染', '抗生素軟膏'], desc: '含 2% 夫西地酸與積雪草萃取，專門在「擠完痘痘後」塗抹於破皮傷口，防止發炎感染並加速癒合。', stamped: false },
+            { id: 'antiphlamine', store: '藥局', badge: '韓國藥局', bg: '#F9EAE8', name: '孫興慜滾輪痠痛乳液', krName: '유한양행 안티푸라민 에스로션 (100ml)', tags: ['消炎止痛', '鐵腿救星', '附按摩滾輪'], desc: '韓國國民痠痛乳液！瓶身自帶金屬滾輪，等乳液吸收乾了再用滾輪輕推按摩，暴走整天必備。', stamped: false },
+            { id: 'daisopad', store: '大創', badge: '韓國大創', bg: '#EBF3DD', name: '大創 海葡萄妝前保濕棉片', krName: '화잘먹 바다포도 스킨팩 (60매)', tags: ['妝前服貼', '海葡萄保濕', '局部濕敷'], desc: '韓國大創爆紅 ₩5,000 好物！含海葡萄萃取，妝前濕敷 3～5 分鐘快速補水，讓底妝超服貼不卡粉。', stamped: false },
+            { id: 'madeca21', store: 'Olive young', badge: 'Olive Young', bg: '#E4F4EC', name: 'Madeca 21 積雪草舒緩噴霧', krName: '마데카21 테카 솔루션 미스트 토너', tags: ['積雪草舒緩', '細緻噴霧', '退紅補水'], desc: '東國製藥旗下高純度積雪草 TECA 舒緩噴霧化妝水，冬日室內暖氣乾燥或敏感泛紅時隨時一噴鎮定。', stamped: false },
+            { id: 'daisocloth', store: '大創', badge: '韓國大創', bg: '#ECEFF4', name: '大創 超細纖維抹布 (3入)', krName: '극세사행주 3매입 (32×32cm)', tags: ['超細纖維', '強力吸水', '₩1,000神物'], desc: '只要 ₩1,000 的超高 CP 值居家神物！三色入（白/藍/灰），組織細密吸水力極強、擦拭水垢不留毛絮。', stamped: false },
+            { id: 'daisohand', store: '大創', badge: '韓國大創', bg: '#E5F2F6', name: '大創 蜂膠膠原蛋白手膜', krName: '꿀광보습 핸드케어 팩 (1세트)', tags: ['蜂膠滋潤', '膠原蛋白', '手套式手膜'], desc: '冬日韓國乾冷必備！含蜂膠與膠原蛋白精華，像戴手套一樣穿戴 20 分鐘，深層修護乾燥粗糙雙手。', stamped: false },
+            { id: 'hetras', store: 'Olive young', altStore: '其他', badge: 'Olive Young', bg: '#F7F2E4', name: 'HETRAS 固態香氛 (Daisy)', krName: '헤트라스 프리미엄 퍼퓸 고체 탈취제 (300g)', tags: ['室內擴香', '除臭芳香', '顏料罐造型'], desc: '韓國超人氣顏料鐵罐造型固態香氛！大容量 300g 兼具除臭與持久擴香，Daisy 雛菊香氣清新療癒。', stamped: false }
+        ];
+
+        const SHOPPING_STORAGE_KEY = 'busan_v2_shopping_clean_v11';
+        let savedShop = JSON.parse(localStorage.getItem(SHOPPING_STORAGE_KEY) || 'null');
+        let shoppingItems = JSON.parse(JSON.stringify(DEFAULT_SHOPPING_DATA));
+        if (Array.isArray(savedShop)) {
+            shoppingItems.forEach(item => {
+                const found = savedShop.find(s => s.id === item.id);
+                if (found && typeof found.stamped === 'boolean') item.stamped = found.stamped;
+            });
+        }
+        localStorage.setItem(SHOPPING_STORAGE_KEY, JSON.stringify(shoppingItems));
+
+        let currentShopStoreFilter = 'ALL';
+
+        function moveShopFilterPillTo(targetBtn) {
+            const pill = document.getElementById('shopFilterPill');
+            const nav = document.getElementById('shopStoreFilterNav');
+            if (!pill || !targetBtn || !nav) return;
+
+            pill.style.width = `${targetBtn.offsetWidth}px`;
+            pill.style.transform = `translateX(${targetBtn.offsetLeft}px)`;
+
+            nav.querySelectorAll('.expense-filter-btn').forEach(btn => {
+                if (btn === targetBtn) btn.classList.add('pill-focus');
+                else btn.classList.remove('pill-focus');
+            });
+        }
+
+        function updateActiveShopFilterPill() {
+            const activeBtn = document.querySelector('#shopStoreFilterNav .expense-filter-btn.active');
+            if (activeBtn) moveShopFilterPillTo(activeBtn);
+        }
+
+        function initShopFilterNav() {
+            const nav = document.getElementById('shopStoreFilterNav');
+            if (!nav) return;
+            const buttons = nav.querySelectorAll('.expense-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('pointerenter', () => {
+                    moveShopFilterPillTo(btn);
+                });
+            });
+
+            nav.addEventListener('pointerleave', () => {
+                updateActiveShopFilterPill();
+            });
+
+            updateActiveShopFilterPill();
+        }
+
+        function setShopStoreFilter(storeName, btnEl) {
+            currentShopStoreFilter = storeName;
+            const nav = document.getElementById('shopStoreFilterNav');
+            if (nav) {
+                nav.querySelectorAll('.expense-filter-btn').forEach(b => b.classList.remove('active'));
+            }
+            if (btnEl) {
+                btnEl.classList.add('active');
+                moveShopFilterPillTo(btnEl);
+            }
+            renderShoppingGrid();
+        }
+
+        function updateCheckinBadges() {
+            const shopBadge = document.getElementById('shopCountBadge');
+            const foodBadge = document.getElementById('foodCountBadge');
+            if (shopBadge && shoppingItems) {
+                const stampedCount = shoppingItems.filter(i => i.stamped).length;
+                shopBadge.textContent = `${stampedCount}/${shoppingItems.length}`;
+            }
+            if (foodBadge && checkinItems) {
+                const eatenCount = checkinItems.filter(i => i.checked).length;
+                foodBadge.textContent = `${eatenCount}/${checkinItems.length}`;
             }
         }
 
@@ -5120,21 +4736,28 @@
             if (!grid) return;
             grid.innerHTML = '';
 
-            shoppingItems.forEach((item, idx) => {
+            const filtered = shoppingItems
+                .map((item, idx) => ({ item, idx }))
+                .filter(entry => currentShopStoreFilter === 'ALL' || entry.item.store === currentShopStoreFilter || entry.item.altStore === currentShopStoreFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1 / -1; text-align:center; padding:32px 16px; color:var(--ink-muted); font-size:0.84rem; background:#FAF8F4; border:1px dashed #E5DFC9; border-radius:12px;">目前「${currentShopStoreFilter}」分類尚無待買商品</div>`;
+                updateCheckinBadges();
+                return;
+            }
+
+            filtered.forEach(({ item, idx }) => {
                 const card = document.createElement('div');
                 card.className = `shop-slide-card ${item.stamped ? 'stamped' : ''}`;
-                const imgUri = makeProductSvgDataUri(item);
+
                 const tagsHtml = (item.tags || []).map(t => `<span class="shop-effect-tag">${t}</span>`).join('');
 
                 card.innerHTML = `
                     <div class="shop-hold-progress"></div>
-                    <span class="shop-store-pill">${item.store}</span>
-                    <div class="rubber-stamp-mark">
-                        已購買
-                        <span class="rubber-stamp-sub">PURCHASED</span>
-                    </div>
-                    <div class="shop-card-visual">
-                        <img src="${imgUri}" alt="${item.name}">
+                    <span class="shop-store-pill">${item.badge || item.store}</span>
+                    <div class="rubber-stamp-mark">已購買</div>
+                    <div class="shop-card-visual" style="background: ${item.bg || '#FAF6F0'};">
+                        ${getShopSvgIllustration(item.id)}
                     </div>
                     <div class="shop-info-panel">
                         <div class="shop-title-bar">
@@ -5146,95 +4769,239 @@
                             <div class="shop-desc-text">${item.desc}</div>
                             <div class="shop-panel-footer">
                                 <span class="shop-hold-tip">${item.stamped ? '長按取消印章' : '長按 0.65秒 蓋章'}</span>
-                                <button type="button" class="shop-more-link" data-idx="${idx}">查看韓文 →</button>
+                                <button type="button" class="shop-more-link" onclick="event.stopPropagation(); openFlashcard('${item.krName}', '${item.name} (${item.badge || item.store})')">查看韓文 →</button>
                             </div>
                         </div>
                     </div>
                 `;
 
-                // 點擊「查看韓文 →」開啟全螢幕放大字卡方便給店員看
-                const moreBtn = card.querySelector('.shop-more-link');
-                if (moreBtn) {
-                    moreBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openFlashcard(`${item.krName} 있어요?`, `請問有「${item.name}」嗎？`);
-                    });
-                }
+                let holdTimer = null;
+                let didStamp = false;
 
-                // 長按蓋上「已購買」紅色褪色橡皮圖章 + 卡片撞擊微跳動
-                let pressTimer = null;
-                let longPressTriggered = false;
-                let startX = 0;
-                let startY = 0;
-
-                const startPress = (e) => {
+                const onPointerDown = (e) => {
                     if (e.target.closest('.shop-more-link')) return;
                     if (e.button !== undefined && e.button !== 0) return;
-                    longPressTriggered = false;
-                    startX = e.clientX || 0;
-                    startY = e.clientY || 0;
+                    didStamp = false;
                     card.classList.add('holding-press');
-
-                    pressTimer = setTimeout(() => {
-                        longPressTriggered = true;
+                    holdTimer = setTimeout(() => {
+                        didStamp = true;
                         card.classList.remove('holding-press');
-                        item.stamped = !item.stamped;
-                        saveShoppingData();
+                        shoppingItems[idx].stamped = !shoppingItems[idx].stamped;
+                        localStorage.setItem(SHOPPING_STORAGE_KEY, JSON.stringify(shoppingItems));
+
+                        if (shoppingItems[idx].stamped) {
+                            card.classList.add('stamped');
+                            showToast(`已蓋章：${item.name}`);
+                        } else {
+                            card.classList.remove('stamped');
+                            showToast(`已取消蓋章：${item.name}`);
+                        }
 
                         const tipEl = card.querySelector('.shop-hold-tip');
-                        if (tipEl) tipEl.textContent = item.stamped ? '長按取消印章' : '長按 0.65秒 蓋章';
+                        if (tipEl) tipEl.textContent = shoppingItems[idx].stamped ? '長按取消印章' : '長按 0.65秒 蓋章';
+                        updateCheckinBadges();
 
-                        if (item.stamped) {
-                            card.classList.add('stamped', 'stamp-slamming', 'card-impact');
-                            if (navigator.vibrate) navigator.vibrate(35);
-                            showToast(`已蓋章：${item.name} ✓`);
-                            setTimeout(() => {
-                                card.classList.remove('stamp-slamming', 'card-impact');
-                            }, 420);
-                        } else {
-                            card.classList.remove('stamped', 'stamp-slamming');
-                            showToast(`已取消印章：${item.name}`);
+                        if (window.gsap) {
+                            gsap.fromTo(card,
+                                { scale: 0.94, rotation: -1.5 },
+                                { scale: 1, rotation: 0, duration: 0.38, ease: "elastic.out(1.2, 0.4)" }
+                            );
                         }
                     }, 650);
                 };
 
-                const movePress = (e) => {
-                    if (!pressTimer) return;
-                    const dx = Math.abs((e.clientX || 0) - startX);
-                    const dy = Math.abs((e.clientY || 0) - startY);
-                    if (dx > 10 || dy > 10) {
-                        clearTimeout(pressTimer);
-                        pressTimer = null;
-                        card.classList.remove('holding-press');
-                    }
-                };
-
-                const endPress = () => {
-                    if (pressTimer) {
-                        clearTimeout(pressTimer);
-                        pressTimer = null;
+                const cancelPress = () => {
+                    if (holdTimer) {
+                        clearTimeout(holdTimer);
+                        holdTimer = null;
                     }
                     card.classList.remove('holding-press');
                 };
 
-                card.addEventListener('pointerdown', startPress);
-                card.addEventListener('pointermove', movePress);
-                card.addEventListener('pointerup', endPress);
-                card.addEventListener('pointerleave', endPress);
-                card.addEventListener('pointercancel', endPress);
+                card.addEventListener('pointerdown', onPointerDown);
+                card.addEventListener('pointerup', cancelPress);
+                card.addEventListener('pointerleave', cancelPress);
+                card.addEventListener('pointercancel', cancelPress);
 
-                // 手機與桌面點擊切換資訊面板滑上 / 收回
                 card.addEventListener('click', (e) => {
-                    if (e.target.closest('.shop-more-link')) return;
-                    if (longPressTriggered) {
-                        longPressTriggered = false;
-                        return;
-                    }
+                    if (didStamp || e.target.closest('.shop-more-link')) return;
                     card.classList.toggle('panel-open');
                 });
 
                 grid.appendChild(card);
             });
+
+            updateCheckinBadges();
+        }
+
+        // 美食打卡清單（All Sunday 改為 輕食與下午茶；Working Holiday 改為 餐廳）
+        const DEFAULT_CHECKIN_DATA = [
+            {
+                name: '東大門獵奇辣炒年糕',
+                krName: '동대문엽기떡볶이',
+                category: '小吃',
+                checked: false,
+                picks: [
+                    { zh: '玫瑰奶油辣炒年糕', kr: '로제떡볶이' },
+                    { zh: '加中國寬粉', kr: '중국당면 추가' },
+                    { zh: '加雙倍起司', kr: '치즈 추가' }
+                ],
+                note: '建議點微辣（착한맛），玫瑰奶油醬汁濃郁不嗆口！'
+            },
+            {
+                name: 'Puraduk 炸雞',
+                krName: '푸라닭치킨 (PuraDak)',
+                category: '速食',
+                checked: false,
+                picks: [
+                    { zh: '烤玉米起司炸雞', kr: '콘소메이징' },
+                    { zh: '青陽辣椒美乃滋炸雞', kr: '고추마요 치킨' },
+                    { zh: '黑蒜醬油炸雞', kr: '블랙알리오' }
+                ],
+                note: '被譽為炸雞界 Prada，先烤後炸外皮酥脆不油膩，推薦點無骨（순살）。'
+            },
+            {
+                name: 'What the burger',
+                krName: '왓더버거',
+                category: '速食',
+                checked: false,
+                picks: [
+                    { zh: '招牌手工牛肉堡', kr: '시그니처 버거' },
+                    { zh: '松露薯條', kr: '트러플 감자튀김' }
+                ],
+                note: '釜山超人氣美式手工漢堡店，肉排多汁香氣十足。'
+            },
+            {
+                name: 'All Sunday',
+                krName: '올선데이 베이글',
+                category: '輕食與下午茶',
+                checked: false,
+                picks: [
+                    { zh: '鹽奶油貝果', kr: '소금버터 베이글' },
+                    { zh: '青蔥奶油乳酪貝果', kr: '쪽파 크림치즈 베이글' }
+                ],
+                note: '西面店早上買口味較齊全，外帶回飯店或當下午茶都很適合。'
+            },
+            {
+                name: 'OOZY Coffee',
+                krName: '우지커피',
+                category: '輕食與下午茶',
+                checked: false,
+                picks: [
+                    { zh: '石榴冰茶', kr: '석류 아이스티' },
+                    { zh: '草莓拿鐵', kr: '딸기 라떼' }
+                ],
+                note: '平價大杯又好喝，石榴冰茶酸甜清爽超解渴。'
+            },
+            {
+                name: '李在模披薩',
+                krName: '이재모피자',
+                category: '餐廳',
+                checked: false,
+                picks: [
+                    { zh: '雙重起司餅皮披薩', kr: '이재모 크러스트 피자' },
+                    { zh: '起司焗烤義大利麵', kr: '오븐 스파게티' }
+                ],
+                note: '釜山必吃傳奇披薩名店，任選芝心或火腿起司餅皮都超牽絲！'
+            },
+            {
+                name: '83 獬豸',
+                krName: '83해치 (팔삼해치)',
+                category: '餐廳',
+                checked: false,
+                picks: [
+                    { zh: '厚切豬五花', kr: '생삼겹살' },
+                    { zh: '秘製烤豬肋排', kr: '쪽갈비' },
+                    { zh: '海鮮大醬湯', kr: '해물된장찌개' }
+                ],
+                note: '全程專人代烤的西面超人氣烤肉店，可用 CatchTable 預約候位。'
+            },
+            {
+                name: 'Working Holiday',
+                krName: '워킹홀리데이 해운대',
+                category: '餐廳',
+                checked: false,
+                picks: [
+                    { zh: '法式蕎麥薄餅 Galette', kr: '갈레트' },
+                    { zh: '今日主廚濃湯', kr: '오늘의 스프' },
+                    { zh: '法式吐司', kr: '프렌치 토스트' }
+                ],
+                note: '坐擁海雲臺無敵海景的質感早午餐與下午茶餐廳。'
+            },
+            {
+                name: 'Yoajung 優格冰淇淋',
+                krName: '요아정 (요거트아이스크림의정석)',
+                category: '輕食與下午茶',
+                checked: false,
+                picks: [
+                    { zh: '優格冰淇淋 + 蜂巢蜜', kr: '요거트 아이스크림 + 벌집꿀' },
+                    { zh: '加脆片與新鮮水果', kr: '그래놀라 + 제철과일 추가' }
+                ],
+                note: '韓國超紅優格冰淇淋，酸甜優格搭配整塊蜂巢蜜超過癮！'
+            }
+        ];
+
+        const CHECKIN_STORAGE_KEY = 'busan_v2_checkin_clean_v9';
+        let savedFood = JSON.parse(localStorage.getItem(CHECKIN_STORAGE_KEY) || 'null');
+        let checkinItems = JSON.parse(JSON.stringify(DEFAULT_CHECKIN_DATA));
+        if (Array.isArray(savedFood)) {
+            checkinItems.forEach(item => {
+                const found = savedFood.find(f => f.name === item.name);
+                if (found && typeof found.checked === 'boolean') item.checked = found.checked;
+            });
+        }
+        localStorage.setItem(CHECKIN_STORAGE_KEY, JSON.stringify(checkinItems));
+
+        let currentFoodCategoryFilter = 'ALL';
+
+        function moveFoodFilterPillTo(targetBtn) {
+            const pill = document.getElementById('foodFilterPill');
+            const nav = document.getElementById('foodCategoryFilterNav');
+            if (!pill || !targetBtn || !nav) return;
+
+            pill.style.width = `${targetBtn.offsetWidth}px`;
+            pill.style.transform = `translateX(${targetBtn.offsetLeft}px)`;
+
+            nav.querySelectorAll('.expense-filter-btn').forEach(btn => {
+                if (btn === targetBtn) btn.classList.add('pill-focus');
+                else btn.classList.remove('pill-focus');
+            });
+        }
+
+        function updateActiveFoodFilterPill() {
+            const activeBtn = document.querySelector('#foodCategoryFilterNav .expense-filter-btn.active');
+            if (activeBtn) moveFoodFilterPillTo(activeBtn);
+        }
+
+        function initFoodFilterNav() {
+            const nav = document.getElementById('foodCategoryFilterNav');
+            if (!nav) return;
+            const buttons = nav.querySelectorAll('.expense-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('pointerenter', () => {
+                    moveFoodFilterPillTo(btn);
+                });
+            });
+
+            nav.addEventListener('pointerleave', () => {
+                updateActiveFoodFilterPill();
+            });
+
+            updateActiveFoodFilterPill();
+        }
+
+        function setFoodCategoryFilter(catName, btnEl) {
+            currentFoodCategoryFilter = catName;
+            const nav = document.getElementById('foodCategoryFilterNav');
+            if (nav) {
+                nav.querySelectorAll('.expense-filter-btn').forEach(b => b.classList.remove('active'));
+            }
+            if (btnEl) {
+                btnEl.classList.add('active');
+                moveFoodFilterPillTo(btnEl);
+            }
+            renderFoodPocketList();
         }
 
         function renderFoodPocketList() {
@@ -5242,12 +5009,22 @@
             if (!container) return;
             container.innerHTML = '';
 
-            checkinItems.forEach((item, idx) => {
+            const filtered = checkinItems
+                .map((item, idx) => ({ item, idx }))
+                .filter(entry => currentFoodCategoryFilter === 'ALL' || entry.item.category === currentFoodCategoryFilter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; padding:32px 16px; color:var(--ink-muted); font-size:0.84rem; background:#FAF8F4; border:1px dashed #E5DFC9; border-radius:12px;">目前「${currentFoodCategoryFilter}」種類尚無美食項目</div>`;
+                updateCheckinBadges();
+                return;
+            }
+
+            filtered.forEach(({ item, idx }) => {
                 const card = document.createElement('div');
                 card.className = `food-pocket-card ${item.checked ? 'eaten' : ''}`;
-
-                const picksHtml = (item.picks || []).map((p, pIdx) => `
-                    <button type="button" class="food-pick-chip" data-idx="${idx}" data-pidx="${pIdx}" title="點擊放大韓文字卡">
+                
+                const picksHtml = (item.picks || []).map((p) => `
+                    <button type="button" class="food-pick-chip" onclick="openFlashcard('${p.kr} 주세요.', '請給我「${p.zh}」(${item.name})')">
                         <span class="food-pick-zh">${p.zh}</span>
                         <span class="food-pick-kr">${p.kr}</span>
                     </button>
@@ -5255,82 +5032,69 @@
 
                 card.innerHTML = `
                     <div class="food-card-top">
-                        <div class="food-check-trigger">
+                        <div class="food-check-trigger" onclick="toggleFoodCheck(${idx})">
                             <div class="food-check-circle">
-                                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
+                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
                             </div>
                             <div>
                                 <div class="food-name-zh">${item.name}</div>
-                                <div class="food-name-kr">${item.krName || ''}</div>
+                                <div class="food-name-kr">${item.krName}</div>
                             </div>
                         </div>
-                        <span class="food-area-badge">${item.area || '釜山人氣店'}</span>
+                        <span class="food-area-badge">${item.category}</span>
                     </div>
                     <div class="food-must-section">
                         <div class="food-must-label">
                             <span>推薦必點品項（點擊放大點餐韓文）</span>
-                            <span style="color:var(--primary-coral);">${item.checked ? '✓ 已品嚐' : '待打卡'}</span>
+                            <span style="color:${item.checked ? 'var(--primary-coral)' : 'var(--ink-muted)'};">${item.checked ? '✓ 已品嚐' : '待打卡'}</span>
                         </div>
                         <div class="food-picks-grid">${picksHtml}</div>
                         ${item.note ? `<div class="food-tip-note">💡 ${item.note}</div>` : ''}
                     </div>
                 `;
-
-                const trigger = card.querySelector('.food-check-trigger');
-                if (trigger) {
-                    trigger.addEventListener('click', () => {
-                        item.checked = !item.checked;
-                        saveCheckinData();
-                        renderFoodPocketList();
-                        if (item.checked) {
-                            showToast(`已打卡美食：${item.name} 🍴`);
-                        }
-                    });
-                }
-
-                card.querySelectorAll('.food-pick-chip').forEach(chip => {
-                    chip.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const pIdx = Number(chip.getAttribute('data-pidx'));
-                        const pick = item.picks[pIdx];
-                        if (pick) {
-                            openFlashcard(`${pick.kr} 주세요.`, `請給我「${pick.zh}」(${item.name})`);
-                        }
-                    });
-                });
-
                 container.appendChild(card);
             });
+
+            updateCheckinBadges();
         }
 
-        function renderCheckin() {
-            renderShoppingGrid();
+        function toggleFoodCheck(idx) {
+            if (!checkinItems[idx]) return;
+            checkinItems[idx].checked = !checkinItems[idx].checked;
+            localStorage.setItem(CHECKIN_STORAGE_KEY, JSON.stringify(checkinItems));
             renderFoodPocketList();
-            updateCheckinCounters();
         }
 
-        renderCheckin();
+        renderShoppingGrid();
+        renderFoodPocketList();
         fetchLiveRate();
         setInterval(() => {
             fetchCloudExpenses();
         }, 10000);
 
         function copyText(id) {
-            const txt = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(txt);
+            const el = document.getElementById(id);
+            if (!el) return;
+            const txt = el.innerText;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(txt);
+            }
             showToast('已複製韓文地址！');
         }
 
         function copyMemberCard(id) {
-            const txt = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(txt);
+            const el = document.getElementById(id);
+            if (!el) return;
+            const txt = el.innerText;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(txt);
+            }
             showToast('已複製會員卡號！');
         }
 
         function showToast(text) {
             const toast = document.getElementById('toast');
+            if (!toast) return;
             toast.innerText = text;
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2000);
