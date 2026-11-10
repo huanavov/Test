@@ -2863,7 +2863,7 @@
                                     <path d="M16 10a4 4 0 0 1-8 0"/>
                                 </svg>
                                 <span>購買清單</span>
-                                <span class="checkin-mode-count" id="shopCountBadge">0/11</span>
+                                <span class="checkin-mode-count" id="shopCountBadge">0/17</span>
                             </button>
                             <button type="button" class="checkin-mode-btn" id="modeBtnFood" onclick="switchCheckinMode('food')">
                                 <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -2872,7 +2872,7 @@
                                     <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
                                 </svg>
                                 <span>美食打卡</span>
-                                <span class="checkin-mode-count" id="foodCountBadge">0/9</span>
+                                <span class="checkin-mode-count" id="foodCountBadge">0/15</span>
                             </button>
                         </div>
 
@@ -2888,6 +2888,7 @@
                                 <button type="button" class="expense-filter-btn" data-store="超市" onclick="setShopStoreFilter('超市', this)">超市</button>
                                 <button type="button" class="expense-filter-btn" data-store="大創" onclick="setShopStoreFilter('大創', this)">大創</button>
                                 <button type="button" class="expense-filter-btn" data-store="Olive young" onclick="setShopStoreFilter('Olive young', this)">Olive young</button>
+                                <button type="button" class="expense-filter-btn" data-store="伴手禮" onclick="setShopStoreFilter('伴手禮', this)">伴手禮</button>
                                 <button type="button" class="expense-filter-btn" data-store="其他" onclick="setShopStoreFilter('其他', this)">其他</button>
                             </div>
                         </div>
@@ -4461,140 +4462,272 @@
         function getShopSvgIllustration(id) {
             const illustrations = {
                 celimax: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="80" cy="138" rx="44" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <defs>
+                        <linearGradient id="celiBoxGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#D9EA44"/>
+                            <stop offset="55%" stop-color="#C5D82E"/>
+                            <stop offset="100%" stop-color="#DAE86B"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="82" cy="139" rx="48" ry="5.5" fill="#5C544C" opacity="0.12"/>
                     <!-- 右側外盒 -->
-                    <rect x="68" y="16" width="42" height="114" rx="5" fill="#CFE036" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="68" y="16" width="42" height="19" rx="4" fill="#2B2927"/>
-                    <text x="89" y="28" font-size="5.5" fill="#DCE775" text-anchor="middle" font-weight="700" letter-spacing="0.4">RETINAL SHOT</text>
-                    <text x="89" y="54" font-size="8.5" fill="#2B2927" text-anchor="middle" font-weight="700">레티날샷</text>
-                    <text x="89" y="66" font-size="7.5" fill="#2B2927" text-anchor="middle" font-weight="700">스팟크림</text>
-                    <circle cx="96" cy="84" r="9.5" fill="#FFFFFF" stroke="#558B2F" stroke-width="1.2"/>
-                    <text x="96" y="86.5" font-size="5.5" fill="#33691E" text-anchor="middle" font-weight="700">ONLY</text>
-                    <text x="89" y="121" font-size="7.5" fill="#2B2927" text-anchor="middle" font-weight="700">celimax</text>
-                    <!-- 左側軟管 -->
-                    <path d="M46 44 L70 44 L67 102 L49 102 Z" fill="#F5F5F0" stroke="#383431" stroke-width="1.4"/>
-                    <path d="M47.2 56 L68.8 56 L67.3 94 L48.7 94 Z" fill="#D4E63C"/>
-                    <path d="M51 102 L65 102 L63 118 L53 118 Z" fill="#E8EAE6" stroke="#383431" stroke-width="1.3"/>
-                    <path d="M55.5 118 L60.5 118 L59.2 133 L56.8 133 Z" fill="#B0B5B8" stroke="#383431" stroke-width="1.2"/>
+                    <rect x="64" y="13" width="52" height="118" rx="4.5" fill="url(#celiBoxGrad)" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="64" y="13" width="52" height="15" rx="3.5" fill="#242322"/>
+                    <text x="90" y="23" font-size="4.6" fill="#DCE775" text-anchor="middle" font-weight="700" letter-spacing="0.2">#모공쫀쫀 #탄력부스터</text>
+                    <text x="90" y="40" font-size="8.5" fill="#242322" text-anchor="middle" font-weight="700">레티날샷</text>
+                    <text x="90" y="50" font-size="7.8" fill="#242322" text-anchor="middle" font-weight="700">스팟크림</text>
+                    <!-- 盒面主軟管圖樣與右側小贈品圖樣 -->
+                    <path d="M71 58 L85 58 L83 103 L73 103 Z" fill="#F2F4EC" stroke="#383431" stroke-width="1"/>
+                    <rect x="76" y="103" width="4" height="9" fill="#B0B5B8" stroke="#383431" stroke-width="0.9"/>
+                    <circle cx="101" cy="62" r="9.5" fill="#FFFFFF" stroke="#558B2F" stroke-width="1.2"/>
+                    <text x="101" y="61" font-size="4.8" fill="#33691E" text-anchor="middle" font-weight="700">ONLY</text>
+                    <text x="101" y="66.5" font-size="3.6" fill="#D84315" text-anchor="middle" font-weight="700">올리브영</text>
+                    <!-- 盒上小贈品3ml圖示 -->
+                    <rect x="92" y="75" width="19" height="11" rx="3" fill="#242322"/>
+                    <text x="101.5" y="82" font-size="3.8" fill="#FFF" text-anchor="middle" font-weight="700">+추가증정 3ml</text>
+                    <path d="M95 88 L107 88 L105.5 110 L96.5 110 Z" fill="#FFFFFF" stroke="#383431" stroke-width="0.9"/>
+                    <rect x="64" y="116" width="52" height="15" rx="3" fill="#F5F7F2" stroke="#383431" stroke-width="1.2"/>
+                    <text x="90" y="126.5" font-size="7.5" fill="#242322" text-anchor="middle" font-weight="700">celimax</text>
+                    <!-- 左側實體微針軟管 -->
+                    <path d="M36 36 L60 36 L57 98 L39 98 Z" fill="#F7F8F4" stroke="#383431" stroke-width="1.4"/>
+                    <path d="M37.3 48 L58.7 48 L56.8 88 L39.2 88 Z" fill="#D2E43A"/>
+                    <text x="48" y="66" font-size="4.5" fill="#242322" text-anchor="middle" font-weight="700">RETINAL</text>
+                    <text x="48" y="73" font-size="4.2" fill="#242322" text-anchor="middle" font-weight="600">BOOSTER</text>
+                    <rect x="35" y="88" width="13" height="9" rx="1.5" fill="#1F1E1D"/>
+                    <text x="41.5" y="94" font-size="3.8" fill="#D4E63C" text-anchor="middle" font-weight="700">TRY ME</text>
+                    <path d="M41 98 L55 98 L53 114 L43 114 Z" fill="#E4E7E2" stroke="#383431" stroke-width="1.3"/>
+                    <path d="M45.5 114 L50.5 114 L49.2 131 L46.8 131 Z" fill="#B0B5B8" stroke="#383431" stroke-width="1.2"/>
                 </svg>`,
                 acnon: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="80" cy="136" rx="48" ry="5.5" fill="#5C544C" opacity="0.1"/>
-                    <rect x="16" y="42" width="128" height="58" rx="7" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="16" y="42" width="38" height="58" rx="7" fill="#F29B94"/>
-                    <line x1="54" y1="42" x2="54" y2="100" stroke="#383431" stroke-width="1.2"/>
-                    <path d="M31 61 H39 V67 H45 V75 H39 V81 H31 V75 H25 V67 H31 Z" fill="#D32F2F"/>
-                    <text x="64" y="62" font-size="13" fill="#D32F2F" font-family="Noto Serif TC, serif" font-weight="700">acnon</text>
-                    <text x="108" y="62" font-size="6.5" fill="#383431" font-weight="700">CREAM</text>
-                    <text x="64" y="75" font-size="9" fill="#383431" font-weight="700">애크논 크림</text>
-                    <text x="64" y="88" font-size="5.3" fill="#D32F2F" font-weight="600">Pimples / Red acne / Pustular acne</text>
-                    <text x="128" y="90" font-size="7" fill="#383431" font-weight="700">13g</text>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="136" rx="52" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 底部立體盒邊 -->
+                    <path d="M14 100 L146 100 L142 106 L18 106 Z" fill="#E0DBD3" stroke="#383431" stroke-width="1.2"/>
+                    <rect x="14" y="40" width="132" height="60" rx="5" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <!-- 左側經典粉紅方格紋 -->
+                    <g>
+                        <rect x="15" y="41" width="40" height="58" rx="4" fill="#F9D5D2"/>
+                        <rect x="15" y="41" width="13.3" height="14.5" fill="#F29B94"/>
+                        <rect x="41.6" y="41" width="13.3" height="14.5" fill="#F29B94"/>
+                        <rect x="28.3" y="55.5" width="13.3" height="14.5" fill="#F29B94"/>
+                        <rect x="15" y="70" width="13.3" height="14.5" fill="#F29B94"/>
+                        <rect x="41.6" y="70" width="13.3" height="14.5" fill="#F29B94"/>
+                        <rect x="28.3" y="84.5" width="13.3" height="14.5" fill="#F29B94"/>
+                    </g>
+                    <line x1="55" y1="40" x2="55" y2="100" stroke="#383431" stroke-width="1.3"/>
+                    <!-- 十字標誌 -->
+                    <path d="M31 59 H39 V66 H46 V74 H39 V81 H31 V74 H24 V66 H31 Z" fill="#D62828" stroke="#B71C1C" stroke-width="0.8"/>
+                    <!-- 右側文字與東亞製藥標誌 -->
+                    <text x="140" y="49" font-size="4.5" fill="#4A4542" text-anchor="end" font-weight="700">DONG-A PHARM.</text>
+                    <text x="63" y="61" font-size="13.5" fill="#D62828" font-family="Noto Serif TC, serif" font-weight="700">acnon</text>
+                    <text x="108" y="61" font-size="5.8" fill="#383431" font-weight="700">CREAM</text>
+                    <text x="63" y="73.5" font-size="8.8" fill="#2B2927" font-weight="700">애크논</text>
+                    <text x="91" y="73.5" font-size="5.8" fill="#555" font-weight="700">크림</text>
+                    <text x="63" y="83" font-size="4.5" fill="#D62828" font-weight="600">Double compound components for acne treatment</text>
+                    <text x="63" y="89" font-size="4.6" fill="#2B2927" font-weight="700">Pimples / Red acne / Pustular acne</text>
+                    <text x="139" y="92" font-size="6.8" fill="#2B2927" text-anchor="end" font-weight="700">13g</text>
                 </svg>`,
                 noscarna: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="80" cy="136" rx="48" ry="5.5" fill="#5C544C" opacity="0.1"/>
-                    <rect x="16" y="42" width="128" height="58" rx="7" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="16" y="42" width="38" height="58" rx="7" fill="#F29C78"/>
-                    <line x1="54" y1="42" x2="54" y2="100" stroke="#383431" stroke-width="1.2"/>
-                    <path d="M31 61 H39 V67 H45 V75 H39 V81 H31 V75 H25 V67 H31 Z" fill="#D83A22"/>
-                    <text x="62" y="62" font-size="12" fill="#2B2927" font-family="Noto Serif TC, serif" font-weight="700">noscarna</text>
-                    <text x="118" y="62" font-size="6.5" fill="#383431" font-weight="700">GEL</text>
-                    <text x="62" y="75" font-size="9" fill="#383431" font-weight="700">노스카나 겔</text>
-                    <text x="62" y="88" font-size="5.2" fill="#D83A22" font-weight="600">Acne scar / Surgical scar / Keloid scar</text>
-                    <text x="126" y="90" font-size="7" fill="#383431" font-weight="700">20g</text>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="136" rx="52" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <path d="M14 100 L146 100 L142 106 L18 106 Z" fill="#E0DBD3" stroke="#383431" stroke-width="1.2"/>
+                    <rect x="14" y="40" width="132" height="60" rx="5" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <!-- 左側經典橘色方格紋 -->
+                    <g>
+                        <rect x="15" y="41" width="40" height="58" rx="4" fill="#FAD7C5"/>
+                        <rect x="15" y="41" width="13.3" height="14.5" fill="#F29C78"/>
+                        <rect x="41.6" y="41" width="13.3" height="14.5" fill="#F29C78"/>
+                        <rect x="28.3" y="55.5" width="13.3" height="14.5" fill="#F29C78"/>
+                        <rect x="15" y="70" width="13.3" height="14.5" fill="#F29C78"/>
+                        <rect x="41.6" y="70" width="13.3" height="14.5" fill="#F29C78"/>
+                        <rect x="28.3" y="84.5" width="13.3" height="14.5" fill="#F29C78"/>
+                    </g>
+                    <line x1="55" y1="40" x2="55" y2="100" stroke="#383431" stroke-width="1.3"/>
+                    <path d="M31 59 H39 V66 H46 V74 H39 V81 H31 V74 H24 V66 H31 Z" fill="#D83A22" stroke="#BF2C15" stroke-width="0.8"/>
+                    <text x="140" y="49" font-size="4.5" fill="#4A4542" text-anchor="end" font-weight="700">DONG-A PHARM.</text>
+                    <text x="62" y="61" font-size="12.5" fill="#2B2927" font-family="Noto Serif TC, serif" font-weight="700">noscarna</text>
+                    <text x="119" y="61" font-size="5.8" fill="#383431" font-weight="700">GEL</text>
+                    <text x="62" y="73.5" font-size="8.8" fill="#2B2927" font-weight="700">노스카나</text>
+                    <text x="97" y="73.5" font-size="5.8" fill="#555" font-weight="700">겔</text>
+                    <text x="62" y="83" font-size="4.4" fill="#D83A22" font-weight="600">Heparin Sodium · Allantoin · Dexpanthenol</text>
+                    <text x="62" y="89" font-size="4.4" fill="#2B2927" font-weight="700">Acne scar / Surgical scar / Keloid scar</text>
+                    <text x="139" y="92" font-size="6.8" fill="#2B2927" text-anchor="end" font-weight="700">20g</text>
                 </svg>`,
                 aclean: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="80" cy="136" rx="48" ry="5.5" fill="#5C544C" opacity="0.1"/>
-                    <rect x="16" y="42" width="128" height="58" rx="7" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="16" y="42" width="38" height="58" rx="7" fill="#81C79B"/>
-                    <line x1="54" y1="42" x2="54" y2="100" stroke="#383431" stroke-width="1.2"/>
-                    <path d="M31 61 H39 V67 H45 V75 H39 V81 H31 V75 H25 V67 H31 Z" fill="#157A3C"/>
-                    <text x="63" y="62" font-size="12.5" fill="#157A3C" font-family="Noto Serif TC, serif" font-weight="700">aclean</text>
-                    <text x="108" y="62" font-size="6.5" fill="#383431" font-weight="700">GEL</text>
-                    <text x="63" y="75" font-size="9" fill="#383431" font-weight="700">애크린 겔</text>
-                    <text x="63" y="88" font-size="5.1" fill="#157A3C" font-weight="600">Blackheads / Whiteheads / Salicylic Acid 2%</text>
-                    <text x="126" y="90" font-size="7" fill="#383431" font-weight="700">20g</text>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="136" rx="52" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <path d="M14 100 L146 100 L142 106 L18 106 Z" fill="#E0DBD3" stroke="#383431" stroke-width="1.2"/>
+                    <rect x="14" y="40" width="132" height="60" rx="5" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <!-- 左側經典薄荷綠方格紋 -->
+                    <g>
+                        <rect x="15" y="41" width="40" height="58" rx="4" fill="#C8EAD6"/>
+                        <rect x="15" y="41" width="13.3" height="14.5" fill="#75C295"/>
+                        <rect x="41.6" y="41" width="13.3" height="14.5" fill="#75C295"/>
+                        <rect x="28.3" y="55.5" width="13.3" height="14.5" fill="#75C295"/>
+                        <rect x="15" y="70" width="13.3" height="14.5" fill="#75C295"/>
+                        <rect x="41.6" y="70" width="13.3" height="14.5" fill="#75C295"/>
+                        <rect x="28.3" y="84.5" width="13.3" height="14.5" fill="#75C295"/>
+                    </g>
+                    <line x1="55" y1="40" x2="55" y2="100" stroke="#383431" stroke-width="1.3"/>
+                    <path d="M31 59 H39 V66 H46 V74 H39 V81 H31 V74 H24 V66 H31 Z" fill="#0E6B32" stroke="#084E23" stroke-width="0.8"/>
+                    <text x="140" y="49" font-size="4.5" fill="#4A4542" text-anchor="end" font-weight="700">DONG-A PHARM.</text>
+                    <text x="63" y="61" font-size="13" fill="#0E6B32" font-family="Noto Serif TC, serif" font-weight="700">aclean</text>
+                    <text x="108" y="61" font-size="5.8" fill="#383431" font-weight="700">GEL</text>
+                    <text x="63" y="73.5" font-size="8.8" fill="#2B2927" font-weight="700">애크린</text>
+                    <text x="90" y="73.5" font-size="5.8" fill="#555" font-weight="700">겔</text>
+                    <text x="63" y="83" font-size="4.4" fill="#0E6B32" font-weight="600">Salicylic Acid 2% active ingredient for acne</text>
+                    <text x="63" y="89" font-size="4.4" fill="#2B2927" font-weight="700">Comedonal acne / Blackheads / Whiteheads</text>
+                    <text x="139" y="92" font-size="6.8" fill="#2B2927" text-anchor="end" font-weight="700">20g</text>
                 </svg>`,
                 noscardin: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="80" cy="136" rx="48" ry="5.5" fill="#5C544C" opacity="0.1"/>
-                    <rect x="16" y="42" width="128" height="58" rx="7" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="16" y="42" width="38" height="58" rx="7" fill="#A9D84B"/>
-                    <line x1="54" y1="42" x2="54" y2="100" stroke="#383431" stroke-width="1.2"/>
-                    <path d="M31 61 H39 V67 H45 V75 H39 V81 H31 V75 H25 V67 H31 Z" fill="#2A7B2E"/>
-                    <text x="62" y="62" font-size="11.5" fill="#2A7B2E" font-family="Noto Serif TC, serif" font-weight="700">noscardin</text>
-                    <text x="118" y="62" font-size="6.5" fill="#383431" font-weight="700">GEL</text>
-                    <text x="62" y="75" font-size="9" fill="#383431" font-weight="700">노스카딘 겔</text>
-                    <text x="62" y="88" font-size="5.2" fill="#2A7B2E" font-weight="600">Post-acne wounds / Fusidic acid 2%</text>
-                    <text x="126" y="90" font-size="7" fill="#383431" font-weight="700">18g</text>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="136" rx="52" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <path d="M14 100 L146 100 L142 106 L18 106 Z" fill="#E0DBD3" stroke="#383431" stroke-width="1.2"/>
+                    <rect x="14" y="40" width="132" height="60" rx="5" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <!-- 左側經典萊姆綠方格紋 -->
+                    <g>
+                        <rect x="15" y="41" width="40" height="58" rx="4" fill="#E2F2BA"/>
+                        <rect x="15" y="41" width="13.3" height="14.5" fill="#A9D84B"/>
+                        <rect x="41.6" y="41" width="13.3" height="14.5" fill="#A9D84B"/>
+                        <rect x="28.3" y="55.5" width="13.3" height="14.5" fill="#A9D84B"/>
+                        <rect x="15" y="70" width="13.3" height="14.5" fill="#A9D84B"/>
+                        <rect x="41.6" y="70" width="13.3" height="14.5" fill="#A9D84B"/>
+                        <rect x="28.3" y="84.5" width="13.3" height="14.5" fill="#A9D84B"/>
+                    </g>
+                    <line x1="55" y1="40" x2="55" y2="100" stroke="#383431" stroke-width="1.3"/>
+                    <path d="M31 59 H39 V66 H46 V74 H39 V81 H31 V74 H24 V66 H31 Z" fill="#2A7B2E" stroke="#1E5D21" stroke-width="0.8"/>
+                    <text x="140" y="49" font-size="4.5" fill="#4A4542" text-anchor="end" font-weight="700">DONG-A PHARM.</text>
+                    <text x="62" y="61" font-size="12" fill="#2A7B2E" font-family="Noto Serif TC, serif" font-weight="700">noscardin</text>
+                    <text x="119" y="61" font-size="5.8" fill="#383431" font-weight="700">GEL</text>
+                    <text x="62" y="73.5" font-size="8.8" fill="#2B2927" font-weight="700">노스카딘</text>
+                    <text x="97" y="73.5" font-size="5.8" fill="#555" font-weight="700">겔</text>
+                    <text x="62" y="83" font-size="4.4" fill="#2A7B2E" font-weight="600">2% Fusidic acid treats post acne &amp; wounds</text>
+                    <text x="62" y="89" font-size="4.4" fill="#2B2927" font-weight="700">Secondary infections caused by post acne</text>
+                    <text x="139" y="92" font-size="6.8" fill="#2B2927" text-anchor="end" font-weight="700">18g</text>
                 </svg>`,
                 antiphlamine: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="82" cy="138" rx="46" ry="5.5" fill="#5C544C" opacity="0.1"/>
-                    <!-- 左側瓶身與滾輪 -->
-                    <rect x="44" y="20" width="22" height="15" rx="3" fill="#F3EFEA" stroke="#383431" stroke-width="1.4"/>
-                    <rect x="36" y="34" width="38" height="92" rx="9" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="74" y="48" width="6.5" height="66" rx="3" fill="#E0DBD3" stroke="#383431" stroke-width="1.3"/>
-                    <rect x="42" y="50" width="26" height="64" rx="4" fill="#D62828"/>
-                    <text x="55" y="79" font-size="5.8" fill="#FFFFFF" text-anchor="middle" font-weight="700">안티푸라민</text>
-                    <text x="55" y="90" font-size="5.5" fill="#FFE082" text-anchor="middle" font-weight="700">消炎·止痛</text>
-                    <!-- 右側紅盒 -->
-                    <rect x="86" y="24" width="48" height="102" rx="4" fill="#D62828" stroke="#383431" stroke-width="1.5"/>
-                    <circle cx="102" cy="44" r="8" fill="#FFFFFF"/>
-                    <text x="110" y="68" font-size="8" fill="#FFFFFF" text-anchor="middle" font-weight="700">안티푸라민</text>
-                    <text x="110" y="79" font-size="6" fill="#FFE082" text-anchor="middle" font-weight="700">에스 로션 (100ml)</text>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="82" cy="138" rx="48" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 左側白色滾輪乳液瓶 -->
+                    <rect x="40" y="18" width="21" height="15" rx="2.5" fill="#F5F3EF" stroke="#383431" stroke-width="1.4"/>
+                    <line x1="45" y1="18" x2="45" y2="33" stroke="#D0C9C0" stroke-width="1"/>
+                    <line x1="50" y1="18" x2="50" y2="33" stroke="#D0C9C0" stroke-width="1"/>
+                    <line x1="55" y1="18" x2="55" y2="33" stroke="#D0C9C0" stroke-width="1"/>
+                    <path d="M32 33 Q50.5 31 69 33 L71 124 Q50.5 127 30 124 Z" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <!-- 側邊金屬按摩滾輪器 -->
+                    <path d="M70 46 L77 49 L77 115 L70 118 Z" fill="#E6E2DC" stroke="#383431" stroke-width="1.3"/>
+                    <rect x="75" y="56" width="3" height="50" rx="1.5" fill="#B0B5B8"/>
+                    <!-- 瓶身紅標 -->
+                    <rect x="36" y="47" width="29" height="68" rx="4" fill="#D62828"/>
+                    <circle cx="44" cy="56" r="5" fill="#FFFFFF" stroke="#383431" stroke-width="0.8"/>
+                    <text x="50.5" y="71" font-size="5.6" fill="#FFFFFF" text-anchor="middle" font-weight="700">안티푸라민</text>
+                    <text x="50.5" y="82" font-size="4.5" fill="#FFE082" text-anchor="middle" font-weight="600">筋肉痛·關節痛</text>
+                    <path d="M51 86 L65 86 L65 115 L44 115 Z" fill="#B0BEC5" opacity="0.45"/>
+                    <!-- 右側外盒（含孫興慜剪影細節） -->
+                    <rect x="84" y="20" width="52" height="106" rx="3.5" fill="#D62828" stroke="#383431" stroke-width="1.5"/>
+                    <circle cx="96" cy="36" r="7.5" fill="#FFFFFF" stroke="#383431" stroke-width="1"/>
+                    <circle cx="96" cy="36" r="5" fill="none" stroke="#D62828" stroke-width="0.8"/>
+                    <text x="118" y="33" font-size="4.8" fill="#FFFFFF" text-anchor="middle" font-weight="700">유한양행</text>
+                    <text x="110" y="55" font-size="8.2" fill="#FFFFFF" text-anchor="middle" font-weight="700">안티푸라민</text>
+                    <text x="110" y="64" font-size="5.5" fill="#FFE082" text-anchor="middle" font-weight="700">에스 로션 100ml</text>
+                    <!-- 代言人白色球衣造型插畫 -->
+                    <circle cx="118" cy="79" r="6.5" fill="#FAD7B8" stroke="#383431" stroke-width="1.1"/>
+                    <path d="M111 75 Q118 70 125 75" fill="#2B2927"/>
+                    <path d="M105 125 L108 87 Q118 85 128 87 L132 125 Z" fill="#FFFFFF" stroke="#383431" stroke-width="1.1"/>
+                    <text x="124" y="106" font-size="7.5" fill="#2B2927" font-weight="700">7</text>
+                    <text x="90" y="100" font-size="6.5" fill="#FFFFFF" font-weight="700" transform="rotate(90, 90, 100)">Antiphlamine</text>
                 </svg>`,
                 daisopad: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="80" cy="138" rx="44" ry="5.5" fill="#5C544C" opacity="0.1"/>
-                    <rect x="38" y="18" width="84" height="108" rx="9" fill="#9CCC65" stroke="#383431" stroke-width="1.5"/>
-                    <line x1="38" y1="30" x2="122" y2="30" stroke="#7CB342" stroke-width="1.2" stroke-dasharray="3 2"/>
-                    <text x="80" y="45" font-size="7.5" fill="#1B5E20" text-anchor="middle" font-weight="700">화잘먹</text>
-                    <text x="80" y="57" font-size="9" fill="#FFFFFF" text-anchor="middle" font-weight="700">바다포도 스킨팩</text>
-                    <circle cx="78" cy="88" r="24" fill="#F9FBE7" stroke="#689F38" stroke-width="1.3"/>
-                    <circle cx="94" cy="78" r="4.5" fill="#7CB342"/><circle cx="101" cy="84" r="4.5" fill="#8BC34A"/><circle cx="93" cy="87" r="4.5" fill="#558B2F"/><circle cx="100" cy="93" r="4" fill="#689F38"/>
-                    <text x="75" y="91" font-size="7.5" fill="#33691E" text-anchor="middle" font-weight="700">海葡萄棉片</text>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="138" rx="46" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 夾鏈袋包裝 -->
+                    <path d="M35 16 L125 16 L129 126 Q80 130 31 126 Z" fill="#9CCC65" stroke="#383431" stroke-width="1.5"/>
+                    <line x1="35" y1="28" x2="125" y2="28" stroke="#689F38" stroke-width="1.2" stroke-dasharray="3 2"/>
+                    <circle cx="80" cy="22" r="3" fill="#FCFAF2" stroke="#383431" stroke-width="1"/>
+                    <!-- 標籤與字樣 -->
+                    <text x="54" y="42" font-size="8" fill="#1B5E20" text-anchor="middle" font-weight="700">화잘먹</text>
+                    <text x="110" y="41" font-size="5.5" fill="#1B5E20" text-anchor="middle" font-weight="700">₩5,000</text>
+                    <text x="80" y="55" font-size="9.2" fill="#FFFFFF" text-anchor="middle" font-weight="700">바다포도 스킨팩</text>
+                    <!-- 中央棉片與海葡萄串 -->
+                    <circle cx="76" cy="89" r="25" fill="#FFFFFF" stroke="#7CB342" stroke-width="1.4"/>
+                    <rect x="64" y="72" width="24" height="5.5" rx="2.5" fill="#689F38"/>
+                    <text x="76" y="76" font-size="3.8" fill="#FFFFFF" text-anchor="middle" font-weight="700">수분진정</text>
+                    <text x="76" y="88" font-size="6.5" fill="#33691E" text-anchor="middle" font-weight="700">바다포도 스킨팩</text>
+                    <text x="76" y="97" font-size="4.8" fill="#689F38" text-anchor="middle" font-weight="600">60 Pads · 保濕服貼</text>
+                    <!-- 右側立體海葡萄串 -->
+                    <g fill="#7CB342" stroke="#33691E" stroke-width="0.9">
+                        <circle cx="98" cy="75" r="4"/><circle cx="105" cy="79" r="4.2"/><circle cx="96" cy="83" r="4.2"/>
+                        <circle cx="103" cy="87" r="4.2"/><circle cx="110" cy="85" r="3.8"/><circle cx="99" cy="94" r="3.8"/>
+                        <circle cx="106" cy="94" r="3.5"/>
+                    </g>
                 </svg>`,
                 madeca21: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="80" cy="138" rx="44" ry="5.5" fill="#5C544C" opacity="0.1"/>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="138" rx="46" ry="5.5" fill="#5C544C" opacity="0.12"/>
                     <!-- 左側外盒 -->
-                    <rect x="38" y="20" width="38" height="106" rx="4" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="38" y="88" width="38" height="38" rx="2" fill="#98E2C6"/>
-                    <line x1="41" y1="20" x2="41" y2="88" stroke="#E65100" stroke-width="2.5"/>
-                    <text x="58" y="44" font-size="6.8" fill="#2B2927" text-anchor="middle" font-weight="700">Madeca 21</text>
-                    <text x="58" y="64" font-size="5" fill="#1B5E20" text-anchor="middle" font-weight="700">TECA SOLUTION</text>
-                    <!-- 右側噴霧瓶 -->
-                    <rect x="92" y="22" width="16" height="20" rx="3" fill="#F5F5F5" stroke="#383431" stroke-width="1.4"/>
-                    <rect x="82" y="42" width="36" height="84" rx="8" fill="#1B6CA8" fill-opacity="0" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="82" y="42" width="36" height="84" rx="8" fill="#1E7E5C" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="82" y="55" width="36" height="50" fill="#FFFFFF"/>
-                    <text x="100" y="75" font-size="6.8" fill="#1E7E5C" text-anchor="middle" font-weight="700">Madeca 21</text>
-                    <text x="100" y="86" font-size="5" fill="#383431" text-anchor="middle" font-weight="600">Mist Toner</text>
+                    <rect x="34" y="18" width="42" height="108" rx="3.5" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="34" y="18" width="42" height="6" fill="#0F6B4A"/>
+                    <rect x="34" y="86" width="42" height="40" rx="2" fill="#98E2C6"/>
+                    <line x1="37" y1="24" x2="37" y2="86" stroke="#E65100" stroke-width="2.8"/>
+                    <text x="56" y="44" font-size="7.2" fill="#2B2927" text-anchor="middle" font-weight="700">Madeca 21</text>
+                    <text x="56" y="61" font-size="4.8" fill="#0F6B4A" text-anchor="middle" font-weight="700">TECA SOLUTION</text>
+                    <text x="56" y="69" font-size="4.5" fill="#4A4542" text-anchor="middle" font-weight="600">Soothing</text>
+                    <text x="56" y="75" font-size="4.5" fill="#4A4542" text-anchor="middle" font-weight="600">Mist Toner</text>
+                    <!-- 右側噴霧瓶與透明蓋 -->
+                    <rect x="92" y="18" width="20" height="24" rx="3" fill="#F4F7F6" stroke="#383431" stroke-width="1.3"/>
+                    <rect x="95" y="23" width="14" height="9" rx="1.5" fill="#FFFFFF" stroke="#B0B5B8" stroke-width="1"/>
+                    <rect x="93" y="32" width="18" height="10" fill="#ECEFF1" stroke="#383431" stroke-width="1"/>
+                    <rect x="83" y="42" width="38" height="84" rx="8" fill="#167956" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="83" y="52" width="38" height="56" fill="#FFFFFF"/>
+                    <rect x="83" y="84" width="38" height="24" fill="#A3E6CC"/>
+                    <text x="102" y="66" font-size="7" fill="#2B2927" text-anchor="middle" font-weight="700">Madeca 21</text>
+                    <text x="102" y="75" font-size="4.6" fill="#0F6B4A" text-anchor="middle" font-weight="700">TECA SOLUTION</text>
+                    <text x="102" y="81" font-size="4.2" fill="#4A4542" text-anchor="middle" font-weight="600">Mist Toner</text>
                 </svg>`,
                 daisocloth: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="80" cy="138" rx="46" ry="5.5" fill="#5C544C" opacity="0.1"/>
-                    <rect x="34" y="18" width="92" height="108" rx="6" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
-                    <rect x="40" y="34" width="80" height="26" rx="4" fill="#FAF8F5" stroke="#D8D0C5" stroke-width="1.2"/>
-                    <rect x="40" y="63" width="80" height="26" rx="4" fill="#AFCBE0" stroke="#8FAEC7" stroke-width="1.2"/>
-                    <rect x="40" y="92" width="80" height="26" rx="4" fill="#CFCBC4" stroke="#B2ADA4" stroke-width="1.2"/>
-                    <rect x="60" y="30" width="40" height="92" fill="#FFFFFF" stroke="#E0DAD0" stroke-width="1.2"/>
-                    <text x="80" y="52" font-size="8.5" fill="#2B2927" text-anchor="middle" font-weight="700">극세사행주</text>
-                    <text x="80" y="64" font-size="5.5" fill="#D94E36" text-anchor="middle" font-weight="600">32cm × 32cm</text>
-                    <text x="80" y="108" font-size="10" fill="#2B2927" text-anchor="middle" font-weight="700">3매입</text>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="138" rx="48" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 外層透明包裝袋 -->
+                    <rect x="30" y="14" width="100" height="114" rx="5" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <circle cx="80" cy="21" r="3.2" fill="#ECEFF4" stroke="#383431" stroke-width="1"/>
+                    <text x="45" y="25" font-size="6.2" fill="#383431" font-weight="700">3매입 32×32cm</text>
+                    <text x="112" y="25" font-size="6.2" fill="#2B2927" text-anchor="end" font-weight="700">₩1,000</text>
+                    <!-- 三色超細纖維抹布 -->
+                    <rect x="36" y="31" width="88" height="29" rx="4" fill="#FAF8F5" stroke="#D5CEC2" stroke-width="1.2"/>
+                    <rect x="36" y="62" width="88" height="29" rx="4" fill="#B3CEE2" stroke="#89ACC7" stroke-width="1.2"/>
+                    <rect x="36" y="93" width="88" height="29" rx="4" fill="#CCC8C1" stroke="#ABA69E" stroke-width="1.2"/>
+                    <!-- 中央腰封說明卡 -->
+                    <rect x="57" y="31" width="46" height="91" fill="#FFFFFF" stroke="#D8D0C5" stroke-width="1.2"/>
+                    <text x="80" y="42" font-size="4.8" fill="#6E655F" text-anchor="middle" font-weight="600">Dishcloth</text>
+                    <text x="80" y="53" font-size="8.2" fill="#2B2927" text-anchor="middle" font-weight="700">극세사행주</text>
+                    <!-- 腰封擦桌子插圖 -->
+                    <rect x="61" y="64" width="38" height="24" rx="2" fill="#D7B38C"/>
+                    <path d="M68 79 L84 74 L91 79 L75 84 Z" fill="#6C9BC2" stroke="#383431" stroke-width="0.8"/>
+                    <circle cx="96" cy="88" r="7" fill="#D94E36" stroke="#FFF" stroke-width="1"/>
+                    <text x="96" y="90" font-size="3.8" fill="#FFF" text-anchor="middle" font-weight="700">超吸水</text>
+                    <rect x="62" y="97" width="14" height="14" fill="none" stroke="#383431" stroke-width="0.9"/>
+                    <text x="69" y="106" font-size="4" fill="#383431" text-anchor="middle">32cm</text>
+                    <text x="90" y="110" font-size="9.5" fill="#2B2927" text-anchor="middle" font-weight="700">3매입</text>
                 </svg>`,
                 daisohand: `<svg viewBox="0 0 160 150">
-                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.45"/>
-                    <ellipse cx="80" cy="138" rx="44" ry="5.5" fill="#5C544C" opacity="0.1"/>
-                    <rect x="36" y="16" width="88" height="110" rx="6" fill="#BCE0E8" stroke="#383431" stroke-width="1.5"/>
-                    <circle cx="80" cy="26" r="4" fill="#FCFAF2" stroke="#383431" stroke-width="1.2"/>
-                    <path d="M48 64 Q76 46 110 56 Q96 76 56 78 Z" fill="#FAE5D3" stroke="#C59B7D" stroke-width="1.3"/>
-                    <rect x="36" y="88" width="88" height="38" rx="4" fill="#FFFFFF" stroke="#383431" stroke-width="1.2"/>
-                    <text x="80" y="103" font-size="8.5" fill="#125B70" text-anchor="middle" font-weight="700">꿀광보습 핸드케어 팩</text>
-                    <text x="80" y="116" font-size="6.2" fill="#5C544C" text-anchor="middle" font-weight="600">Propolis &amp; Collagen · 20 min</text>
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="138" rx="46" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <rect x="34" y="14" width="92" height="114" rx="5" fill="#BCE0E8" stroke="#383431" stroke-width="1.5"/>
+                    <circle cx="80" cy="23" r="3.8" fill="#FCFAF2" stroke="#383431" stroke-width="1.1"/>
+                    <text x="45" y="58" font-size="8.5" fill="#FFFFFF" font-family="Noto Serif TC, serif" font-weight="700" transform="rotate(-90, 45, 58)" opacity="0.85">HAND CARE</text>
+                    <!-- 雙手柔嫩插畫 -->
+                    <path d="M44 50 Q74 38 106 49 Q94 64 52 64 Z" fill="#FCE6D4" stroke="#C59B7D" stroke-width="1.2"/>
+                    <path d="M52 68 Q82 54 116 60 Q100 78 58 80 Z" fill="#FADBC4" stroke="#C59B7D" stroke-width="1.2"/>
+                    <!-- 底部白色資訊框 -->
+                    <rect x="34" y="86" width="92" height="42" rx="3" fill="#FFFFFF" stroke="#383431" stroke-width="1.2"/>
+                    <text x="40" y="98" font-size="7.2" fill="#0E5A70" font-weight="700">꿀광보습</text>
+                    <text x="40" y="108" font-size="8.2" fill="#0E5A70" font-weight="700">핸드케어 팩</text>
+                    <text x="86" y="98" font-size="5.2" fill="#0E5A70" font-weight="700">Moisturizing</text>
+                    <line x1="38" y1="112" x2="122" y2="112" stroke="#BCE0E8" stroke-width="1"/>
+                    <text x="40" y="121" font-size="4.8" fill="#0E5A70" font-weight="700">Propolis &amp; Collagen</text>
+                    <text x="85" y="122" font-size="6.5" fill="#0E5A70" font-weight="700">20m</text>
+                    <text x="112" y="122" font-size="6.5" fill="#0E5A70" font-weight="700">1세트</text>
                 </svg>`,
                 hetras: `<svg viewBox="0 0 160 150">
                     <defs>
@@ -4636,6 +4769,196 @@
                         <text x="69" y="34" font-size="9.5" fill="#FFFFFF" font-weight="700" transform="rotate(90, 69, 34)">Daisy</text>
                         <text x="10" y="75" font-size="4.8" fill="#FFFFFF" font-weight="600">10.58 oz. 300 g</text>
                     </g>
+                </svg>`,
+                milkyshop: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="138" rx="50" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 復古美式奶油色禮盒 -->
+                    <rect x="20" y="24" width="90" height="78" rx="5" fill="#FFFDF7" stroke="#383431" stroke-width="1.5"/>
+                    <rect x="25" y="29" width="80" height="68" rx="3" fill="none" stroke="#1E4D8C" stroke-width="1.2"/>
+                    <!-- 紅藍復古緞帶與牛奶瓶標誌 -->
+                    <rect x="57" y="24" width="16" height="78" fill="#D63B2F" opacity="0.9"/>
+                    <circle cx="65" cy="60" r="20" fill="#FFFDF7" stroke="#1E4D8C" stroke-width="1.4"/>
+                    <text x="65" y="57" font-size="7.5" fill="#1E4D8C" font-family="Noto Serif TC, serif" text-anchor="middle" font-weight="700">MILKY</text>
+                    <text x="65" y="66" font-size="7.2" fill="#D63B2F" font-family="Noto Serif TC, serif" text-anchor="middle" font-weight="700">SHOP</text>
+                    <text x="65" y="73" font-size="4.2" fill="#5C544C" text-anchor="middle" font-weight="600">BUTTER SAND</text>
+                    <!-- 右前方厚實焦糖奶油夾心餅乾 -->
+                    <g transform="translate(76, 72)">
+                        <!-- 下層餅乾 -->
+                        <rect x="4" y="34" width="60" height="12" rx="4" fill="#E3B168" stroke="#383431" stroke-width="1.4"/>
+                        <!-- 厚實奶油與焦糖流心夾層 -->
+                        <rect x="7" y="20" width="54" height="15" rx="3" fill="#FFF8E1" stroke="#383431" stroke-width="1.3"/>
+                        <path d="M 18 20 Q 26 30 34 26 Q 42 32 48 20 Z" fill="#C87528"/>
+                        <!-- 上層壓紋酥餅 -->
+                        <rect x="4" y="8" width="60" height="13" rx="4" fill="#EAC07D" stroke="#383431" stroke-width="1.4"/>
+                        <rect x="10" y="10.5" width="48" height="8" rx="2" fill="none" stroke="#B5833E" stroke-width="0.9" stroke-dasharray="2 1.5"/>
+                        <text x="34" y="16.5" font-size="5.2" fill="#8C581C" text-anchor="middle" font-weight="700">MILKY SHOP</text>
+                    </g>
+                </svg>`,
+                yegamdip: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="138" rx="50" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 六角柱紙盒 (好麗友 찍먹 예감) -->
+                    <g transform="translate(22, 14) rotate(-8)">
+                        <rect x="8" y="8" width="56" height="110" rx="5" fill="#184332" stroke="#383431" stroke-width="1.5"/>
+                        <path d="M8 8 L64 8 L64 52 Q36 62 8 52 Z" fill="#FAF6EE" stroke="#383431" stroke-width="1.4"/>
+                        <rect x="24" y="8" width="24" height="7" rx="2" fill="#D62828"/>
+                        <text x="36" y="13.5" font-size="4.5" fill="#FFF" text-anchor="middle" font-weight="700">오리온</text>
+                        <text x="36" y="31" font-size="14" fill="#F5B700" stroke="#7A2E0E" stroke-width="1" text-anchor="middle" font-weight="700">찍먹</text>
+                        <text x="36" y="47" font-size="13" fill="#D62828" stroke="#383431" stroke-width="0.8" text-anchor="middle" font-weight="700">예감</text>
+                        <text x="36" y="68" font-size="6.8" fill="#DCE775" text-anchor="middle" font-weight="700">갈릭청양마요</text>
+                        <text x="36" y="77" font-size="5.8" fill="#FFFFFF" text-anchor="middle" font-weight="700">소스맛</text>
+                        <!-- 盒上波浪洋芋片與青陽辣椒沾醬圖 -->
+                        <ellipse cx="36" cy="96" rx="20" ry="12" fill="#F2C15A" stroke="#C68B2C" stroke-width="1"/>
+                        <path d="M18 96 Q26 88 38 96" fill="#FFF8E1"/>
+                    </g>
+                    <!-- 右上波浪沾醬洋芋片 -->
+                    <g transform="translate(96, 32)">
+                        <circle cx="22" cy="22" r="19" fill="#F5CA69" stroke="#383431" stroke-width="1.4"/>
+                        <line x1="8" y1="14" x2="36" y2="14" stroke="#D9A33F" stroke-width="1.1"/>
+                        <line x1="6" y1="20" x2="38" y2="20" stroke="#D9A33F" stroke-width="1.1"/>
+                        <line x1="6" y1="26" x2="38" y2="26" stroke="#D9A33F" stroke-width="1.1"/>
+                        <line x1="9" y1="32" x2="35" y2="32" stroke="#D9A33F" stroke-width="1.1"/>
+                        <!-- 沾上的奶油美乃滋醬 -->
+                        <path d="M 4 16 A 19 19 0 0 1 28 4 Q 24 22 10 34 A 19 19 0 0 1 4 16 Z" fill="#FFFDF5" stroke="#D8D0C5" stroke-width="1"/>
+                    </g>
+                    <!-- 右下獨立沾醬小盒 -->
+                    <g transform="translate(88, 86)">
+                        <rect x="2" y="4" width="48" height="36" rx="7" fill="#F3F7EC" stroke="#383431" stroke-width="1.4"/>
+                        <rect x="6" y="8" width="40" height="28" rx="4" fill="#FFFFFF" stroke="#C5D6B8" stroke-width="1"/>
+                        <text x="26" y="20" font-size="7.2" fill="#D62828" text-anchor="middle" font-weight="700">찍먹 예감</text>
+                        <text x="26" y="29" font-size="5" fill="#184332" text-anchor="middle" font-weight="700">갈릭청양마요</text>
+                    </g>
+                </svg>`,
+                arihnoodle: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="138" rx="52" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 左後方紅色包裝 (海苔超辣) -->
+                    <g transform="translate(14, 28) rotate(-6)">
+                        <rect x="0" y="0" width="48" height="62" rx="4" fill="#C92A2A" stroke="#383431" stroke-width="1.3"/>
+                        <text x="24" y="23" font-size="10" fill="#FCE8E6" text-anchor="middle" font-weight="700">ARIH</text>
+                        <circle cx="24" cy="40" r="9" fill="#FF8787"/>
+                    </g>
+                    <!-- 右後方綠色包裝 (經典海苔) -->
+                    <g transform="translate(96, 26) rotate(6)">
+                        <rect x="0" y="0" width="48" height="62" rx="4" fill="#4C9540" stroke="#383431" stroke-width="1.3"/>
+                        <text x="24" y="23" font-size="10" fill="#EBFBEE" text-anchor="middle" font-weight="700">ARIH</text>
+                        <circle cx="24" cy="40" r="9" fill="#A9E34B"/>
+                    </g>
+                    <!-- 正中央主打奶油/松露方形包裝 -->
+                    <g transform="translate(42, 22)">
+                        <rect x="0" y="0" width="76" height="100" rx="5" fill="#F7EFE2" stroke="#383431" stroke-width="1.5"/>
+                        <rect x="0" y="0" width="76" height="8" rx="2" fill="#D5C4AC"/>
+                        <text x="38" y="20" font-size="6.2" fill="#4A3222" text-anchor="middle" font-weight="700">아리</text>
+                        <text x="38" y="36" font-size="16" fill="#4A3222" text-anchor="middle" font-weight="700" letter-spacing="1">ARIH</text>
+                        <!-- 叉子捲起Q彈拌麵插圖 -->
+                        <line x1="38" y1="68" x2="38" y2="86" stroke="#7D756D" stroke-width="2.2"/>
+                        <ellipse cx="38" cy="54" rx="14" ry="8" fill="#D9722B" stroke="#7A360D" stroke-width="1.2"/>
+                        <path d="M26 51 Q38 45 50 51 M25 55 Q38 50 51 55 M27 59 Q38 54 49 59" fill="none" stroke="#F7B76D" stroke-width="2" stroke-linecap="round"/>
+                        <!-- 奶油塊與松露點綴 -->
+                        <rect x="52" y="64" width="8" height="7" rx="1" fill="#FFE066" stroke="#383431" stroke-width="0.9"/>
+                        <circle cx="22" cy="66" r="4.5" fill="#3B2F2F"/>
+                        <text x="38" y="83" font-size="5.2" fill="#4A3222" text-anchor="middle" font-weight="700">MODERN NOODLE</text>
+                        <rect x="14" y="87" width="48" height="8" rx="2" fill="#4A3222"/>
+                        <text x="38" y="93" font-size="4.8" fill="#FFF" text-anchor="middle" font-weight="700">7種風味 · 現代拌麵</text>
+                    </g>
+                </svg>`,
+                ottogisesame: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="139" rx="44" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 左上方黃色防漏瓶蓋 -->
+                    <rect x="48" y="10" width="22" height="16" rx="3" fill="#FFF000" stroke="#383431" stroke-width="1.4"/>
+                    <line x1="48" y1="15" x2="70" y2="15" stroke="#D4B800" stroke-width="1.1"/>
+                    <!-- 鐵罐主體 -->
+                    <rect x="42" y="25" width="76" height="106" rx="4" fill="#FDE021" stroke="#383431" stroke-width="1.5"/>
+                    <!-- 頂部與底部紅條 -->
+                    <rect x="42" y="26" width="76" height="14" rx="2" fill="#C92A2A"/>
+                    <text x="80" y="35.5" font-size="5.6" fill="#FFFFFF" text-anchor="middle" font-weight="700">100% <tspan fill="#FFF000">통참깨</tspan>만 사용한</text>
+                    <rect x="42" y="117" width="76" height="13" rx="2" fill="#C92A2A"/>
+                    <text x="80" y="125.5" font-size="5" fill="#FFFFFF" text-anchor="middle" font-weight="700">양조절이 가능한 <tspan fill="#FFF000">안심캡</tspan> 사용!</text>
+                    <!-- 不倒翁經典紅色微笑標誌 -->
+                    <path d="M 80 44 C 72 44 68 50 68 56 C 68 63 73 68 80 68 C 87 68 92 63 92 56 C 92 50 88 44 80 44 Z" fill="#C92A2A" stroke="#FFFFFF" stroke-width="1.6"/>
+                    <circle cx="80" cy="51" r="4" fill="#FFFFFF"/>
+                    <text x="80" y="62.5" font-size="6.8" fill="#FFFFFF" text-anchor="middle" font-weight="700">오뚜기</text>
+                    <!-- 品名：고소한 참기름 -->
+                    <text x="80" y="75" font-size="5" fill="#2B2927" text-anchor="middle" font-weight="700">세계일류상품</text>
+                    <text x="80" y="89" font-size="13" fill="#D62828" stroke="#FFFFFF" stroke-width="0.9" text-anchor="middle" font-weight="700">고소한</text>
+                    <text x="80" y="106" font-size="16.5" fill="#4A3520" stroke="#FFF6B3" stroke-width="0.7" text-anchor="middle" font-weight="700">참기름</text>
+                    <text x="80" y="114.5" font-size="4.6" fill="#2B2927" text-anchor="middle" font-weight="700">OTTOGI SESAME OIL 500ml</text>
+                    <!-- 金屬上下邊框 -->
+                    <line x1="40" y1="25" x2="120" y2="25" stroke="#B89B5E" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="40" y1="131" x2="120" y2="131" stroke="#B89B5E" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>`,
+                daisomold: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="139" rx="40" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 白色噴頭蓋 -->
+                    <path d="M58 12 L98 12 Q102 12 102 17 L102 32 L62 32 L62 21 L58 21 Z" fill="#FFFFFF" stroke="#383431" stroke-width="1.5"/>
+                    <!-- 藍白高壓氣壓罐身 -->
+                    <rect x="62" y="32" width="40" height="98" rx="4" fill="#E3F2FD" stroke="#383431" stroke-width="1.5"/>
+                    <!-- 泡沫與磁磚背景視覺 -->
+                    <circle cx="92" cy="54" r="10" fill="#81D4FA" opacity="0.55"/>
+                    <circle cx="72" cy="64" r="12" fill="#4FC3F7" opacity="0.45"/>
+                    <text x="82" y="42" font-size="4.2" fill="#0D47A1" text-anchor="middle" font-weight="700">컬러로 확인하는</text>
+                    <text x="82" y="48.5" font-size="5.5" fill="#FFF000" stroke="#0D47A1" stroke-width="0.6" text-anchor="middle" font-weight="700">세정효과!</text>
+                    <!-- 核心品名：폼타입 크리너 -->
+                    <text x="82" y="63" font-size="10.5" fill="#FFEE58" stroke="#0D47A1" stroke-width="0.9" text-anchor="middle" font-weight="700">폼타입</text>
+                    <text x="82" y="75" font-size="11.5" fill="#FFFFFF" stroke="#0D47A1" stroke-width="1" text-anchor="middle" font-weight="700">크리너</text>
+                    <!-- 藍變白泡沫圖示 -->
+                    <circle cx="73" cy="84" r="4.5" fill="#29B6F6" stroke="#0D47A1" stroke-width="0.8"/>
+                    <text x="82" y="86" font-size="5" fill="#0D47A1" text-anchor="middle" font-weight="700">➔</text>
+                    <circle cx="91" cy="84" r="4.5" fill="#FFFFFF" stroke="#0D47A1" stroke-width="0.8"/>
+                    <!-- 藍色斜橫幅 -->
+                    <path d="M62 92 L102 87 L102 102 L62 107 Z" fill="#0277BD"/>
+                    <text x="82" y="98" font-size="4.5" fill="#FFFFFF" text-anchor="middle" font-weight="700">문지르고 닦아내면</text>
+                    <text x="82" y="103.5" font-size="4.8" fill="#FFF59D" text-anchor="middle" font-weight="700">찌든 때가 싹!</text>
+                    <!-- 底部浴廁圖示與容量 -->
+                    <circle cx="72" cy="114" r="4.5" fill="#FFFFFF" stroke="#90CAF9" stroke-width="0.9"/>
+                    <circle cx="82" cy="114" r="4.5" fill="#FFFFFF" stroke="#90CAF9" stroke-width="0.9"/>
+                    <circle cx="92" cy="114" r="4.5" fill="#FFFFFF" stroke="#90CAF9" stroke-width="0.9"/>
+                    <rect x="65" y="121" width="34" height="4.5" rx="2" fill="#D32F2F"/>
+                    <text x="97" y="128.5" font-size="4.5" fill="#2B2927" text-anchor="end" font-weight="700">550ml</text>
+                </svg>`,
+                daisobattery: `<svg viewBox="0 0 160 150">
+                    <circle cx="132" cy="36" r="34" fill="#FFFFFF" opacity="0.5"/>
+                    <ellipse cx="80" cy="139" rx="52" ry="5.5" fill="#5C544C" opacity="0.12"/>
+                    <!-- 左側主包裝盒 (NEOCELL 16入) -->
+                    <g transform="translate(22, 16)">
+                        <!-- 頂部白卡吊頭 -->
+                        <rect x="0" y="0" width="74" height="36" rx="3" fill="#FAF8F5" stroke="#383431" stroke-width="1.5"/>
+                        <circle cx="37" cy="11" r="4.2" fill="#8C827A"/>
+                        <text x="70" y="9" font-size="5.5" fill="#2B2927" text-anchor="end" font-weight="700">₩3,000</text>
+                        <rect x="52" y="11" width="18" height="6" rx="1" fill="#FDE021"/>
+                        <text x="37" y="25" font-size="9.5" fill="#1F1D1B" text-anchor="middle" font-weight="700">NEOCELL</text>
+                        <text x="37" y="33" font-size="6.2" fill="#383431" text-anchor="middle" font-weight="700">알카라인 건전지</text>
+                        <!-- 中段藍黃色塊 (AAA 16개입) -->
+                        <rect x="0" y="36" width="50" height="22" fill="#0D47A1" stroke="#383431" stroke-width="1.4"/>
+                        <text x="25" y="49" font-size="11" fill="#FFFFFF" text-anchor="middle" font-weight="700">AAA</text>
+                        <text x="25" y="56" font-size="5" fill="#BBDEFB" text-anchor="middle" font-weight="600">LR03 1.5V</text>
+                        <rect x="50" y="36" width="24" height="22" fill="#FDE021" stroke="#383431" stroke-width="1.4"/>
+                        <text x="62" y="49" font-size="10.5" fill="#1F1D1B" text-anchor="middle" font-weight="700">16</text>
+                        <text x="62" y="56" font-size="5.5" fill="#1F1D1B" text-anchor="middle" font-weight="700">개입</text>
+                        <!-- 下方藍色透明視窗盒身 -->
+                        <rect x="0" y="58" width="74" height="54" rx="2" fill="#1565C0" stroke="#383431" stroke-width="1.5"/>
+                        <rect x="9" y="65" width="56" height="36" rx="5" fill="#FFFFFF" stroke="#0D47A1" stroke-width="1.2"/>
+                        <!-- 視窗內橫排電池 -->
+                        <line x1="9" y1="77" x2="65" y2="77" stroke="#B0BEC5" stroke-width="1.2"/>
+                        <line x1="9" y1="89" x2="65" y2="89" stroke="#B0BEC5" stroke-width="1.2"/>
+                        <text x="37" y="74" font-size="6.5" fill="#0D47A1" text-anchor="middle" font-weight="700">ALKALINE NEO</text>
+                        <text x="37" y="86" font-size="6.5" fill="#0D47A1" text-anchor="middle" font-weight="700">ALKALINE NEO</text>
+                        <text x="37" y="98" font-size="6.5" fill="#0D47A1" text-anchor="middle" font-weight="700">ALKALINE NEO</text>
+                    </g>
+                    <!-- 右下散落兩顆 NEO 鹼性電池 -->
+                    <g transform="translate(102, 78) rotate(12)">
+                        <rect x="-2" y="4" width="3" height="6" rx="1" fill="#9E9E9E" stroke="#383431" stroke-width="1"/>
+                        <rect x="0" y="0" width="44" height="14" rx="2.5" fill="#F5F5F5" stroke="#383431" stroke-width="1.3"/>
+                        <text x="22" y="10" font-size="6.5" fill="#0D47A1" text-anchor="middle" font-weight="700">ALKALINE NEO</text>
+                    </g>
+                    <g transform="translate(100, 102) rotate(12)">
+                        <rect x="-2" y="4" width="3" height="6" rx="1" fill="#9E9E9E" stroke="#383431" stroke-width="1"/>
+                        <rect x="0" y="0" width="44" height="14" rx="2.5" fill="#F5F5F5" stroke="#383431" stroke-width="1.3"/>
+                        <text x="22" y="10" font-size="6.5" fill="#0D47A1" text-anchor="middle" font-weight="700">ALKALINE NEO</text>
+                    </g>
                 </svg>`
             };
             return illustrations[id] || illustrations.celimax;
@@ -4652,10 +4975,16 @@
             { id: 'madeca21', store: 'Olive young', badge: 'Olive Young', bg: '#E4F4EC', name: 'Madeca 21 積雪草舒緩噴霧', krName: '마데카21 테카 솔루션 미스트 토너', tags: ['積雪草舒緩', '細緻噴霧', '退紅補水'], desc: '東國製藥旗下高純度積雪草 TECA 舒緩噴霧化妝水，冬日室內暖氣乾燥或敏感泛紅時隨時一噴鎮定。', stamped: false },
             { id: 'daisocloth', store: '大創', badge: '韓國大創', bg: '#ECEFF4', name: '大創 超細纖維抹布 (3入)', krName: '극세사행주 3매입 (32×32cm)', tags: ['超細纖維', '強力吸水', '₩1,000神物'], desc: '只要 ₩1,000 的超高 CP 值居家神物！三色入（白/藍/灰），組織細密吸水力極強、擦拭水垢不留毛絮。', stamped: false },
             { id: 'daisohand', store: '大創', badge: '韓國大創', bg: '#E5F2F6', name: '大創 蜂膠膠原蛋白手膜', krName: '꿀광보습 핸드케어 팩 (1세트)', tags: ['蜂膠滋潤', '膠原蛋白', '手套式手膜'], desc: '冬日韓國乾冷必備！含蜂膠與膠原蛋白精華，像戴手套一樣穿戴 20 分鐘，深層修護乾燥粗糙雙手。', stamped: false },
-            { id: 'hetras', store: 'Olive young', altStore: '其他', badge: 'Olive Young', bg: '#F7F2E4', name: 'HETRAS 固態香氛 (Daisy)', krName: '헤트라스 프리미엄 퍼퓸 고체 탈취제 (300g)', tags: ['室內擴香', '除臭芳香', '顏料罐造型'], desc: '韓國超人氣顏料鐵罐造型固態香氛！大容量 300g 兼具除臭與持久擴香，Daisy 雛菊香氣清新療癒。', stamped: false }
+            { id: 'hetras', store: '其他', badge: '其他', bg: '#F7F2E4', name: 'HETRAS 固態香氛 (Daisy)', krName: '헤트라스 프리미엄 퍼퓸 고체 탈취제 (300g)', tags: ['室內擴香', '除臭芳香', '顏料罐造型'], desc: '韓國超人氣顏料鐵罐造型固態香氛！大容量 300g 兼具除臭與持久擴香，Daisy 雛菊香氣清新療癒。', stamped: false },
+            { id: 'milkyshop', store: '伴手禮', badge: '伴手禮', bg: '#FAF0E1', name: 'Milky Shop 焦糖奶油夾心餅', krName: '밀키샵 카라멜 버터샌드 (Milky Shop)', tags: ['首爾爆紅', '濃郁奶油餅', '精緻伴手禮'], desc: '從首爾紅遍全韓的超人氣復古奶油夾心餅！酥脆法式餅乾夾入厚實法國發酵奶油與焦糖流心，冰鎮後更好吃。', stamped: false },
+            { id: 'yegamdip', store: '超市', badge: '韓國超市', bg: '#EBF2E6', name: '好麗友 預感沾醬洋芋片', krName: '오리온 찍먹 예감 갈릭청양마요 소스맛', tags: ['內附沾醬盒', '蒜香青陽美乃滋', '非油炸烘焙'], desc: '韓國超市超驚豔零食！非油炸波浪馬鈴薯片內附一整盒「蒜香青陽辣椒美乃滋沾醬」，濃郁微辣超涮嘴。', stamped: false },
+            { id: 'arihnoodle', store: '超市', badge: '韓國超市', bg: '#F6EDE2', name: '韓國 ARIH 現代拌麵', krName: '아리 모던누들 (ARIH Modern Noodle)', tags: ['7種風味', '松露牛肉/奶油醬油', '餐廳級拌麵'], desc: '韓國熱銷人氣現代拌麵！共有海苔超辣、奶油醬油、松露牛肉、韓式辣醬奶油、蛤蜊等 7 種風味，Q彈麵條完美吸附醬汁。', stamped: false },
+            { id: 'ottogisesame', store: '超市', badge: '韓國超市', bg: '#FBF3D5', name: '不倒翁 100%香醇芝麻油', krName: '오뚜기 고소한 참기름 (500ml)', tags: ['100%整顆芝麻', '鐵罐裝大容量', '韓式料理靈魂'], desc: '韓國家庭廚房必備國民麻油！嚴選 100% 整顆芝麻低溫焙炒壓榨，開瓶香氣超濃郁，拌飯、拌麵或沾肉都絕配。', stamped: false },
+            { id: 'daisomold', store: '大創', badge: '韓國大創', bg: '#E5F2F8', name: '大創 變色泡沫黴菌清潔噴霧', krName: '다이소 컬러로 확인하는 폼타입 크리너 (550ml)', tags: ['藍泡變白泡', '550ml大容量', '浴室除霉去垢'], desc: '專為浴室、磁磚縫隙、窗台設計！噴出藍色泡沫待轉為白色後沖洗擦拭即可強力去除頑固黴菌與水垢。', stamped: false },
+            { id: 'daisobattery', store: '大創', badge: '韓國大創', bg: '#E8EFF7', name: '大創 NEOCELL 長效鹼性電池', krName: '다이소 네오셀 알카라인 건전지 (16개입)', tags: ['16入₩3,000', '超持久耐用', '網友激推CP值'], desc: '網友激推能用超久的韓國大創神級消耗品！整盒 16 顆只要 ₩3,000（AAA/AA皆有），電力持久、高耗電產品也超耐撐。', stamped: false }
         ];
 
-        const SHOPPING_STORAGE_KEY = 'busan_v2_shopping_clean_v11';
+        const SHOPPING_STORAGE_KEY = 'busan_v2_shopping_clean_v12';
         let savedShop = JSON.parse(localStorage.getItem(SHOPPING_STORAGE_KEY) || 'null');
         let shoppingItems = JSON.parse(JSON.stringify(DEFAULT_SHOPPING_DATA));
         if (Array.isArray(savedShop)) {
@@ -4769,62 +5098,69 @@
                             <div class="shop-desc-text">${item.desc}</div>
                             <div class="shop-panel-footer">
                                 <span class="shop-hold-tip">${item.stamped ? '長按取消印章' : '長按 0.65秒 蓋章'}</span>
-                                <button type="button" class="shop-more-link" onclick="event.stopPropagation(); openFlashcard('${item.krName}', '${item.name} (${item.badge || item.store})')">查看韓文 →</button>
+                                <button type="button" class="shop-more-link">查看韓文 →</button>
                             </div>
                         </div>
                     </div>
                 `;
 
-                let holdTimer = null;
-                let didStamp = false;
+                const moreBtn = card.querySelector('.shop-more-link');
+                if (moreBtn) {
+                    moreBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openFlashcard(item.krName, `(${item.name})`);
+                    });
+                }
 
-                const onPointerDown = (e) => {
+                let pressTimer = null;
+                let longPressTriggered = false;
+
+                const startPress = (e) => {
                     if (e.target.closest('.shop-more-link')) return;
                     if (e.button !== undefined && e.button !== 0) return;
-                    didStamp = false;
+                    longPressTriggered = false;
                     card.classList.add('holding-press');
-                    holdTimer = setTimeout(() => {
-                        didStamp = true;
+                    pressTimer = setTimeout(() => {
+                        longPressTriggered = true;
                         card.classList.remove('holding-press');
                         shoppingItems[idx].stamped = !shoppingItems[idx].stamped;
                         localStorage.setItem(SHOPPING_STORAGE_KEY, JSON.stringify(shoppingItems));
 
-                        if (shoppingItems[idx].stamped) {
-                            card.classList.add('stamped');
-                            showToast(`已蓋章：${item.name}`);
-                        } else {
-                            card.classList.remove('stamped');
-                            showToast(`已取消蓋章：${item.name}`);
-                        }
-
+                        const isNowStamped = shoppingItems[idx].stamped;
+                        card.classList.toggle('stamped', isNowStamped);
                         const tipEl = card.querySelector('.shop-hold-tip');
-                        if (tipEl) tipEl.textContent = shoppingItems[idx].stamped ? '長按取消印章' : '長按 0.65秒 蓋章';
-                        updateCheckinBadges();
+                        if (tipEl) tipEl.textContent = isNowStamped ? '長按取消印章' : '長按 0.65秒 蓋章';
 
                         if (window.gsap) {
                             gsap.fromTo(card,
-                                { scale: 0.94, rotation: -1.5 },
+                                { scale: 0.94, rotation: isNowStamped ? -1.5 : 0 },
                                 { scale: 1, rotation: 0, duration: 0.38, ease: "elastic.out(1.2, 0.4)" }
                             );
                         }
+                        updateCheckinBadges();
+                        showToast(isNowStamped ? `已蓋章：${item.name}` : `已取消蓋章：${item.name}`);
                     }, 650);
                 };
 
                 const cancelPress = () => {
-                    if (holdTimer) {
-                        clearTimeout(holdTimer);
-                        holdTimer = null;
+                    if (pressTimer) {
+                        clearTimeout(pressTimer);
+                        pressTimer = null;
                     }
                     card.classList.remove('holding-press');
                 };
 
-                card.addEventListener('pointerdown', onPointerDown);
+                card.addEventListener('pointerdown', startPress);
                 card.addEventListener('pointerup', cancelPress);
                 card.addEventListener('pointerleave', cancelPress);
                 card.addEventListener('pointercancel', cancelPress);
 
                 card.addEventListener('click', (e) => {
-                    if (didStamp || e.target.closest('.shop-more-link')) return;
+                    if (e.target.closest('.shop-more-link')) return;
+                    if (longPressTriggered) {
+                        longPressTriggered = false;
+                        return;
+                    }
                     card.classList.toggle('panel-open');
                 });
 
@@ -4834,7 +5170,7 @@
             updateCheckinBadges();
         }
 
-        // 美食打卡清單（All Sunday 改為 輕食與下午茶；Working Holiday 改為 餐廳）
+        // 美食打卡清單（新增 5 款小吃 + 1 款餐廳安木豬肉湯飯）
         const DEFAULT_CHECKIN_DATA = [
             {
                 name: '東大門獵奇辣炒年糕',
@@ -4847,6 +5183,63 @@
                     { zh: '加雙倍起司', kr: '치즈 추가' }
                 ],
                 note: '建議點微辣（착한맛），玫瑰奶油醬汁濃郁不嗆口！'
+            },
+            {
+                name: '名品糖餅（海雲台市場）',
+                krName: '해운대 명품호떡',
+                category: '小吃',
+                checked: false,
+                picks: [
+                    { zh: '蜂蜜堅果糖餅', kr: '꿀씨앗호떡' },
+                    { zh: '起司堅果糖餅', kr: '치즈씨앗호떡' },
+                    { zh: '艾草堅果糖餅', kr: '쑥씨앗호떡' }
+                ],
+                note: '海雲台傳統市場排隊名店，外皮酥香Q軟、內餡塞滿飽滿堅果與黑糖蜜！'
+            },
+            {
+                name: '元祖糖餅（BIFF廣場）',
+                krName: 'BIFF광장 원조씨앗호떡',
+                category: '小吃',
+                checked: false,
+                picks: [
+                    { zh: '元祖堅果黑糖餅', kr: '원조 씨앗호떡' }
+                ],
+                note: '南浦洞 BIFF 廣場最具代表性的老字號糖餅，半煎炸金黃酥脆、堅果香氣爆棚。'
+            },
+            {
+                name: '昇基堅果黑糖餅（BIFF廣場）',
+                krName: '승기씨앗호떡',
+                category: '小吃',
+                checked: false,
+                picks: [
+                    { zh: '昇基堅果黑糖餅', kr: '승기 씨앗호떡' },
+                    { zh: '起司堅果黑糖餅', kr: '치즈 씨앗호떡' }
+                ],
+                note: '因綜藝節目李昇基吃過而爆紅的 BIFF 廣場兩大糖餅名店之一，剪開塞入滿滿葵花籽與花生。'
+            },
+            {
+                name: 'Gelati Gelati 義式冰淇淋',
+                krName: '젤라띠젤라띠 (Gelati Gelati)',
+                category: '小吃',
+                checked: false,
+                picks: [
+                    { zh: '利川大米口味（招牌）', kr: '이천쌀' },
+                    { zh: '開心果口味', kr: '피스타치오' },
+                    { zh: '當季水果系列雪酪', kr: '제철 과일 시리즈' }
+                ],
+                note: '釜山超人氣義式手工冰淇淋！招牌「利川大米」吃得到Q彈米粒感，搭配開心果或清爽水果系列超絕配。'
+            },
+            {
+                name: '古來思魚糕',
+                krName: '고래사어묵',
+                category: '小吃',
+                checked: false,
+                picks: [
+                    { zh: '起司魚糕棒', kr: '치즈어묵' },
+                    { zh: '鮮蝦魚糕卷', kr: '새우어묵' },
+                    { zh: '招牌魚糕烏龍麵', kr: '어묵우동' }
+                ],
+                note: '釜山代表性百年魚糕名店（海雲台店外有巨型魚糕裝飾），店內可自選魚糕微波加熱現吃！'
             },
             {
                 name: 'Puraduk 炸雞',
@@ -4929,6 +5322,18 @@
                 note: '坐擁海雲臺無敵海景的質感早午餐與下午茶餐廳。'
             },
             {
+                name: '安木豬肉湯飯',
+                krName: '안목 (ANMOK)',
+                category: '餐廳',
+                checked: false,
+                picks: [
+                    { zh: '招牌豬肉湯飯', kr: '돼지국밥' },
+                    { zh: '極品綜合湯飯', kr: '모둠국밥' },
+                    { zh: '白切五花肉', kr: '수육' }
+                ],
+                note: '米其林指南必比登推薦（Plan B）！目前因為順路排不上先記著，順路或有空的話可以去吃。'
+            },
+            {
                 name: 'Yoajung 優格冰淇淋',
                 krName: '요아정 (요거트아이스크림의정석)',
                 category: '輕食與下午茶',
@@ -4941,7 +5346,7 @@
             }
         ];
 
-        const CHECKIN_STORAGE_KEY = 'busan_v2_checkin_clean_v9';
+        const CHECKIN_STORAGE_KEY = 'busan_v2_checkin_clean_v10';
         let savedFood = JSON.parse(localStorage.getItem(CHECKIN_STORAGE_KEY) || 'null');
         let checkinItems = JSON.parse(JSON.stringify(DEFAULT_CHECKIN_DATA));
         if (Array.isArray(savedFood)) {
